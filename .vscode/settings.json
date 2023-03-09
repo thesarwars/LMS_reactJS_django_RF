@@ -8,10 +8,10 @@
             "server": "localhost",
             "port": 3306,
             "driver": "MySQL",
+            "name": "tahasql",
             "database": "taha_lms",
             "username": "root",
-            "name": "django.db.backends.mysql",
-            "password": "root"
+            "password": ""
         }
     ]
 }
