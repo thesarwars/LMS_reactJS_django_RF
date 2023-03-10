@@ -14,6 +14,8 @@ function Header() {
               <a className="nav-link" href="#">Courses</a>
               <a className="nav-link" href="#">Instructor</a>
               <Link className="nav-link" to="/about">About</Link>
+              <Link className="nav-link" to="/user-login">Login</Link>
+              <Link className="nav-link" to="/user-reg">Registration</Link>
             </div>
           </div>
         </div>
