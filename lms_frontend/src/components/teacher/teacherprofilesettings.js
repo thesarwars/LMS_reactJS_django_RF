@@ -1,14 +1,14 @@
 import { Link } from "react-router-dom";
-import MyCourses from './mycourses'
-import Sidebar from "./sidebar";
+import MyStudents from './mystudents';
+import TeacherSidebar from "./teachersidebar";
 
 
-function ProfileSettings(){
+function TeacherProfileSettings(){
     return (
         <div className="container mt-4">
             <div className="row">
                 <aside className="col-md-3">
-                    <Sidebar />
+                    <TeacherSidebar />
                 </aside>
                 <section className="col-md-9">
                     <form>
@@ -29,7 +29,7 @@ function ProfileSettings(){
                             <input type="password" className="form-control" id="exampleInputPassword1" />
                         </div>
                         <div className="mb-3">
-                            <label for="exampleInputPassword1" className="form-label">Interest</label>
+                            <label for="exampleInputPassword1" className="form-label">Skills</label>
                             <input type="text" className="form-control" id="exampleInputPassword1" />
                         </div>
                         <hr></hr>
@@ -41,4 +41,4 @@ function ProfileSettings(){
     );
 }
 
-export default ProfileSettings;
+export default TeacherProfileSettings;

@@ -12,7 +12,7 @@ function CourseDetails() {
                 <div className='col-8'>
                     <h3>Course Title</h3>
                     <p>Mix and match multiple content types to create the card you need, or throw everything in there. Shown below are image styles, blocks, text styles, and a list group—all wrapped in a fixed-width card.</p>
-                    <p className='fw-bold'>Author: <a href='#'>Teacher 1</a></p>
+                    <p className='fw-bold'>Author: <Link to='/teacher-details/1'>Teacher 1</Link></p>
                     <p className='fw-bold'>Duration: 3 hours 30 minutes </p>
                     <p className='fw-bold'>Total Enrolled: 2356 Students </p>
                     <p className='fw-bold'>Rating: 4.5/5 </p>

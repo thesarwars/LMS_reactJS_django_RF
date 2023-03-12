@@ -12,7 +12,20 @@ function Header() {
             <div className="navbar-nav ms-auto">
               <Link className="nav-link active" aria-current="page" to="/">Home</Link>
               <a className="nav-link" href="#">Courses</a>
-              <a className="nav-link" href="#">Instructor</a>
+              
+              {/* Teacher Login Area */}
+              <li className="nav-item dropdown">
+                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Instructor
+                </a>
+                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><Link className="dropdown-item" to="/teacher-login">Login</Link></li>
+                  <li><Link className="dropdown-item" to="/teacher-reg">Registration</Link></li>
+                  <li><Link className="dropdown-item" to="/teacher-dashboard">Dashboard</Link></li>
+                  <li><Link className="dropdown-item" to="/teacher-login">Logout</Link></li>
+                </ul>
+              </li>
+
+              {/* User login Area */}
               <li className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">User
                 </a>
@@ -23,7 +36,6 @@ function Header() {
                   <li><Link className="dropdown-item" to="/user-login">Logout</Link></li>
                 </ul>
               </li>
-              
             </div>
           </div>
         </div>
