@@ -26,6 +26,11 @@ import MyStudents from './teacher/mystudents';
 import TeacherProfileSettings from './teacher/teacherprofilesettings';
 import TeacherChangePassword from './teacher/teacherchangepass';
 
+// Courses area
+import AllCourses from './allcourses';
+import PopularCourses from './popularcourses';
+import PopularTeacher from './popularteacher';
+
 function Main() {
     return (
       <div className="container">
@@ -56,6 +61,12 @@ function Main() {
             <Route path='/my-students' element={<MyStudents />}></Route>
             <Route path='/teacher-settings' element={<TeacherProfileSettings />}></Route>
             <Route path='/teacher-ch-password' element={<TeacherChangePassword />}></Route>
+
+            {/* courses area */}
+            <Route path='/all-courses' element={<AllCourses />}></Route>
+            <Route path='/popular-courses' element={<PopularCourses />}></Route>
+            <Route path='/popular-teacher' element={<PopularTeacher />}></Route>
+
 
 
         </Switch>

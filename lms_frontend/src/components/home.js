@@ -6,7 +6,7 @@ function Home() {
     
     <div className = "container mt-4">
       {/* Latest courses */}
-      <h3 className="pb-1 mb-4">Latest Course<a href="#" className="float-end">see all</a></h3>
+      <h3 className="pb-1 mb-4">Latest Course<Link to="/all-courses" className="float-end">see all</Link></h3>
       <div className="row">
         <div className="col-md-3">
           <div className="card">
@@ -44,13 +44,47 @@ function Home() {
       {/* End Latest courses */}
 
       {/* Popular courses */}
-      <h3 className="pb-1 mb-4 mt-5">Popular Course<a href="#" className="float-end">see all</a></h3>
+      <h3 className="pb-1 mb-4 mt-5">Popular Course<Link to="/popular-courses" className="float-end">see all</Link></h3>
       <div className="row">
         <div className="col-md-3">
           <div className="card">
+            <Link to="/coursedetails/1"><img src="logo512.png" className="card-img-top" alt="..." /></Link>
+            <div className="card-body">
+              <h5 className="card-title"><Link to="/coursedetails/1">Course title</Link></h5>
+            </div>
+            <div className="card-footer">
+                <div className="title">
+                  <span>Rating: 4.5/5 </span>
+                  <span className="float-end">views: 3571 </span>
+                </div>
+              </div>
+          </div>
+        </div>
+        <div className="col-md-3">
+          <div className="card">
             <a href="#"><img src="logo512.png" className="card-img-top" alt="..." /></a>
             <div className="card-body">
               <h5 className="card-title"><a href="#">Course title</a></h5>
+            </div>
+            <div className="card-footer">
+                <div className="title">
+                  <span>Rating: 4.5/5 </span>
+                  <span className="float-end">views: 3571 </span>
+                </div>
+              </div>
+          </div>
+        </div>
+        <div className="col-md-3">
+          <div className="card">
+            <a href="#"><img src="logo512.png" className="card-img-top" alt="..." /></a>
+            <div className="card-body">
+              <h5 className="card-title"><a href="#">Course title</a></h5>
+            </div>
+            <div className="card-footer">
+                <div className="title">
+                  <span>Rating: 4.5/5 </span>
+                  <span className="float-end">views: 3571 </span>
+                </div>
             </div>
           </div>
         </div>
@@ -60,35 +94,30 @@ function Home() {
             <div className="card-body">
               <h5 className="card-title"><a href="#">Course title</a></h5>
             </div>
-          </div>
-        </div>
-        <div className="col-md-3">
-          <div className="card">
-            <a href="#"><img src="logo512.png" className="card-img-top" alt="..." /></a>
-            <div className="card-body">
-              <h5 className="card-title"><a href="#">Course title</a></h5>
-            </div>
-          </div>
-        </div>
-        <div className="col-md-3">
-          <div className="card">
-            <a href="#"><img src="logo512.png" className="card-img-top" alt="..." /></a>
-            <div className="card-body">
-              <h5 className="card-title"><a href="#">Course title</a></h5>
+            <div className="card-footer">
+                <div className="title">
+                  <span>Rating: 4.5/5 </span>
+                  <span className="float-end">views: 3571 </span>
+                </div>
             </div>
           </div>
         </div>
       </div>
       {/* End Popular courses */}
 
-      {/* Teacher courses */}
-      <h3 className="pb-1 mb-4 mt-5">Teacher<a href="#" className="float-end">see all</a></h3>
+      {/* Popular Teacher list */}
+      <h3 className="pb-1 mb-4 mt-5">Teacher<Link to="/popular-teacher" className="float-end">see all</Link></h3>
       <div className="row">
         <div className="col-md-3">
           <div className="card">
-            <a href="#"><img src="logo512.png" className="card-img-top" alt="..." /></a>
+            <Link to="/teacher-details/1"><img src="logo512.png" className="card-img-top" alt="..." /></Link>
             <div className="card-body">
-              <h5 className="card-title"><a href="#">Teacher</a></h5>
+              <h5 className="card-title"><Link to="/teacher-details/1">Teacher</Link></h5>
+            </div>
+            <div className="card-footer">
+                <div className="title">
+                    <span>Rating: 4.5/5 </span>
+                </div>
             </div>
           </div>
         </div>
@@ -98,13 +127,10 @@ function Home() {
             <div className="card-body">
               <h5 className="card-title"><a href="#">Teacher</a></h5>
             </div>
-          </div>
-        </div>
-        <div className="col-md-3">
-          <div className="card">
-            <a href="#"><img src="logo512.png" className="card-img-top" alt="..." /></a>
-            <div className="card-body">
-              <h5 className="card-title"><a href="#">Teacher</a></h5>
+            <div className="card-footer">
+                <div className="title">
+                    <span>Rating: 4.5/5 </span>
+                </div>
             </div>
           </div>
         </div>
@@ -113,11 +139,29 @@ function Home() {
             <a href="#"><img src="logo512.png" className="card-img-top" alt="..." /></a>
             <div className="card-body">
               <h5 className="card-title"><a href="#">Teacher</a></h5>
+            </div>
+            <div className="card-footer">
+                <div className="title">
+                    <span>Rating: 4.5/5 </span>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div className="col-md-3">
+          <div className="card">
+            <a href="#"><img src="logo512.png" className="card-img-top" alt="..." /></a>
+            <div className="card-body">
+              <h5 className="card-title"><a href="#">Teacher</a></h5>
+            </div>
+            <div className="card-footer">
+                <div className="title">
+                    <span>Rating: 4.5/5 </span>
+                </div>
             </div>
           </div>
         </div>
       </div>
-      {/* End Teacher */}
+      {/* End Popular Teacher */}
 
       {/* Student Testimonial */}
       <h3 className="pb-1 mb-4 mt-5">Student Testimonial</h3>
