@@ -1,14 +1,14 @@
 import { Link } from "react-router-dom";
 
-function AllCourses() {
+function CategoryCourses() {
     return (
         <div className = "container mt-4">
             {/* Latest courses */}
-            <h3 className="pb-1 mb-4">Latest Course</h3>
+            <h3 className="pb-1 mb-4">ReactJs Course</h3>
             <div className="row">
                 <div className="col-md-3 mb-4">
                     <div className="card">
-                        <Link to={'/coursedetails/1'}><img src="python.png" className="card-img-top" alt="..." /></Link>
+                        <Link to={'/coursedetails/1'}><img src="/python.png" className="card-img-top" alt="..." /></Link>
                         <div className="card-body">
                             <h5 className="card-title"><Link to={'/coursedetails/1'}>Course title</Link></h5>
                         </div>
@@ -16,7 +16,7 @@ function AllCourses() {
                 </div>
                 <div className="col-md-3 mb-4">
                     <div className="card">
-                        <a href="#"><img src="python.png" className="card-img-top" alt="..." /></a>
+                        <a href="#"><img src="/python.png" className="card-img-top" alt="..." /></a>
                         <div className="card-body">
                             <h5 className="card-title"><a href="#">Course title</a></h5>
                         </div>
@@ -24,7 +24,7 @@ function AllCourses() {
                 </div>
                 <div className="col-md-3 mb-4">
                     <div className="card">
-                        <a href="#"><img src="python.png" className="card-img-top" alt="..." /></a>
+                        <a href="#"><img src="/python.png" className="card-img-top" alt="..." /></a>
                         <div className="card-body">
                             <h5 className="card-title"><a href="#">Course title</a></h5>
                         </div>
@@ -32,7 +32,7 @@ function AllCourses() {
                 </div>
                 <div className="col-md-3 mb-4">
                     <div className="card">
-                        <a href="#"><img src="python.png" className="card-img-top" alt="..." /></a>
+                        <a href="#"><img src="/python.png" className="card-img-top" alt="..." /></a>
                         <div className="card-body">
                             <h5 className="card-title"><a href="#">Course title</a></h5>
                         </div>
@@ -40,7 +40,7 @@ function AllCourses() {
                 </div>
                 <div className="col-md-3 mb-4">
                     <div className="card">
-                        <Link to={'/coursedetails/1'}><img src="python.png" className="card-img-top" alt="..." /></Link>
+                        <Link to={'/coursedetails/1'}><img src="/python.png" className="card-img-top" alt="..." /></Link>
                         <div className="card-body">
                             <h5 className="card-title"><Link to={'/coursedetails/1'}>Course title</Link></h5>
                         </div>
@@ -48,7 +48,7 @@ function AllCourses() {
                 </div>
                 <div className="col-md-3 mb-4">
                     <div className="card">
-                        <a href="#"><img src="python.png" className="card-img-top" alt="..." /></a>
+                        <a href="#"><img src="/python.png" className="card-img-top" alt="..." /></a>
                         <div className="card-body">
                             <h5 className="card-title"><a href="#">Course title</a></h5>
                         </div>
@@ -56,7 +56,7 @@ function AllCourses() {
                 </div>
                 <div className="col-md-3 mb-4">
                     <div className="card">
-                        <a href="#"><img src="python.png" className="card-img-top" alt="..." /></a>
+                        <a href="#"><img src="/python.png" className="card-img-top" alt="..." /></a>
                         <div className="card-body">
                             <h5 className="card-title"><a href="#">Course title</a></h5>
                         </div>
@@ -64,7 +64,7 @@ function AllCourses() {
                 </div>
                 <div className="col-md-3 mb-4">
                     <div className="card">
-                        <a href="#"><img src="python.png" className="card-img-top" alt="..." /></a>
+                        <a href="#"><img src="/python.png" className="card-img-top" alt="..." /></a>
                         <div className="card-body">
                             <h5 className="card-title"><a href="#">Course title</a></h5>
                         </div>
@@ -90,4 +90,4 @@ function AllCourses() {
     )
 }
 
-export default AllCourses;
+export default CategoryCourses;

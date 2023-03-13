@@ -11,7 +11,7 @@ function Header() {
           <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div className="navbar-nav ms-auto">
               <Link className="nav-link active" aria-current="page" to="/">Home</Link>
-              <a className="nav-link" href="#">Courses</a>
+              <Link className="nav-link" to="/all-courses">Courses</Link>
               
               {/* Teacher Login Area */}
               <li className="nav-item dropdown">

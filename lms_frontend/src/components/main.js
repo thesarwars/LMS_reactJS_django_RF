@@ -30,6 +30,7 @@ import TeacherChangePassword from './teacher/teacherchangepass';
 import AllCourses from './allcourses';
 import PopularCourses from './popularcourses';
 import PopularTeacher from './popularteacher';
+import CategoryCourses from './categorycourses';
 
 function Main() {
     return (
@@ -66,6 +67,7 @@ function Main() {
             <Route path='/all-courses' element={<AllCourses />}></Route>
             <Route path='/popular-courses' element={<PopularCourses />}></Route>
             <Route path='/popular-teacher' element={<PopularTeacher />}></Route>
+            <Route path='/category/:category_slug' element={<CategoryCourses />}></Route>
 
 
 
