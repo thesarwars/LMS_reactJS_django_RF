@@ -1,7 +1,12 @@
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 
 function TeacherRegistration() {
+    useEffect(() => {
+        document.title = "Teacher Registrations"
+    });
+
     return(
         <div className="container mt-4">
             <div className="col-6 offset-3">
@@ -10,7 +15,7 @@ function TeacherRegistration() {
                     <div className="card-body">
                         <form>
                             <div className="mb-3">
-                                <label for="exampleInputEmail1" className="form-label">Name</label>
+                                <label for="exampleInputEmail1" className="form-label">Full Name</label>
                                 <input type="text" className="form-control"/>
                             </div>
                             <div className="mb-3">
@@ -20,6 +25,14 @@ function TeacherRegistration() {
                             <div className="mb-3">
                                 <label for="exampleInputPassword1" className="form-label">Password</label>
                                 <input type="password" className="form-control" id="exampleInputPassword1"/>
+                            </div>
+                            <div className="mb-3">
+                                <label for="exampleInputEmail1" className="form-label">Qualification</label>
+                                <input type="text" className="form-control"/>
+                            </div>
+                            <div className="mb-3">
+                                <label for="exampleInputEmail1" className="form-label">Phone no</label>
+                                <input type="number" className="form-control"/>
                             </div>
                             <div className="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Skills</label>

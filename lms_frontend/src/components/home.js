@@ -1,7 +1,12 @@
 import { Link } from "react-router-dom";
-
+import { useEffect } from "react";
 
 function Home() {
+
+  useEffect(() => {
+    document.title = "Taha LMS | Home"
+  });
+
   return (
     
     <div className = "container mt-4">

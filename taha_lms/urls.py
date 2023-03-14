@@ -16,8 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('taha_api.urls')),
+    path('apiview/', include('taha_api.urls')),
     path('api-auth/', include('rest_framework.urls')),
+    
 ]

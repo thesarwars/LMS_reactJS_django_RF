@@ -1,7 +1,16 @@
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 
+const baseUrl = 'http://127.0.0.1:8000/apiview';
 function PopularTeacher(){
+    const [teacher, setTeacher] = useState(null);
+    useEffect(() => {
+        axios.get(baseUrl + '/teacher/').then((response) => {
+            console.log(response.data);
+        });
+    },[]);
     return (
         <div className="container mt-4">
             {/* Popular Teacher list */}
@@ -119,12 +128,12 @@ function PopularTeacher(){
             {/* pagination start */}
 
             <nav aria-label="Page navigation example mt-5">
-                <ul class="pagination justify-content-end">
-                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                <ul className="pagination justify-content-end">
+                    <li className="page-item"><a className="page-link" href="#">Previous</a></li>
+                    <li className="page-item"><a className="page-link" href="#">1</a></li>
+                    <li className="page-item"><a className="page-link" href="#">2</a></li>
+                    <li className="page-item"><a className="page-link" href="#">3</a></li>
+                    <li className="page-item"><a className="page-link" href="#">Next</a></li>
                 </ul>
             </nav>
 

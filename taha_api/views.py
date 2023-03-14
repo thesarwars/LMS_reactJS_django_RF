@@ -8,17 +8,17 @@ from rest_framework import permissions
 # from rest_framework.views import APIView
 # Create your views here.
 
-class ApiList(generics.ListCreateAPIView):
+class TeacherList(generics.ListCreateAPIView):
     queryset = Teacher.objects.all()
     serializer_class = TeacherSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
     
 
 
-class ApiUpdate(generics.RetrieveDestroyAPIView):
+class TeacherUpdate(generics.RetrieveDestroyAPIView):
     queryset = Teacher.objects.all()
     serializer_class = TeacherSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
 
 # class ApiList(APIView):
 #     def post(self, request, format=None):

@@ -22,7 +22,7 @@ function Registration() {
                                 <input type="password" className="form-control" id="exampleInputPassword1"/>
                             </div>
                             <div className="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Interest Field</label>
+                                <label for="exampleInputEmail1" className="form-label">Interest Field</label>
                                 <textarea className="form-control"></textarea>
                                 <div id="emailHelp" className="form-text">Ex: Python, Django, JavaScript</div>
                             </div>
