@@ -8,9 +8,10 @@ function PopularTeacher(){
     const [teacher, setTeacher] = useState(null);
     useEffect(() => {
         axios.get(baseUrl + '/teacher/').then((response) => {
-            console.log(response.data);
+            setTeacher(response.data);
         });
     },[]);
+    console.log(teacher);
     return (
         <div className="container mt-4">
             {/* Popular Teacher list */}
