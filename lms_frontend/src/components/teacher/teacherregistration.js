@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from 'axios';
+import React from 'react';
 
 const baseUrl = "http://127.0.0.1:8000/apiview/teacher/";
 
@@ -27,7 +28,8 @@ function TeacherRegistration() {
 
     // submit form
 
-    const submitForm=(event)=>{
+    const handleForm=(e)=>{
+        e.preventDefault();
         const teacherFormData = new FormData();
         teacherFormData.append("full_name", teacherData.full_name)
         teacherFormData.append("email", teacherData.email)
@@ -36,13 +38,21 @@ function TeacherRegistration() {
         teacherFormData.append("phone_no", teacherData.phone_no)
         teacherFormData.append("skills", teacherData.skills)
 
-
         try{
-            axios.post(baseUrl, teacherFormData).then((response)=>{
-                console.log(response);
+            axios.post(baseUrl, teacherFormData).then((res)=>{
+                setteacherData({
+                    "full_name": "",
+                    "email": "",
+                    "password": "",
+                    "qualification": "",
+                    "phone_no": "",
+                    "skills": "",
+                    "status": "success",
+                });
             });
-        }catch(error){
-            console.log(error);
+        }catch(err){
+            console.log('error',err)
+            setteacherData({'Status': 'error'})
         }
     };
     // End
@@ -55,36 +65,38 @@ function TeacherRegistration() {
     return(
         <div className="container mt-4">
             <div className="col-6 offset-3">
+                {teacherData.status === 'success' && <p className="text-success">Teacher Registered Successfully</p>}
+                {teacherData.status === 'error' && <p className="text-danger">Something is wrong!</p>}
                 <div className="card">
                     <h5 className="card-header">Teacher Registration</h5>
                     <div className="card-body">
-                        <form>
+                        <form onSubmit={handleForm}>
                             <div className="mb-3">
-                                <label for="exampleInputEmail1" className="form-label">Full Name</label>
-                                <input onChange={handleChange} name="full_name" type="text" className="form-control"/>
+                                <label for="exampleInputEmail1" className="form-label" htmlFor="full_name">Full Name</label>
+                                <input value={teacherData.full_name} onChange={handleChange} name="full_name" type="text" className="form-control"/>
                             </div>
                             <div className="mb-3">
-                                <label for="exampleInputEmail1" className="form-label">Email</label>
-                                <input onChange={handleChange} name="email" type="email" className="form-control"/>
+                                <label for="exampleInputEmail1" className="form-label" htmlFor="email">Email</label>
+                                <input value={teacherData.email} onChange={handleChange} name="email" type="email" className="form-control"/>
                             </div>
                             <div className="mb-3">
-                                <label for="exampleInputPassword1" className="form-label">Password</label>
-                                <input onChange={handleChange} name="password" type="password" className="form-control" id="exampleInputPassword1"/>
+                                <label for="exampleInputPassword1" className="form-label" htmlFor="password">Password</label>
+                                <input value={teacherData.password} onChange={handleChange} name="password" type="password" className="form-control" id="exampleInputPassword1"/>
                             </div>
                             <div className="mb-3">
-                                <label for="exampleInputEmail1" className="form-label">Qualification</label>
-                                <input onChange={handleChange} name="qualification" type="text" className="form-control"/>
+                                <label for="exampleInputEmail1" className="form-label" htmlFor="qualification">Qualification</label>
+                                <input value={teacherData.qualification} onChange={handleChange} name="qualification" type="text" className="form-control"/>
                             </div>
                             <div className="mb-3">
-                                <label for="exampleInputEmail1" className="form-label">Phone no</label>
-                                <input onChange={handleChange} name="phone_no" type="number" className="form-control"/>
+                                <label for="exampleInputEmail1" className="form-label" htmlFor="phone_no">Phone no</label>
+                                <input value={teacherData.phone_no} onChange={handleChange} name="phone_no" type="number" className="form-control"/>
                             </div>
                             <div className="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Skills</label>
-                                <textarea onChange={handleChange} name="skills" className="form-control"></textarea>
+                                <label for="exampleInputEmail1" class="form-label" htmlFor="skills">Skills</label>
+                                <textarea value={teacherData.skills} onChange={handleChange} name="skills" className="form-control"></textarea>
                                 <div id="emailHelp" className="form-text">Ex: Python, Django, JavaScript</div>
                             </div>
-                            <button onClick={submitForm} type="submit" className="btn btn-primary">Register</button>
+                            <button type="submit" className="btn btn-primary">Register</button>
                         </form>
                     </div>
                 </div>

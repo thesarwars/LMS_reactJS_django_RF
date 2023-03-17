@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import MyCourses from './mycourses'
 import Sidebar from "./sidebar";
+import React from 'react';
 
 
 function ChangePassword(){

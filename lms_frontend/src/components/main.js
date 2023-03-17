@@ -1,3 +1,4 @@
+import React from 'react'
 import Home from './home';
 import About from './about';
 import Header from './header';
