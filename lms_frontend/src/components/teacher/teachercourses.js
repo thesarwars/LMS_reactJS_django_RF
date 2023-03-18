@@ -27,6 +27,7 @@ function TeacherCourses() {
                                         <td><Link to="/">Shahriar Iraj Ifti</Link></td>
                                         <td>
                                             <button className="btn btn-danger active btn-sm">Drop</button>
+                                            <Link to="/add-chapter/2" className="btn btn-success btn-sm active ms-2">Add Chapter</Link>
                                         </td>
                                     </tr>
                                 </tbody>

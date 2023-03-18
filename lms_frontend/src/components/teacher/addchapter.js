@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import TeacherSidebar from "./teachersidebar";
 import React from 'react';
 
-function AddCourses() {
+function AddChapter() {
     return(
         <div className="container mt-4">
             <div className="row">
@@ -11,7 +11,7 @@ function AddCourses() {
                 </aside>
                 <div className="col-9">
                     <div className="card">
-                        <h5 className="card-header">Add Course</h5>
+                        <h5 className="card-header">Add Chapter</h5>
                         <div className="card-body">
                             <form>
                                 <div className="mb-3">
@@ -23,12 +23,12 @@ function AddCourses() {
                                     <textarea id="description" className="form-control"></textarea>
                                 </div>
                                 <div className="mb-3">
-                                    <label for="video" className="form-label">Featured Image</label>
+                                    <label for="video" className="form-label">Video</label>
                                     <input type="file" id="video" className="form-control"/>
                                 </div>
                                 <div className="mb-3">
-                                    <label for="techs" class="form-label">Technologies</label>
-                                    <textarea id="techs" placeholder="Python, Django, JavaScripts, PHP, HTML, CSS..." className="form-control"></textarea>
+                                    <label for="techs" class="form-label">Remarks</label>
+                                    <textarea id="techs" placeholder="This video is focus on basic." className="form-control"></textarea>
                                 </div>
                                 <button type="submit" className="btn btn-primary">Add</button>
                             </form>
@@ -40,4 +40,4 @@ function AddCourses() {
     );
 }
 
-export default AddCourses;
+export default AddChapter;
