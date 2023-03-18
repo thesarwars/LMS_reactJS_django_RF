@@ -57,10 +57,15 @@ function TeacherRegistration() {
     };
     // End
 
-    // useEffect(() => {
-    //     document.title = "Teacher Registrations"
+    const teacherLoginStatus = localStorage.getItem('teacherLoginStatus')
+    if(teacherLoginStatus == 'true'){
+        window.location.href = '/teacher-dashboard'
+    }
 
-    // });
+    useEffect(() => {
+        document.title = "Teacher Registrations"
+
+    });
 
     return(
         <div className="container mt-4">

@@ -20,6 +20,7 @@ import ChangePassword from './user/changepass';
 // Teacher Area
 import TeacherRegistration from './teacher/teacherregistration';
 import TeacherLogin from './teacher/teacherlogin';
+import TeacherLogout from './teacher/teacherlogout';
 import TeacherDashboard from './teacher/teacherdashboard';
 import TeacherCourses from './teacher/teachercourses';
 import AddCourses from './teacher/addcourses';
@@ -32,6 +33,7 @@ import AllCourses from './allcourses';
 import PopularCourses from './popularcourses';
 import PopularTeacher from './popularteacher';
 import CategoryCourses from './categorycourses';
+
 
 function Main() {
     return (
@@ -55,6 +57,7 @@ function Main() {
 
             {/* Teacher Area */}
             <Route path='/teacher-login' element={<TeacherLogin />}></Route>
+            <Route path='/teacher-logout' element={<TeacherLogout />}></Route>
             <Route path='/teacher-reg' element={<TeacherRegistration />}></Route>
             <Route path='/teacher-dashboard' element={<TeacherDashboard />}></Route>
             <Route path='/teacher-courses' element={<TeacherCourses />}></Route>
