@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .serializers import TeacherSerializer
+from .serializers import TeacherSerializer, CategorySerializer, CourseSerializer
 from .models import *
 from rest_framework import generics
 from rest_framework import permissions
@@ -46,3 +46,15 @@ def teacher_login(request):
 #                 serializer.save()
 #                 return Response(serializer.data, status=status.HTTP_201_CREATED)
 #             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class CategoryList(generics.ListCreateAPIView):
+    queryset = CourseCategory.objects.all()
+    serializer_class = CategorySerializer
+    # permission_classes = [permissions.IsAuthenticated]
+
+
+class CourseList(generics.ListCreateAPIView):
+    queryset = Course.objects.all()
+    serializer_class = CourseSerializer
+    # permission_classes = [permissions.IsAuthenticated]
