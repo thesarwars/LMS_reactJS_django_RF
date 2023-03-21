@@ -21,14 +21,14 @@ function TeacherLogin() {
 
     const submitForm = (event) =>{
         event.preventDefault();
-        const teacherFormData = new FormData;
+        const teacherFormData = new FormData();
         teacherFormData.append('email', teacherLoginData.email)
         teacherFormData.append('password', teacherLoginData.password)
 
         try{
             axios.post(baseUrl + '/teacher-login', teacherFormData)
             .then((res) => {
-                if(res.data.bool == true){
+                if(res.data.bool === true){
                     localStorage.setItem('teacherLoginStatus', true);
                     window.location.href = '/teacher-dashboard'
                 }
@@ -40,7 +40,7 @@ function TeacherLogin() {
     }
 
     const teacherLoginStatus = localStorage.getItem('teacherLoginStatus')
-    if(teacherLoginStatus == 'true'){
+    if(teacherLoginStatus === 'true'){
         window.location.href = '/teacher-dashboard'
     }
 

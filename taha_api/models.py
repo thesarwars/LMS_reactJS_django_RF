@@ -35,6 +35,10 @@ class Course(models.Model):
     description = models.TextField()
     featured_img = models.ImageField(upload_to='featured_img/', null=True)
     techs = models.TextField(null=True)
+    
+    
+    def __str__(self):
+        return self.title
 
     
 # Student models here.

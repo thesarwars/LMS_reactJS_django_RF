@@ -1,8 +1,27 @@
 import { Link } from "react-router-dom";
 import TeacherSidebar from "./teachersidebar";
 import React from 'react';
+import {useState, useEffect} from 'react';
+import axios from "axios";
+
+const baseUrl = 'http://127.0.0.1:8000/apiview';
 
 function TeacherCourses() {
+    const [CourseData, setCourseData] = useState([]);
+    
+    useEffect(() => {
+        try{
+            axios.get(baseUrl + '/teacher-course/40')
+            .then((res) => {
+                setCourseData(res.data)
+            });
+        }catch(error){
+            console.log(error);
+        }
+    },[]);
+
+    console.log(CourseData);
+
     return(
         <div className="container mt-4">
             <div className="row">
@@ -22,14 +41,16 @@ function TeacherCourses() {
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    {CourseData.map((course, index) => 
                                     <tr>
-                                        <td>Python Development</td>
-                                        <td><Link to="/">Shahriar Iraj Ifti</Link></td>
+                                        <td>{course.title}</td>
+                                        <td><Link to="/teacher-details/:teacher_id">{course.teacher}</Link></td>
                                         <td>
                                             <button className="btn btn-danger active btn-sm">Drop</button>
                                             <Link to="/add-chapter/2" className="btn btn-success btn-sm active ms-2">Add Chapter</Link>
                                         </td>
                                     </tr>
+                                    )}
                                 </tbody>
                             </table>
                         </div>

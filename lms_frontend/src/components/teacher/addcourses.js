@@ -10,11 +10,16 @@ const baseUrl = 'http://127.0.0.1:8000/apiview';
 function AddCourses() {
     const [Cates, setCates] = useState([]);
     const [courseData, setcourseData] = useState({
-        category: '',
-        title: '',
-        description: '',
-        f_img: '',
-        techs: ''
+        // category: '',
+        // title: '',
+        // description: '',
+        // f_img: '',
+        // techs: ''
+        'category': '',
+        'title': '',
+        'description': '',
+        'f_img': '',
+        'techs': '',
     });
 
     useEffect(() => {
@@ -43,7 +48,7 @@ function AddCourses() {
     };
 
     const submitForm = (e) => {
-        // e.preventDeault();
+        e.preventDefault();
         const _formData = new FormData();
         _formData.append('category', courseData.category);
         _formData.append('teacher', 1);
@@ -82,17 +87,17 @@ function AddCourses() {
                             <form>
                                 <div className="mb-3">
                                     <label for="title" className="form-label">Category</label>
-                                    <select name='category' onChange={handleChange} className="form-control">
+                                    <select name='category' value={courseData.category} onChange={handleChange} className="form-control">
                                         {Cates.map((category, index) => {return <option key={index} value={category.id}>{category.title}</option>})}
                                     </select>
                                 </div>
                                 <div className="mb-3">
                                     <label for="title" className="form-label">Title</label>
-                                    <input id="title" type='text' name='title' onChange={handleChange} className="form-control"></input>
+                                    <input id="title" value={courseData.title}  type='text' name='title' onChange={handleChange} className="form-control"></input>
                                 </div>
                                 <div className="mb-3">
                                     <label for="description" className="form-label">Description</label>
-                                    <textarea name="description" id="description" onChange={handleChange} className="form-control"></textarea>
+                                    <textarea name="description" value={courseData.description}  id="description" onChange={handleChange} className="form-control"></textarea>
                                 </div>
                                 <div className="mb-3">
                                     <label for="video" className="form-label">Featured Image</label>
@@ -100,7 +105,7 @@ function AddCourses() {
                                 </div>
                                 <div className="mb-3">
                                     <label for="techs" class="form-label">Technologies</label>
-                                    <textarea id="techs" onChange={handleChange} name="techs" placeholder="Python, Django, JavaScripts, PHP, HTML, CSS..." className="form-control"></textarea>
+                                    <textarea id="techs" value={courseData.techs} onChange={handleChange} name="techs" placeholder="Python, Django, JavaScripts, PHP, HTML, CSS..." className="form-control"></textarea>
                                 </div>
                                 <button onClick={submitForm} type="submit" className="btn btn-primary">Add</button>
                             </form>

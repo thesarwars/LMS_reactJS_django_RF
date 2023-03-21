@@ -58,7 +58,7 @@ function TeacherRegistration() {
     // End
 
     const teacherLoginStatus = localStorage.getItem('teacherLoginStatus')
-    if(teacherLoginStatus == 'true'){
+    if(teacherLoginStatus === 'true'){
         window.location.href = '/teacher-dashboard'
     }
 

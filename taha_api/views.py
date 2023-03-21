@@ -53,8 +53,19 @@ class CategoryList(generics.ListCreateAPIView):
     serializer_class = CategorySerializer
     # permission_classes = [permissions.IsAuthenticated]
 
-
+# Course
 class CourseList(generics.ListCreateAPIView):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
     # permission_classes = [permissions.IsAuthenticated]
+
+
+# Specific Teacher Course
+class TeacherCourseList(generics.ListAPIView):
+    serializer_class = CourseSerializer
+    # permission_classes = [permissions.IsAuthenticated]
+    
+    def get_queryset(self):
+        teacher_id = self.kwargs['teacher_id']
+        teacher = Teacher.objects.get(pk=teacher_id)
+        return Course.objects.filter(teacher=teacher)
