@@ -8,10 +8,11 @@ const baseUrl = 'http://127.0.0.1:8000/apiview';
 
 function TeacherCourses() {
     const [CourseData, setCourseData] = useState([]);
-    
+    const teacherId = localStorage.getItem('teacherId')
+
     useEffect(() => {
         try{
-            axios.get(baseUrl + '/teacher-course/40')
+            axios.get(baseUrl + '/teacher-course/'+teacherId)
             .then((res) => {
                 setCourseData(res.data)
             });
@@ -36,6 +37,7 @@ function TeacherCourses() {
                                 <thead>
                                     <tr>
                                         <th>Name</th>
+                                        <th>Images</th>
                                         <th>Created By</th>
                                         <th>Action</th>
                                     </tr>
@@ -44,6 +46,7 @@ function TeacherCourses() {
                                     {CourseData.map((course, index) => 
                                     <tr>
                                         <td>{course.title}</td>
+                                        <td><img width="80px" src={course.featured_img} className="rounded" /></td>
                                         <td><Link to="/teacher-details/:teacher_id">{course.teacher}</Link></td>
                                         <td>
                                             <button className="btn btn-danger active btn-sm">Drop</button>

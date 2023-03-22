@@ -64,7 +64,8 @@ function AddCourses() {
                 }
             })
             .then((res) => {
-                console.log(res.data)
+                // console.log(res.data)
+                window.location.href = '/add-courses'
             });
         }catch(error){
             console.log(error);
