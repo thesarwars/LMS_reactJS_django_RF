@@ -46,7 +46,7 @@ function TeacherCourses() {
                                     {CourseData.map((course, index) => 
                                     <tr>
                                         <td>{course.title}</td>
-                                        <td><img width="80px" src={course.featured_img} className="rounded" /></td>
+                                        <td><img width="80px" src={course.featured_img} className="rounded" alt={course.title}/></td>
                                         <td><Link to="/teacher-details/:teacher_id">{course.teacher}</Link></td>
                                         <td>
                                             <button className="btn btn-danger active btn-sm">Drop</button>
