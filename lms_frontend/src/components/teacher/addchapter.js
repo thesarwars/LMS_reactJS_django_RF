@@ -3,6 +3,7 @@ import TeacherSidebar from "./teachersidebar";
 import React from 'react';
 import {useState, useEffect} from 'react';
 import axios from "axios";
+import {useParams} from 'react-router-dom';
 
 
 const baseUrl = 'http://127.0.0.1:8000/apiview';
@@ -34,10 +35,11 @@ function AddChapter() {
         })
     };
 
+    const course_id = useParams();
     const submitForm = (e) => {
         e.preventDefault();
         const _formData = new FormData();
-        _formData.append('course', 3);
+        _formData.append('course', course_id);
         _formData.append('title', ChapterData.title);
         _formData.append('description', ChapterData.description);
         _formData.append('video', ChapterData.video, ChapterData.video.name);
