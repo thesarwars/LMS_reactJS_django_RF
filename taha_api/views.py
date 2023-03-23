@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .serializers import TeacherSerializer, CategorySerializer, CourseSerializer
+from .serializers import TeacherSerializer, CategorySerializer, CourseSerializer, ChapterSerializer
 from .models import *
 from rest_framework import generics
 from rest_framework import permissions
@@ -57,6 +57,12 @@ class CategoryList(generics.ListCreateAPIView):
 class CourseList(generics.ListCreateAPIView):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
+    # permission_classes = [permissions.IsAuthenticated]
+
+
+class ChapterList(generics.ListCreateAPIView):
+    queryset = Chapter.objects.all()
+    serializer_class = ChapterSerializer
     # permission_classes = [permissions.IsAuthenticated]
 
 

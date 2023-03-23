@@ -13,7 +13,7 @@ function AddChapter() {
         // title: '',
         // description: '',
         // f_img: '',
-        // techs: ''
+        'chapter': '',
         'title': '',
         'description': '',
         'video': '',
@@ -37,22 +37,21 @@ function AddChapter() {
     const submitForm = (e) => {
         e.preventDefault();
         const _formData = new FormData();
-        _formData.append('category', ChapterData.category);
-        _formData.append('teacher', 1);
+        _formData.append('course', 3);
         _formData.append('title', ChapterData.title);
         _formData.append('description', ChapterData.description);
-        _formData.append('featured_img', ChapterData.f_img, ChapterData.f_img.name);
-        _formData.append('techs', ChapterData.techs);
+        _formData.append('video', ChapterData.video, ChapterData.video.name);
+        _formData.append('remarks', ChapterData.remarks);
 
         try{
-            axios.post(baseUrl + '/course/', _formData, {
+            axios.post(baseUrl + '/chapter/', _formData, {
                 headers: {
                     'content-type': 'multipart/form-data'
                 }
             })
             .then((res) => {
                 // console.log(res.data)
-                window.location.href = '/add-courses'
+                window.location.href = '/add-chapter/1'
             });
         }catch(error){
             console.log(error);
@@ -72,22 +71,22 @@ function AddChapter() {
                         <div className="card-body">
                             <form>
                                 <div className="mb-3">
-                                    <label for="title" className="form-label">Course Title</label>
-                                    <input id="title" type="text" className="form-control"/>
+                                    <label for="title" className="form-label">Chapter Title</label>
+                                    <input id="title" onChange={handleChange} name="title" type="text" className="form-control"/>
                                 </div>
                                 <div className="mb-3">
                                     <label for="description" className="form-label" htmlFor="email">Description</label>
-                                    <textarea id="description" className="form-control"></textarea>
+                                    <textarea id="description" onChange={handleChange} name="description" className="form-control"></textarea>
                                 </div>
                                 <div className="mb-3">
                                     <label for="video" className="form-label">Video</label>
-                                    <input type="file" id="video" className="form-control"/>
+                                    <input type="file" onChange={handleFileChange} name="video" id="video" className="form-control"/>
                                 </div>
                                 <div className="mb-3">
                                     <label for="techs" class="form-label">Remarks</label>
-                                    <textarea id="techs" placeholder="This video is focus on basic." className="form-control"></textarea>
+                                    <textarea id="techs" onChange={handleChange} name="remarks" placeholder="This video is focus on basic." className="form-control"></textarea>
                                 </div>
-                                <button type="submit" className="btn btn-primary">Add</button>
+                                <button type="button" onClick={submitForm} className="btn btn-primary">Add</button>
                             </form>
                         </div>
                     </div>

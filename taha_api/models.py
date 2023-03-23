@@ -40,6 +40,18 @@ class Course(models.Model):
     def __str__(self):
         return self.title
 
+
+class Chapter(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    title = models.CharField(max_length=150)
+    description = models.TextField()
+    video = models.FileField(upload_to='chapter_videos/', null=True)
+    remarks = models.TextField(null=True)
+    
+    
+    def __str__(self):
+        return self.title
+
     
 # Student models here.
 class Student(models.Model):
