@@ -1,8 +1,65 @@
 import { Link } from "react-router-dom";
 import TeacherSidebar from "./teachersidebar";
 import React from 'react';
+import {useState, useEffect} from 'react';
+import axios from "axios";
+
+
+const baseUrl = 'http://127.0.0.1:8000/apiview';
 
 function AddChapter() {
+    const [ChapterData, setChapterData] = useState({
+        // category: '',
+        // title: '',
+        // description: '',
+        // f_img: '',
+        // techs: ''
+        'title': '',
+        'description': '',
+        'video': '',
+        'remarks': '',
+    });
+
+    const handleChange = (event) => {
+        setChapterData({
+            ...ChapterData,
+            [event.target.name]:event.target.value
+        })
+    };
+
+    const handleFileChange = (event) => {
+        setChapterData({
+            ...ChapterData,
+            [event.target.name]:event.target.files[0]
+        })
+    };
+
+    const submitForm = (e) => {
+        e.preventDefault();
+        const _formData = new FormData();
+        _formData.append('category', ChapterData.category);
+        _formData.append('teacher', 1);
+        _formData.append('title', ChapterData.title);
+        _formData.append('description', ChapterData.description);
+        _formData.append('featured_img', ChapterData.f_img, ChapterData.f_img.name);
+        _formData.append('techs', ChapterData.techs);
+
+        try{
+            axios.post(baseUrl + '/course/', _formData, {
+                headers: {
+                    'content-type': 'multipart/form-data'
+                }
+            })
+            .then((res) => {
+                // console.log(res.data)
+                window.location.href = '/add-courses'
+            });
+        }catch(error){
+            console.log(error);
+        }
+
+    };
+
     return(
         <div className="container mt-4">
             <div className="row">

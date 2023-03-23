@@ -47,10 +47,10 @@ function TeacherCourses() {
                                     <tr>
                                         <td>{course.title}</td>
                                         <td><img width="80px" src={course.featured_img} className="rounded" alt={course.title}/></td>
-                                        <td><Link to="/teacher-details/:teacher_id">{course.teacher}</Link></td>
+                                        <td><Link to={"/teacher-details/"+teacherId}>{course.teacher}</Link></td>
                                         <td>
                                             <button className="btn btn-danger active btn-sm">Drop</button>
-                                            <Link to="/add-chapter/2" className="btn btn-success btn-sm active ms-2">Add Chapter</Link>
+                                            <Link to={'/add-chapter/'+course.id} className="btn btn-success btn-sm active ms-2">Add Chapter</Link>
                                         </td>
                                     </tr>
                                     )}
