@@ -25,6 +25,7 @@ import TeacherDashboard from './teacher/teacherdashboard';
 import TeacherCourses from './teacher/teachercourses';
 import AddCourses from './teacher/addcourses';
 import AddChapter from './teacher/addchapter';
+import CourseChapters from './teacher/coursechapter';
 import MyStudents from './teacher/mystudents';
 import TeacherProfileSettings from './teacher/teacherprofilesettings';
 import TeacherChangePassword from './teacher/teacherchangepass';
@@ -65,6 +66,7 @@ function Main() {
             <Route path='/teacher-courses' element={<TeacherCourses />}></Route>
             <Route path='/add-courses' element={<AddCourses />}></Route>
             <Route path='/add-chapter/:course_id' element={<AddChapter />}></Route>
+            <Route path='/all-chapter/:course_id' element={<CourseChapters />}></Route>
             <Route path='/my-students' element={<MyStudents />}></Route>
             <Route path='/teacher-settings' element={<TeacherProfileSettings />}></Route>
             <Route path='/teacher-ch-password' element={<TeacherChangePassword />}></Route>
