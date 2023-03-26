@@ -28,10 +28,11 @@ function CourseChapters(){
 
     const handleDeleteChange = () =>{
         Swal.fire({
-            title: 'Error!',
-            text: 'Do you want to continue',
-            icon: 'error',
-            confirmButtonText: 'Cool'
+            title: 'Confirm',
+            text: 'Do you want to delete this chapter?',
+            icon: 'info',
+            confirmButtonText: 'Drop',
+            showCancelButton: true,
           })
     }
     

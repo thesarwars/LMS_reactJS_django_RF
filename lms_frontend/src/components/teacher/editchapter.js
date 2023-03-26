@@ -5,10 +5,10 @@ import {useState, useEffect} from 'react';
 import axios from "axios";
 import {useParams} from 'react-router-dom';
 
-
 const baseUrl = 'http://127.0.0.1:8000/apiview';
 
-function AddChapter() {
+
+function EditChapter(){
     const [ChapterData, setChapterData] = useState({
         'chapter': '',
         'title': '',
@@ -31,15 +31,16 @@ function AddChapter() {
         })
     };
 
-    const course_id = useParams();
+    const chapter_id = useParams();
     const submitForm = (e) => {
         e.preventDefault();
         const _formData = new FormData();
-        _formData.append('course', course_id);
+        _formData.append('course', chapter_id);
         _formData.append('title', ChapterData.title);
         _formData.append('description', ChapterData.description);
         _formData.append('video', ChapterData.video, ChapterData.video.name);
         _formData.append('remarks', ChapterData.remarks);
+
 
         try{
             axios.post(baseUrl + '/chapter/', _formData, {
@@ -54,8 +55,7 @@ function AddChapter() {
         }catch(error){
             console.log(error);
         }
-
-    };
+    }
 
     return(
         <div className="container mt-4">
@@ -91,7 +91,7 @@ function AddChapter() {
                 </div>
             </div>
         </div>
-    );
+    )
 }
 
-export default AddChapter;
+export default EditChapter;
