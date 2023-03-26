@@ -10,7 +10,7 @@ const baseUrl = 'http://127.0.0.1:8000/apiview';
 
 function EditChapter(){
     const [ChapterData, setChapterData] = useState({
-        'chapter': '',
+        'course': '',
         'title': '',
         'description': '',
         'video': '',
@@ -31,31 +31,51 @@ function EditChapter(){
         })
     };
 
-    const chapter_id = useParams();
+    const {chapter_id} = useParams();
     const submitForm = (e) => {
         e.preventDefault();
         const _formData = new FormData();
-        _formData.append('course', chapter_id);
+        _formData.append('course', ChapterData.course);
         _formData.append('title', ChapterData.title);
         _formData.append('description', ChapterData.description);
-        _formData.append('video', ChapterData.video, ChapterData.video.name);
+        if (ChapterData.video != ''){
+            _formData.append('video', ChapterData.video, ChapterData.video.name);
+        }
         _formData.append('remarks', ChapterData.remarks);
 
 
         try{
-            axios.post(baseUrl + '/chapter/', _formData, {
+            axios.put(baseUrl + '/chapter/'+ chapter_id, _formData, {
                 headers: {
                     'content-type': 'multipart/form-data'
                 }
             })
             .then((res) => {
-                // console.log(res.data)
-                window.location.href = '/add-chapter/1'
+                setChapterData(res.data)
             });
         }catch(error){
             console.log(error);
         }
     }
+
+    useEffect(() => {
+        try{
+            axios.get(baseUrl + '/chapter/'+chapter_id)
+            .then((res) => {
+                setChapterData({
+                    course: res.data.course,
+                    title: res.data.title,
+                    description: res.data.description,
+                    prev_video: res.data.video,
+                    remarks: res.data.remarks,
+                    video: ''
+                })
+            });
+        }catch(error){
+            console.log(error);
+        }
+    },[]);
+
 
     return(
         <div className="container mt-4">
@@ -65,26 +85,32 @@ function EditChapter(){
                 </aside>
                 <div className="col-9">
                     <div className="card">
-                        <h5 className="card-header">Add Chapter</h5>
+                        <h5 className="card-header">Modify Chapter</h5>
                         <div className="card-body">
                             <form>
                                 <div className="mb-3">
                                     <label for="title" className="form-label">Chapter Title</label>
-                                    <input id="title" onChange={handleChange} name="title" type="text" className="form-control"/>
+                                    <input id="title" value={ChapterData.title} onChange={handleChange} name="title" type="text" className="form-control"/>
                                 </div>
                                 <div className="mb-3">
                                     <label for="description" className="form-label" htmlFor="email">Description</label>
-                                    <textarea id="description" onChange={handleChange} name="description" className="form-control"></textarea>
+                                    <textarea id="description" value={ChapterData.description} onChange={handleChange} name="description" className="form-control"></textarea>
                                 </div>
                                 <div className="mb-3">
                                     <label for="video" className="form-label">Video</label>
                                     <input type="file" onChange={handleFileChange} name="video" id="video" className="form-control"/>
+                                    {ChapterData.prev_video &&
+                                    <video width="100%" controls className='mt-2'>
+                                            <source src={ChapterData.prev_video} type="video/mp4" />
+                                            Your browser does not support the video tag.
+                                    </video>
+                                    }
                                 </div>
                                 <div className="mb-3">
                                     <label for="techs" class="form-label">Remarks</label>
-                                    <textarea id="techs" onChange={handleChange} name="remarks" placeholder="This video is focus on basic." className="form-control"></textarea>
+                                    <textarea id="techs" value={ChapterData.remarks} onChange={handleChange} name="remarks" placeholder="This video is focus on basic." className="form-control"></textarea>
                                 </div>
-                                <button type="button" onClick={submitForm} className="btn btn-primary">Add</button>
+                                <button type="button" onClick={submitForm} className="btn btn-primary">Update</button>
                             </form>
                         </div>
                     </div>
