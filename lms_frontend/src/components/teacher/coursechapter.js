@@ -3,24 +3,38 @@ import TeacherSidebar from "./teachersidebar";
 import React from 'react';
 import {useState, useEffect} from 'react';
 import axios from "axios";
-import {useParams} from 'react-router-dom'
+import {useParams} from 'react-router-dom';
+import Swal from 'sweetalert2';
+
 
 const baseUrl = 'http://127.0.0.1:8000/apiview';
 
 function CourseChapters(){
     const [ChapterData, setChapterData] = useState([]);
+    const [TotalChapter, setTotalChapter] = useState(0);
     const {course_id} = useParams()
 
     useEffect(() => {
         try{
             axios.get(baseUrl + '/course-chapter/'+course_id)
             .then((res) => {
-                setChapterData(res.data)
+                setTotalChapter(res.data.length);
+                setChapterData(res.data);
             });
         }catch(error){
             console.log(error);
         }
     },[]);
+
+    const handleDeleteChange = () =>{
+        Swal.fire({
+            title: 'Error!',
+            text: 'Do you want to continue',
+            icon: 'error',
+            confirmButtonText: 'Cool'
+          })
+    }
+    
 
     // console.log(ChapterData);
     return(
@@ -31,7 +45,7 @@ function CourseChapters(){
                 </aside>
                 <section className="col-md-9">
                     <div className="card">
-                        <h5 className="card-header">Course Chapters</h5>
+                        <h5 className="card-header">Course Chapters ({TotalChapter})</h5>
                         <div className="card-body">
                             <table className="table table-bordered">
                                 <thead>
@@ -55,8 +69,9 @@ function CourseChapters(){
                                         </td>
                                         <td>{chapter.remarks}</td>
                                         <td>
-                                            <button className="btn btn-danger active">Drop</button>
-                                            <button className="btn btn-info active ms-2">Edit</button>
+                                            <Link to={'/edit-chapter/'+chapter.id} className="btn btn-info btn-sm text-white"><i class="bi bi-pencil-square"></i></Link>
+                                            <button onClick={handleDeleteChange} className="btn btn-danger btn-sm text-white ms-2"><i class="bi bi-trash"></i></button>
+                                            
                                         </td>
                                     </tr>
                                     )}

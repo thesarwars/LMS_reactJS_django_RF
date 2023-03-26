@@ -15,12 +15,18 @@ class TeacherList(generics.ListCreateAPIView):
     serializer_class = TeacherSerializer
     # permission_classes = [permissions.IsAuthenticated]
     
+    
+    # def get_queryset(self):
+    #     teacher_name = self.kwargs('full_name')
+    #     teacher = Teacher.objects.get(pk=teacher_name)
+    #     return Teacher.objects.filter(teacher=teacher)
 
 
 class TeacherUpdate(generics.RetrieveDestroyAPIView):
     queryset = Teacher.objects.all()
     serializer_class = TeacherSerializer
     # permission_classes = [permissions.IsAuthenticated]
+        
     
 
 @csrf_exempt    
