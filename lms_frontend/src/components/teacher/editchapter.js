@@ -4,6 +4,7 @@ import React from 'react';
 import {useState, useEffect} from 'react';
 import axios from "axios";
 import {useParams} from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const baseUrl = 'http://127.0.0.1:8000/apiview';
 
@@ -45,13 +46,23 @@ function EditChapter(){
 
 
         try{
-            axios.put(baseUrl + '/chapter/'+ chapter_id, _formData, {
+            axios.put(baseUrl + '/chapter/'+ chapter_id+'/', _formData, {
                 headers: {
                     'content-type': 'multipart/form-data'
                 }
             })
             .then((res) => {
-                setChapterData(res.data)
+                if(res.status == 200){
+                    Swal.fire({
+                        title: 'Data has been updated',
+                        icon: 'success',
+                        toast: true,
+                        timer: 3000,
+                        position: 'top-right',
+                        timerProgressBar: true,
+                        showConfirmButton: false,
+                    });
+                }
             });
         }catch(error){
             console.log(error);
@@ -60,7 +71,7 @@ function EditChapter(){
 
     useEffect(() => {
         try{
-            axios.get(baseUrl + '/chapter/'+chapter_id)
+            axios.get(baseUrl + '/chapter/' + chapter_id)
             .then((res) => {
                 setChapterData({
                     course: res.data.course,
