@@ -12,7 +12,7 @@ const baseUrl = 'http://127.0.0.1:8000/apiview';
 function CourseChapters(){
     const [ChapterData, setChapterData] = useState([]);
     const [TotalChapter, setTotalChapter] = useState(0);
-    const {course_id} = useParams()
+    const {course_id, chapter_id} = useParams();
 
     useEffect(() => {
         try{
@@ -25,15 +25,37 @@ function CourseChapters(){
             console.log(error);
         }
     },[]);
-
-    const handleDeleteChange = () =>{
+    // Delete
+    const handleDeleteChange = (chapter_id) =>{
         Swal.fire({
             title: 'Confirm',
             text: 'Do you want to delete this chapter?',
             icon: 'info',
             confirmButtonText: 'Drop',
             showCancelButton: true,
-          })
+        }).then((result) => {
+            if(result.isConfirmed){
+                try{
+                    axios.delete(baseUrl + '/chapter/' + chapter_id)
+                    .then((res) => {
+                        Swal.fire('success', 'Chapter has been removed.');
+                        try{
+                            axios.get(baseUrl + '/course-chapter/'+course_id)
+                            .then((res)=>{
+                                setTotalChapter(res.data.length);
+                                setChapterData(res.data);
+                            })
+                        }catch(error){
+                            console.log(error);
+                        }
+                    })
+                }catch(error){
+                    console.log(error);
+                }
+            }else{
+                Swal.fire('error', 'Chapter not removed..!');
+            }
+        })
     }
     
 
@@ -64,14 +86,13 @@ function CourseChapters(){
                                         <td>
                                         <video width="250" controls>
                                             <source src={chapter.video.url} type="video/mp4" />
-                                            <source src={chapter.video.url} type="video/ogg" />
                                             Your browser does not support the video tag.
                                         </video>
                                         </td>
                                         <td>{chapter.remarks}</td>
                                         <td>
                                             <Link to={'/edit-chapter/'+chapter.id} className="btn btn-info btn-sm text-white"><i class="bi bi-pencil-square"></i></Link>
-                                            <button onClick={handleDeleteChange} className="btn btn-danger btn-sm text-white ms-2"><i class="bi bi-trash"></i></button>
+                                            <button onClick={()=>handleDeleteChange(chapter.id)} className="btn btn-danger btn-sm text-white ms-2"><i class="bi bi-trash"></i></button>
                                             
                                         </td>
                                     </tr>

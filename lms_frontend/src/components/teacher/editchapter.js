@@ -11,11 +11,11 @@ const baseUrl = 'http://127.0.0.1:8000/apiview';
 
 function EditChapter(){
     const [ChapterData, setChapterData] = useState({
-        'course': '',
-        'title': '',
-        'description': '',
-        'video': '',
-        'remarks': '',
+        course: '',
+        title: '',
+        description: '',
+        video: '',
+        remarks: '',
     });
 
     const handleChange = (event) => {
@@ -39,20 +39,20 @@ function EditChapter(){
         _formData.append('course', ChapterData.course);
         _formData.append('title', ChapterData.title);
         _formData.append('description', ChapterData.description);
-        if (ChapterData.video != ''){
+        if (ChapterData.video !== ''){
             _formData.append('video', ChapterData.video, ChapterData.video.name);
         }
         _formData.append('remarks', ChapterData.remarks);
 
 
         try{
-            axios.put(baseUrl + '/chapter/'+ chapter_id+'/', _formData, {
+            axios.put(baseUrl + '/chapter/'+ chapter_id, _formData, {
                 headers: {
                     'content-type': 'multipart/form-data'
                 }
             })
             .then((res) => {
-                if(res.status == 200){
+                if(res.status === 200){
                     Swal.fire({
                         title: 'Data has been updated',
                         icon: 'success',

@@ -57,6 +57,8 @@ MIDDLEWARE = [
     
 ]
 
+# APPEND_SLASH = False
+
 ROOT_URLCONF = 'taha_lms.urls'
 
 TEMPLATES = [

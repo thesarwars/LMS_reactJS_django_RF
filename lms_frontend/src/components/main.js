@@ -67,7 +67,7 @@ function Main() {
             <Route path='/teacher-dashboard' element={<TeacherDashboard />}></Route>
             <Route path='/teacher-courses' element={<TeacherCourses />}></Route>
             <Route path='/add-courses' element={<AddCourses />}></Route>
-            <Route path='/add-chapter/:course_id' element={<AddChapter />}></Route>
+            {/* <Route path='/add-chapter/:course_id' element={<AddChapter />}></Route> */}
             <Route path='/edit-chapter/:chapter_id' element={<EditChapter />}></Route>
             <Route path='/add-chapter/:course_id' element={<AddChapter />}></Route>
             <Route path='/all-chapter/:course_id' element={<CourseChapters />}></Route>

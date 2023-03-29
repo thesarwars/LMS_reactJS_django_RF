@@ -69,9 +69,9 @@ class CourseList(generics.ListCreateAPIView):
     # permission_classes = [permissions.IsAuthenticated]
 
 
-# class ChapterList(generics.ListCreateAPIView):
-#     queryset = Chapter.objects.all()
-#     serializer_class = ChapterSerializer
+class ChapterList(generics.ListCreateAPIView):
+    queryset = Chapter.objects.all()
+    serializer_class = ChapterSerializer
     # permission_classes = [permissions.IsAuthenticated]
 
 

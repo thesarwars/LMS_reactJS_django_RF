@@ -10,11 +10,10 @@ const baseUrl = 'http://127.0.0.1:8000/apiview';
 
 function AddChapter() {
     const [ChapterData, setChapterData] = useState({
-        'chapter': '',
-        'title': '',
-        'description': '',
-        'video': '',
-        'remarks': '',
+        title: '',
+        description: '',
+        video: '',
+        remarks: '',
     });
 
     const handleChange = (event) => {
@@ -31,7 +30,7 @@ function AddChapter() {
         })
     };
 
-    const course_id = useParams();
+    const {course_id} = useParams();
     const submitForm = (e) => {
         e.preventDefault();
         const _formData = new FormData();
@@ -49,7 +48,7 @@ function AddChapter() {
             })
             .then((res) => {
                 // console.log(res.data)
-                window.location.href = '/add-chapter/1'
+                window.location.href = '/add-chapter/' + course_id
             });
         }catch(error){
             console.log(error);
