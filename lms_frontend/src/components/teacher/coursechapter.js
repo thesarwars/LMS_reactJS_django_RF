@@ -12,7 +12,7 @@ const baseUrl = 'http://127.0.0.1:8000/apiview';
 function CourseChapters(){
     const [ChapterData, setChapterData] = useState([]);
     const [TotalChapter, setTotalChapter] = useState(0);
-    const {course_id, chapter_id} = useParams();
+    const {course_id} = useParams();
 
     useEffect(() => {
         try{

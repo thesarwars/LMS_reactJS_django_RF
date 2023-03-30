@@ -111,7 +111,7 @@ function EditCourses() {
                 </aside>
                 <div className="col-9">
                     <div className="card">
-                        <h5 className="card-header">Add Course</h5>
+                        <h5 className="card-header">Edit Course</h5>
                         <div className="card-body">
                             <form>
                                 <div className="mb-3">
@@ -139,7 +139,7 @@ function EditCourses() {
                                     <label for="techs" class="form-label">Technologies</label>
                                     <textarea id="techs" value={courseData.techs} onChange={handleChange} name="techs" placeholder="Python, Django, JavaScripts, PHP, HTML, CSS..." className="form-control"></textarea>
                                 </div>
-                                <button onClick={submitForm} type="submit" className="btn btn-primary">Add</button>
+                                <button onClick={submitForm} type="submit" className="btn btn-primary">Update</button>
                             </form>
                         </div>
                     </div>

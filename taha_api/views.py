@@ -26,6 +26,12 @@ class TeacherUpdate(generics.RetrieveDestroyAPIView):
     queryset = Teacher.objects.all()
     serializer_class = TeacherSerializer
     # permission_classes = [permissions.IsAuthenticated]
+    # lookup_field = ['pk']
+    
+    # def get_queryset(self):
+    #     teacher_id = self.kwargs['teacher_id']
+    #     teacher = Teacher.objects.get(pk=teacher_id)
+    #     return Course.objects.filter(teacher=teacher)
         
     
 

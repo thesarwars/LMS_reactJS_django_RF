@@ -3,6 +3,7 @@ import TeacherSidebar from "./teachersidebar";
 import React from 'react';
 import {useState, useEffect} from 'react';
 import axios from "axios";
+import Swal from 'sweetalert2';
 
 const baseUrl = 'http://127.0.0.1:8000/apiview';
 
@@ -21,6 +22,37 @@ function TeacherCourses() {
             console.log(error);
         }
     },[]);
+
+    const handleDeleteChange = (course_id) => {
+        Swal.fire({
+            title: 'Confirm',
+            text: 'Do you want to delete this course?',
+            icon: 'info',
+            confirmButtonText: 'Drop',
+            showCancelButton: true,
+        }).then((result) => {
+            if(result.isConfirmed){
+                try{
+                    axios.delete(baseUrl + '/course-details/' + course_id)
+                    .then((res) => {
+                        Swal.fire('success', 'Course has been removed.');
+                        try{
+                            axios.get(baseUrl + '/teacher-course/' + teacherId)
+                            .then((res)=>{
+                                setCourseData(res.data);
+                            })
+                        }catch(error){
+                            console.log(error);
+                        }
+                    })
+                }catch(error){
+                    console.log(error);
+                }
+            }else{
+                Swal.fire('error', 'Course not removed..!');
+            }
+        })
+    }
 
     console.log(CourseData);
 
@@ -52,7 +84,7 @@ function TeacherCourses() {
                                         <td>
                                             <Link to={'/edit-course/'+course.id} className="btn btn-info btn-sm active">Edit</Link>
                                             <Link to={'/add-chapter/'+course.id} className="btn btn-success btn-sm active ms-2">Add Chapter</Link>
-                                            <button className="btn btn-danger active btn-sm ms-2">Drop</button>
+                                            <button onClick={()=>handleDeleteChange(course.id)} className="btn btn-danger active btn-sm ms-2">Drop</button>
                                         </td>
                                     </tr>
                                     )}
