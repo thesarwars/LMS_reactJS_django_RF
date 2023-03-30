@@ -69,7 +69,21 @@ class CourseList(generics.ListCreateAPIView):
     # permission_classes = [permissions.IsAuthenticated]
 
 
+# Specific course detail
+class CourseListDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Course.objects.all()
+    serializer_class = CourseSerializer
+    # permission_classes = [permissions.IsAuthenticated]
+
+
 class ChapterList(generics.ListCreateAPIView):
+    queryset = Chapter.objects.all()
+    serializer_class = ChapterSerializer
+    # permission_classes = [permissions.IsAuthenticated]
+
+
+# Specific chapter details
+class ChapterDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Chapter.objects.all()
     serializer_class = ChapterSerializer
     # permission_classes = [permissions.IsAuthenticated]
@@ -98,7 +112,3 @@ class CourseChapterList(generics.ListAPIView):
         return Chapter.objects.filter(course=course)
     
     
-class ChapterDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Chapter.objects.all()
-    serializer_class = ChapterSerializer
-    # permission_classes = [permissions.IsAuthenticated]

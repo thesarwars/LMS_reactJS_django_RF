@@ -24,6 +24,7 @@ import TeacherLogout from './teacher/teacherlogout';
 import TeacherDashboard from './teacher/teacherdashboard';
 import TeacherCourses from './teacher/teachercourses';
 import AddCourses from './teacher/addcourses';
+import EditCourses from './teacher/editcourse';
 import AddChapter from './teacher/addchapter';
 import EditChapter from './teacher/editchapter';
 import CourseChapters from './teacher/coursechapter';
@@ -36,6 +37,7 @@ import AllCourses from './allcourses';
 import PopularCourses from './popularcourses';
 import PopularTeacher from './popularteacher';
 import CategoryCourses from './categorycourses';
+
 
 
 
@@ -67,7 +69,7 @@ function Main() {
             <Route path='/teacher-dashboard' element={<TeacherDashboard />}></Route>
             <Route path='/teacher-courses' element={<TeacherCourses />}></Route>
             <Route path='/add-courses' element={<AddCourses />}></Route>
-            {/* <Route path='/add-chapter/:course_id' element={<AddChapter />}></Route> */}
+            <Route path='/edit-course/:course_id' element={<EditCourses />}></Route>
             <Route path='/edit-chapter/:chapter_id' element={<EditChapter />}></Route>
             <Route path='/add-chapter/:course_id' element={<AddChapter />}></Route>
             <Route path='/all-chapter/:course_id' element={<CourseChapters />}></Route>
