@@ -73,6 +73,13 @@ class CourseList(generics.ListCreateAPIView):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
     # permission_classes = [permissions.IsAuthenticated]
+    
+    def get_queryset(self):
+        qs = super().get_queryset()
+        
+        if 'result' in self.request.GET:
+            qs = Course.objects.all().order_by('-id')[:4]
+        return qs
 
 
 # Specific course detail
