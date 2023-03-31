@@ -68,7 +68,7 @@ function CourseChapters(){
                 </aside>
                 <section className="col-md-9">
                     <div className="card">
-                        <h5 className="card-header">Course Chapters ({TotalChapter})</h5>
+                        <h5 className="card-header">Course Chapters ({TotalChapter}) <Link to={'/add-chapter/'+course_id} className="btn btn-success btn-sm active float-end">Add Chapter</Link></h5>
                         <div className="card-body">
                             <table className="table table-bordered">
                                 <thead>
