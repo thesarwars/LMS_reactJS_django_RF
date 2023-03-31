@@ -11,12 +11,11 @@ const baseUrl = 'http://127.0.0.1:8000/apiview';
 function EditCourses() {
     const [Cates, setCates] = useState([]);
     const [courseData, setcourseData] = useState({
-        'category': '',
-        'title': '',
-        'description': '',
-        'prev_img': '',
-        'f_img': '',
-        'techs': '',
+        category: '',
+        title: '',
+        description: '',
+        f_img: '',
+        techs: '',
     });
 
     useEffect(() => {
