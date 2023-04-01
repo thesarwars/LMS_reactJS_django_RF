@@ -42,7 +42,7 @@ function AddCourses() {
         })
     };
 
-    const {pk} = useParams();
+    // const {pk} = useParams();
     const submitForm = (e) => {
         e.preventDefault();
         const _formData = new FormData();

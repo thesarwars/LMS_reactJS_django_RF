@@ -33,7 +33,7 @@ function TeacherCourses() {
         }).then((result) => {
             if(result.isConfirmed){
                 try{
-                    axios.delete(baseUrl + '/course-details/' + course_id)
+                    axios.delete(baseUrl + '/course/' + course_id)
                     .then((res) => {
                         Swal.fire('success', 'Course has been removed.');
                         try{
@@ -77,16 +77,16 @@ function TeacherCourses() {
                                 </thead>
                                 <tbody>
                                     {CourseData.map((course, index) => 
-                                    <tr>
-                                        <td><Link to={'/all-chapter/'+course.id}>{course.title}</Link></td>
-                                        <td><img width="80px" src={course.featured_img} className="rounded" alt={course.title}/></td>
-                                        <td><Link to={"/teacher-details/"+teacherId}>{course.teacher}</Link></td>
-                                        <td>
-                                            <Link to={'/edit-course/'+course.id} className="btn btn-info btn-sm active">Edit</Link>
-                                            <Link to={'/add-chapter/'+course.id} className="btn btn-success btn-sm active ms-2">Add Chapter</Link>
-                                            <button onClick={()=>handleDeleteChange(course.id)} className="btn btn-danger active btn-sm ms-2">Drop</button>
-                                        </td>
-                                    </tr>
+                                        <tr>
+                                            <td><Link to={'/all-chapter/'+course.id}>{course.title}</Link></td>
+                                            <td><img width="80px" src={course.featured_img} className="rounded" alt={course.title} /></td>
+                                            <td><Link to={'/teacher-details/'+course.teacher.id}>{course.teacher.full_name}</Link></td>
+                                            <td>
+                                                <Link to={'/edit-course/'+course.id} className="btn btn-info btn-sm active">Edit</Link>
+                                                <Link to={'/add-chapter/'+course.id} className="btn btn-success btn-sm active ms-2">Add Chapter</Link>
+                                                <button onClick={()=>handleDeleteChange(+course.id)} className="btn btn-danger active btn-sm ms-2">Drop</button>
+                                            </td>
+                                        </tr>
                                     )}
                                 </tbody>
                             </table>

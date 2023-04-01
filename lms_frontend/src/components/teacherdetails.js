@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
 import React from 'react';
 
+
 function TeacherDetails() {
     return(
         <div className='container mt-3'>
         <div className='row'>
             <div className='col-4'>
-                <img src="/teacher.png" className="img-thumbnail" alt="teacher-image" />
+                <img src="/teacher.png" className="img-thumbnail" alt="teacher" />
             </div>
             <div className='col-8'>
                 <h3>Tahasin Tabassum</h3>
