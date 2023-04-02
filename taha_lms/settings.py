@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 import os
 from pathlib import Path
+# from django.views.decorators.clickjacking import xframe_options_sameorigin
+# from django.http import HttpResponse
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -54,9 +56,14 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
     
 ]
+
+# @xframe_options_sameorigin
+# def ok_to_load_in_a_frame(request):
+#     return HttpResponse("This page is safe to load in a frame on any site.")
+
+
 
 # APPEND_SLASH = False
 
@@ -147,4 +154,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOW_ALL_ORIGINS = True
-X_FRAME_OPTIONS = 'SAMEORIGIN'
+
+X_FRAME_OPTIONS = 'ALLOWALL'

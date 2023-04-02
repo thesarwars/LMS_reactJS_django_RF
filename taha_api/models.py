@@ -1,4 +1,5 @@
-from django.db import models
+from django.db import models;
+from django.core import serializers as core_serializers
 
 # Create your models here.
 # Teacher models here.
@@ -39,6 +40,10 @@ class Course(models.Model):
     
     def __str__(self):
         return self.title
+    
+    def related_videos(self):
+        related_video = Course.objects.filter(techs__icontains = self.techs)
+        return core_serializers.serialize('json',related_video)
 
 
 class Chapter(models.Model):
