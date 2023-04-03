@@ -31,7 +31,7 @@ class CourseCategory(models.Model):
 # Course models here.
 class Course(models.Model):
     category = models.ForeignKey(CourseCategory, on_delete=models.CASCADE)
-    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
+    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, related_name='teacher_courses')
     title = models.CharField(max_length=150)
     description = models.TextField()
     featured_img = models.ImageField(upload_to='featured_img/', null=True)

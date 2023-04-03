@@ -39,7 +39,7 @@ function CourseDetails() {
                 <div className='col-8'>
                     <h3>{CourseData.title}</h3>
                     <p>{CourseData.description}</p>
-                    <p className='fw-bold'>Author: <Link to={'/teacher-details/'+TeacherData.id}>{TeacherData.full_name}</Link></p>
+                    <p className='fw-bold'>Author: <Link to={`/teacher-details/${TeacherData.id}`}>{TeacherData.full_name}</Link></p>
                     <p className='fw-bold'>Techs: Python, Django </p>
                     <p className='fw-bold'>Duration: 3 hours 30 minutes </p>
                     <p className='fw-bold'>Total Enrolled: 2356 Students </p>

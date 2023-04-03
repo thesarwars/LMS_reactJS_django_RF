@@ -1,8 +1,31 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import React from 'react';
+import {useState, useEffect} from 'react';
+import axios from "axios";
+
+const relatedUrl = 'http://127.0.0.1:8000/apiview';
 
 
 function TeacherDetails() {
+    const [TeacherData, setTeacherData] = useState([]);
+    const [CourseData, setCourseData] = useState([]);
+
+    let {teacher_id} = useParams()
+
+    useEffect(() => {
+        try{
+            axios.get(relatedUrl + '/teacher/' + teacher_id)
+            .then((res) => {
+                setCourseData(res.data.teacher_courses)
+                setTeacherData(res.data)
+            });
+        }catch(error){
+            console.log(error);
+        }
+    },[]);
+
+    // console.log(TeacherData)
+
     return(
         <div className='container mt-3'>
         <div className='row'>
@@ -10,28 +33,25 @@ function TeacherDetails() {
                 <img src="/teacher.png" className="img-thumbnail" alt="teacher" />
             </div>
             <div className='col-8'>
-                <h3>Tahasin Tabassum</h3>
+                <h3>{TeacherData.full_name}</h3>
                 <p>Mix and match multiple content types to create the card you need, or throw everything in there. Shown below are image styles, blocks, text styles, and a list group—all wrapped in a fixed-width card.</p>
-                <p className='fw-bold'>Skills: <Link to='/category/react'>PHP</Link>, <Link to='/category/react'>Python</Link>, <Link to='/category/react'>JavaScripts</Link>,</p>
+                <p className='fw-bold'>Skills: <Link to='/category/react'>{TeacherData.skills}</Link></p>
                 <p className='fw-bold'>Recent Course: <Link to='/category/react'>ReactJS Course</Link> </p>
                 <p className='fw-bold'>Rating: 4.5/5 </p>
             </div>
         </div>
-        {/* Course Videos */}
+        {/* Course List */}
         <div className="card mt-4">
             <div className="card-header">
                 <h5>Course Lists</h5>
             </div>
             <div className="list-group list-group-flush">
-                <Link to="/coursedetails/1" className="list-group-item ist-group-item-action">PHP Course 1</Link>
-                <Link to="/coursedetails/1" className="list-group-item ist-group-item-action">PHP Course 2</Link>
-                <Link to="/coursedetails/1" className="list-group-item ist-group-item-action">Python Course 1</Link>
-                <Link to="/coursedetails/1" className="list-group-item ist-group-item-action">Python Course 2</Link>
-                <Link to="/coursedetails/1" className="list-group-item ist-group-item-action">ReactJs Course 1</Link>
-                <Link to="/coursedetails/1" className="list-group-item ist-group-item-action">ReactJs Course 2</Link>
+                {CourseData.map((course, index) =>
+                    <Link to={`/coursedetails/${course.id}`} className="list-group-item ist-group-item-action">{course.title}</Link>
+                )}
             </div>
         </div>
-        {/* End Course Videos */}
+        {/* End Course List */}
     </div>
     );
 }
