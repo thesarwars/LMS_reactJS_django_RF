@@ -42,8 +42,8 @@ class Course(models.Model):
         return self.title
     
     def related_videos(self):
-        related_video = Course.objects.filter(techs__icontains = self.techs)
-        return core_serializers.serialize('json',related_video)
+        related_videos = Course.objects.filter(techs__icontains = self.techs)
+        return core_serializers.serialize('json',related_videos)
 
 
 class Chapter(models.Model):

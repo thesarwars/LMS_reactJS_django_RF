@@ -86,9 +86,9 @@ function CourseDetails() {
                 {relatedCourseData.map((rcourse, index) =>
                     <div className="col-md-3">
                         <div className="card">
-                            <Link to={`/coursedetails/${rcourse.pk}`}><img src={`${relatedUrl}media/${rcourse.fields.featured_img}`} className="card-img-top" alt={rcourse.fields.title} /></Link>
+                            <Link to={`/coursedetails/${rcourse.pk}`}><img src={`${relatedUrl}media/${rcourse.fields.featured_img}`} className="card-img-top" alt="..." /></Link>
                             <div className="card-body">
-                            <h5 className="card-title"><Link to={`/coursedetails/${rcourse.pk}`}>{rcourse.fields.title}</Link></h5>
+                            <h5 className="card-title"><Link target='_blank' to={`/coursedetails/${rcourse.pk}`}>{rcourse.fields.title}</Link></h5>
                             </div>
                         </div>
                     </div>
