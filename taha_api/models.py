@@ -45,6 +45,9 @@ class Course(models.Model):
         related_videos = Course.objects.filter(techs__icontains = self.techs)
         return core_serializers.serialize('json',related_videos)
 
+    def tech_list(self):
+        tech_list = self.techs.split(',')
+        return tech_list
 
 class Chapter(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='course_chapters')

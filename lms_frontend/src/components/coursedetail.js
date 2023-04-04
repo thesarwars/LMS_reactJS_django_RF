@@ -12,6 +12,8 @@ function CourseDetails() {
     const [ChapterData, setChapterData] = useState([]);
     const [TeacherData, setTeacherData] = useState([]);
     const [relatedCourseData, setrelatedCourseData] = useState([]);
+    const [techListData, settechListData] = useState([]);
+    
     let {course_id} = useParams()
 
     useEffect(() => {
@@ -22,13 +24,14 @@ function CourseDetails() {
                 setChapterData(res.data.course_chapters)
                 setTeacherData(res.data.teacher)
                 setrelatedCourseData(JSON.parse(res.data.related_videos))
+                settechListData(res.data.tech_list)
             });
         }catch(error){
             console.log(error);
         }
     },[]);
 
-    // console.log(relatedCourseData)
+    // console.log(techListData)
 
     return (
         <div className='container mt-3'>
@@ -40,7 +43,11 @@ function CourseDetails() {
                     <h3>{CourseData.title}</h3>
                     <p>{CourseData.description}</p>
                     <p className='fw-bold'>Author: <Link to={`/teacher-details/${TeacherData.id}`}>{TeacherData.full_name}</Link></p>
-                    <p className='fw-bold'>Techs: Python, Django </p>
+                    <p className='fw-bold'>Techs: 
+                    {techListData.map((tech, index)=>
+                        <Link to={`/category/${tech.trim()}`} className='badge bg-secondary ms-1'>{tech}</Link>
+                    )}
+                    </p>
                     <p className='fw-bold'>Duration: 3 hours 30 minutes </p>
                     <p className='fw-bold'>Total Enrolled: 2356 Students </p>
                     <p className='fw-bold'>Rating: 4.5/5 </p>

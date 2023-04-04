@@ -9,8 +9,7 @@ const baseUrl = 'http://127.0.0.1:8000/apiview';
 
 function TeacherCourses() {
     const [CourseData, setCourseData] = useState([]);
-    const [TeacherData, setTeacherData] = useState([]);
-    // const [teacherData, setteacherData] = useState([]);
+    // const [TeacherData, setTeacherData] = useState([]);
     const teacherId = localStorage.getItem('teacherId')
 
     useEffect(() => {
