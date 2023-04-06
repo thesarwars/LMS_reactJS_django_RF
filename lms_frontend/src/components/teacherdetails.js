@@ -9,6 +9,7 @@ const relatedUrl = 'http://127.0.0.1:8000/apiview';
 function TeacherDetails() {
     const [TeacherData, setTeacherData] = useState([]);
     const [CourseData, setCourseData] = useState([]);
+    const [TeacherSkills, setTeacherSkills] = useState([]);
 
     let {teacher_id} = useParams()
 
@@ -18,13 +19,14 @@ function TeacherDetails() {
             .then((res) => {
                 setCourseData(res.data.teacher_courses)
                 setTeacherData(res.data)
+                setTeacherSkills(res.data.teach_skills)
             });
         }catch(error){
             console.log(error);
         }
     },[]);
 
-    // console.log(TeacherData)
+    console.log(TeacherSkills)
 
     return(
         <div className='container mt-3'>
@@ -35,7 +37,13 @@ function TeacherDetails() {
             <div className='col-8'>
                 <h3>{TeacherData.full_name}</h3>
                 <p>Mix and match multiple content types to create the card you need, or throw everything in there. Shown below are image styles, blocks, text styles, and a list group—all wrapped in a fixed-width card.</p>
-                <p className='fw-bold'>Skills: <Link to='/category/react'>{TeacherData.skills}</Link></p>
+                <p className='fw-bold'>Skills: 
+                {TeacherSkills.map((tskills, index) =>
+                    <>
+                        <Link to={`/category/${tskills.trim()}`} className="badge bg-secondary ms-1">{tskills.trim()}</Link>
+                    </>
+                )}
+                </p>
                 <p className='fw-bold'>Recent Course: <Link to='/category/react'>ReactJS Course</Link> </p>
                 <p className='fw-bold'>Rating: 4.5/5 </p>
             </div>

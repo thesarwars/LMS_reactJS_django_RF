@@ -4,7 +4,7 @@ from .models import *
 class TeacherSerializer(serializers.ModelSerializer):
     class Meta:
         model = Teacher
-        fields = ['id', 'full_name', 'email', 'password', 'qualification', 'phone_no', 'skills', 'teacher_courses']
+        fields = ['id', 'full_name', 'email', 'password', 'qualification', 'phone_no', 'skills', 'teacher_courses', 'teach_skills']
         depth = 1
         
         

@@ -30,7 +30,7 @@ function EditCourses() {
         }
         // Fetch currect course data
         try{
-            axios.get(baseUrl + '/course-details/' + course_id)
+            axios.get(baseUrl + '/course/' + course_id)
             .then((res) => {
                 setcourseData({
                     category: res.data.category,
@@ -76,7 +76,7 @@ function EditCourses() {
         _formData.append('techs', courseData.techs);
 
         try{
-            axios.put(baseUrl + '/course-details/' + course_id, _formData, {
+            axios.put(baseUrl + '/course/' + course_id, _formData, {
                 headers: {
                     'content-type': 'multipart/form-data'
                 }

@@ -6,14 +6,14 @@ import axios from "axios";
 const baseUrl = 'http://127.0.0.1:8000/apiview';
 
 function CategoryCourses() {
-    const [CourseData, setCourseData] = useState([]);
+    const [catCourseData, setcatCourseData] = useState([]);
     let {category_slug} = useParams()
 
     useEffect(() => {
         try{
             axios.get(baseUrl + '/course/?category=' + category_slug)
             .then((res) => {
-                setCourseData(res.data)
+                setcatCourseData(res.data)
             });
         }catch(error){
             console.log(error);
@@ -25,7 +25,7 @@ function CategoryCourses() {
             {/* Latest courses */}
             <h3 className="pb-1 mb-4">{category_slug}</h3>
             <div className="row">
-                {CourseData && CourseData.map ((course, index)=>
+                {catCourseData && catCourseData.map ((course, index)=>
                     <div className="col-md-3 mb-4">
                         <div className="card">
                             <Link to={`/coursedetails/${course.id}`}><img src={course.featured_img} className="card-img-top" alt={course.title} /></Link>

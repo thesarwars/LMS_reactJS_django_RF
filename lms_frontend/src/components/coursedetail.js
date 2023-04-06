@@ -1,5 +1,4 @@
-import {useParams} from 'react-router-dom'
-import { Link } from 'react-router-dom';
+import {useParams, Link} from 'react-router-dom'
 import React from 'react';
 import {useState, useEffect} from 'react';
 import axios from "axios";
@@ -31,7 +30,7 @@ function CourseDetails() {
         }
     },[]);
 
-    // console.log(techListData)
+    // console.log(relatedCourseData)
 
     return (
         <div className='container mt-3'>
@@ -90,12 +89,12 @@ function CourseDetails() {
 
             <h3 className="pb-1 mb-4 mt-5">Related Course</h3>
             <div className="row mb-4">
-                {relatedCourseData.map((rcourse, index) =>
+                {relatedCourseData.map((relcourse, index) =>
                     <div className="col-md-3">
                         <div className="card">
-                            <Link to={`/coursedetails/${rcourse.pk}`}><img src={`${relatedUrl}media/${rcourse.fields.featured_img}`} className="card-img-top" alt="..." /></Link>
+                            <Link to={`/coursedetails/${relcourse.pk}`}><img src={`${relatedUrl}media/${relcourse.fields.featured_img}`} className="card-img-top" alt={relcourse.fields.title} /></Link>
                             <div className="card-body">
-                            <h5 className="card-title"><Link target='_blank' to={`/coursedetails/${rcourse.pk}`}>{rcourse.fields.title}</Link></h5>
+                            <h5 className="card-title"><Link target='_blank' to={`/coursedetails/${relcourse.pk}`}>{relcourse.fields.title}</Link></h5>
                             </div>
                         </div>
                     </div>
