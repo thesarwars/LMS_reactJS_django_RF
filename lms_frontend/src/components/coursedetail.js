@@ -44,7 +44,9 @@ function CourseDetails() {
                     <p className='fw-bold'>Author: <Link to={`/teacher-details/${TeacherData.id}`}>{TeacherData.full_name}</Link></p>
                     <p className='fw-bold'>Techs: 
                     {techListData.map((tech, index)=>
+                        <>
                         <Link to={`/category/${tech.trim()}`} className='badge bg-secondary ms-1'>{tech}</Link>
+                        </>
                     )}
                     </p>
                     <p className='fw-bold'>Duration: 3 hours 30 minutes </p>

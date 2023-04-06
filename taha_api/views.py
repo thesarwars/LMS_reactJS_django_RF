@@ -79,6 +79,10 @@ class CourseList(generics.ListCreateAPIView):
         
         if 'result' in self.request.GET:
             qs = Course.objects.all().order_by('-id')[:4]
+            
+        if 'category' in self.request.GET:
+            category = self.request.GET['category']
+            qs = Course.objects.filter(techs__icontains = category)
         return qs
 
 
