@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .serializers import TeacherSerializer, CategorySerializer, CourseSerializer, ChapterSerializer
+from .serializers import TeacherSerializer, CategorySerializer, CourseSerializer, ChapterSerializer, StudentSerializer
 from .models import *
 from rest_framework import generics
 from rest_framework import permissions
@@ -83,11 +83,17 @@ class CourseList(generics.ListCreateAPIView):
         if 'category' in self.request.GET:
             category = self.request.GET['category']
             qs = Course.objects.filter(techs__icontains = category)
+        
+        if 'skill_name' in self.request.GET and 'teacher' in self.request.GET:
+            skill_name = self.request.GET['skill_name']
+            teacher = self.request.GET['teacher']
+            teacher = Teacher.objects.filter(id=teacher).first()
+            qs = Course.objects.filter(techs__icontains = skill_name, teacher=teacher)
         return qs
 
 
 # Specific course detail
-class CourseListDetail(generics.RetrieveUpdateDestroyAPIView):
+class CourseListDetail(generics.RetrieveAPIView):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
     # permission_classes = [permissions.IsAuthenticated]
@@ -128,4 +134,10 @@ class CourseChapterList(generics.ListAPIView):
         course = Course.objects.get(pk=course_id)
         return Chapter.objects.filter(course=course)
     
-    
+
+# Student section
+
+class StudentList(generics.ListCreateAPIView):
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
+    # permission_classes = [permissions.IsAuthenticated]

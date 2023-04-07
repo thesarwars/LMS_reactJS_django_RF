@@ -19,7 +19,7 @@ function AddCourses() {
 
     useEffect(() => {
         try{
-            axios.get(baseUrl + '/category')
+            axios.get(baseUrl + '/category/')
             .then((res) => {
                 setCates(res.data)
             });

@@ -22,7 +22,7 @@ function CourseDetails() {
                 setCourseData(res.data)
                 setChapterData(res.data.course_chapters)
                 setTeacherData(res.data.teacher)
-                setrelatedCourseData(JSON.parse(res.data.related_videos))
+                setrelatedCourseData(JSON.parse(res.data.related_course))
                 settechListData(res.data.tech_list)
             });
         }catch(error){
@@ -30,7 +30,7 @@ function CourseDetails() {
         }
     },[]);
 
-    // console.log(relatedCourseData)
+    // console.log(CourseData)
 
     return (
         <div className='container mt-3'>
@@ -45,7 +45,7 @@ function CourseDetails() {
                     <p className='fw-bold'>Techs: 
                     {techListData.map((tech, index)=>
                         <>
-                        <Link to={`/category/${tech.trim()}`} className='badge bg-secondary ms-1'>{tech}</Link>
+                        <Link to={`/category/${tech.trim()}`} className='badge bg-secondary ms-1'>{tech.trim()}</Link>
                         </>
                     )}
                     </p>
@@ -94,7 +94,7 @@ function CourseDetails() {
                 {relatedCourseData.map((relcourse, index) =>
                     <div className="col-md-3">
                         <div className="card">
-                            <Link to={`/coursedetails/${relcourse.pk}`}><img src={`${relatedUrl}media/${relcourse.fields.featured_img}`} className="card-img-top" alt={relcourse.fields.title} /></Link>
+                            <Link target='_blank' to={`/coursedetails/${relcourse.pk}`}><img src={`${relatedUrl}media/${relcourse.fields.featured_img}`} className="card-img-top" alt={relcourse.fields.title} /></Link>
                             <div className="card-body">
                             <h5 className="card-title"><Link target='_blank' to={`/coursedetails/${relcourse.pk}`}>{relcourse.fields.title}</Link></h5>
                             </div>

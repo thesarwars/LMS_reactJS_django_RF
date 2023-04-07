@@ -22,4 +22,7 @@ urlpatterns = [
     path('teacher-course/<int:teacher_id>', views.TeacherCourseList.as_view()),
     # Specific course 
     path('course/<int:pk>', views.CourseListDetail.as_view()),
+    
+    #student
+    path('student/', views.StudentList.as_view()),
 ]

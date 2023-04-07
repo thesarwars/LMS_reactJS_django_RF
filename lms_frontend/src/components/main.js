@@ -31,12 +31,14 @@ import CourseChapters from './teacher/coursechapter';
 import MyStudents from './teacher/mystudents';
 import TeacherProfileSettings from './teacher/teacherprofilesettings';
 import TeacherChangePassword from './teacher/teacherchangepass';
+import TeacherSkills from './teacher/teacherskills';
 
 // Courses area
 import AllCourses from './allcourses';
 import PopularCourses from './popularcourses';
 import PopularTeacher from './popularteacher';
 import CategoryCourses from './categorycourses';
+
 
 
 
@@ -76,6 +78,7 @@ function Main() {
             <Route path='/my-students' element={<MyStudents />}></Route>
             <Route path='/teacher-settings' element={<TeacherProfileSettings />}></Route>
             <Route path='/teacher-ch-password' element={<TeacherChangePassword />}></Route>
+            <Route path='/teacher-skills/:skill_name/:teacher_id' element={<TeacherSkills />}></Route>
 
             {/* courses area */}
             <Route path='/all-courses' element={<AllCourses />}></Route>

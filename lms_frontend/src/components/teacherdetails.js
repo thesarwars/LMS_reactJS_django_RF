@@ -40,7 +40,7 @@ function TeacherDetails() {
                 <p className='fw-bold'>Skills: 
                 {TeacherSkills.map((tskills, index) =>
                     <>
-                        <Link to={`/category/${tskills.trim()}`} className="badge bg-secondary ms-1">{tskills.trim()}</Link>
+                        <Link to={`/teacher-skills/${tskills.trim()}/${TeacherData.id}`} className="badge bg-secondary ms-1">{tskills.trim()}</Link>
                     </>
                 )}
                 </p>

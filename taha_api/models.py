@@ -44,7 +44,7 @@ class Course(models.Model):
     def __str__(self):
         return self.title
     
-    def related_videos(self):
+    def related_course(self):
         related_videos = Course.objects.filter(techs__icontains = self.techs)
         return core_serializers.serialize('json',related_videos)
 
@@ -68,8 +68,6 @@ class Chapter(models.Model):
 class Student(models.Model):
     full_name = models.CharField(max_length=100)
     email = models.EmailField(max_length=50)
+    username = models.CharField(max_length=50)
     password = models.CharField(max_length=100)
-    qualification = models.CharField(max_length=50)
-    phone_no = models.CharField(max_length=50)
-    address = models.TextField()
     intereseted_cat = models.TextField()
