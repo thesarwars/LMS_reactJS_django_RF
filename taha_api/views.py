@@ -141,3 +141,17 @@ class StudentList(generics.ListCreateAPIView):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
     # permission_classes = [permissions.IsAuthenticated]
+
+@csrf_exempt    
+def student_login(request):
+    email = request.POST['email']
+    password = request.POST['password']
+    try:
+        studentData = Student.objects.get(email=email, password=password)
+    except Student.DoesNotExist:
+        studentData = None
+    
+    if studentData:
+        return JsonResponse({'bool': True, 'teacher_id': studentData.id})
+    else:
+        return JsonResponse({'bool': False})

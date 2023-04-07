@@ -55,6 +55,11 @@ function Registration() {
     };
     // End
 
+    const studentLoginStatus = localStorage.getItem('studentLoginStatus')
+    if(studentLoginStatus === 'true'){
+        window.location.href = '/user-dashboard'
+    }
+
     useEffect(() => {
         document.title = "Student Registrations"
 
