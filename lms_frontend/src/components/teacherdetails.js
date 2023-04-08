@@ -36,7 +36,7 @@ function TeacherDetails() {
             </div>
             <div className='col-8'>
                 <h3>{TeacherData.full_name}</h3>
-                <p>Mix and match multiple content types to create the card you need, or throw everything in there. Shown below are image styles, blocks, text styles, and a list group—all wrapped in a fixed-width card.</p>
+                <p>{TeacherData.details}</p>
                 <p className='fw-bold'>Skills: 
                 {TeacherSkills.map((tskills, index) =>
                     <>

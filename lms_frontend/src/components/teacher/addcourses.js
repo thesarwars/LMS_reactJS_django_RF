@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import TeacherSidebar from "./teachersidebar";
 import React from 'react';
 import {useState, useEffect} from 'react';
 import axios from "axios";
-import {useParams} from 'react-router-dom';
+// import {useParams} from 'react-router-dom';
 
 const baseUrl = 'http://127.0.0.1:8000/apiview';
 
@@ -45,9 +45,10 @@ function AddCourses() {
     // const {pk} = useParams();
     const submitForm = (e) => {
         e.preventDefault();
+        const teacherId = localStorage.getItem('teacherId')
         const _formData = new FormData();
         _formData.append('category', courseData.category);
-        _formData.append('teacher', 1);
+        _formData.append('teacher', teacherId);
         _formData.append('title', courseData.title);
         _formData.append('description', courseData.description);
         _formData.append('featured_img', courseData.f_img, courseData.f_img.name);

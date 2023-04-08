@@ -5,6 +5,7 @@ from django.core import serializers as core_serializers
 # Teacher models here.
 class Teacher(models.Model):
     full_name = models.CharField(max_length=100)
+    details = models.TextField()
     email = models.EmailField(max_length=50)
     password = models.CharField(max_length=100)
     qualification = models.CharField(max_length=50)
@@ -41,6 +42,9 @@ class Course(models.Model):
     techs = models.TextField(null=True)
     
     
+    class Meta:
+        verbose_name_plural = 'Courses'
+    
     def __str__(self):
         return self.title
     
@@ -60,6 +64,9 @@ class Chapter(models.Model):
     remarks = models.TextField(null=True)
     
     
+    class Meta:
+        verbose_name_plural = 'Chapters'
+    
     def __str__(self):
         return self.title
 
@@ -71,3 +78,22 @@ class Student(models.Model):
     username = models.CharField(max_length=50)
     password = models.CharField(max_length=100)
     intereseted_cat = models.TextField()
+    
+    class Meta:
+        verbose_name_plural = 'Students'
+    
+    def __str__(self):
+        return self.full_name
+    
+
+# Enrollment of Students
+class EnrollCourseStudent(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="enrolled_courses")
+    student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name='enrolled_students')
+    enrolled_time = models.DateTimeField(auto_now_add=True)
+    
+    # def __str__(self):
+    #     return self.course
+    
+    class Meta:
+        verbose_name_plural = 'Enrolled Courses'

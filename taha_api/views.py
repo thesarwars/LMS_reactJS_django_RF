@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from .serializers import TeacherSerializer, CategorySerializer, CourseSerializer, ChapterSerializer, StudentSerializer
+from .serializers import EnrollCourseSerializer
+
 from .models import *
 from rest_framework import generics
 from rest_framework import permissions
@@ -153,5 +155,23 @@ def student_login(request):
     
     if studentData:
         return JsonResponse({'bool': True, 'student_id': studentData.id})
+    else:
+        return JsonResponse({'bool': False})
+    
+    
+
+# Student enroll in course
+class EnrollStudentList(generics.ListCreateAPIView):
+    queryset = EnrollCourseStudent.objects.all()
+    serializer_class = EnrollCourseSerializer
+    
+    
+def enroll_status(request, student_id, course_id):
+    student = Student.objects.filter(id=student_id).first()
+    course = Course.objects.filter(id=course_id).first()
+    enrollStatus = EnrollCourseStudent.objects.filter(course=course, student=student).count()
+    
+    if enrollStatus:
+        return JsonResponse({'bool': True})
     else:
         return JsonResponse({'bool': False})

@@ -2,6 +2,7 @@ import {useParams, Link} from 'react-router-dom'
 import React from 'react';
 import {useState, useEffect} from 'react';
 import axios from "axios";
+import Swal from 'sweetalert2';
 
 const relatedUrl = 'http://127.0.0.1:8000/';
 const baseUrl = 'http://127.0.0.1:8000/apiview';
@@ -12,8 +13,12 @@ function CourseDetails() {
     const [TeacherData, setTeacherData] = useState([]);
     const [relatedCourseData, setrelatedCourseData] = useState([]);
     const [techListData, settechListData] = useState([]);
+    const [UserLoginStatus, setUserLoginStatus] = useState();
+    const [EnrollStatus, setEnrollStatus] = useState();
+    const studentId = localStorage.getItem('studentId')
     
     let {course_id} = useParams()
+
 
     useEffect(() => {
         try{
@@ -28,8 +33,75 @@ function CourseDetails() {
         }catch(error){
             console.log(error);
         }
+        
+        // Fetch Enroll Status
+        try{
+            axios.get(baseUrl + '/enroll-status/' + studentId +'/'+ course_id)
+            .then((res) => {
+                if (res.data.bool == true){
+                    setEnrollStatus('success')
+                }
+            });
+        }catch(error){
+            console.log(error);
+        }
+        // End enroll status
+
+        const studentLoginStatus = localStorage.getItem('studentLoginStatus')
+        if(studentLoginStatus == 'true'){
+            setUserLoginStatus('success');
+        }
     },[]);
 
+    const enrollStudent=(event)=>{
+        event.preventDefault();
+        const studentId = localStorage.getItem('studentId')
+        const _formData = new FormData();
+        _formData.append('course', course_id);
+        _formData.append('student', studentId);
+
+        try{
+            axios.post(baseUrl + '/enroll-student/', _formData, {
+                headers: {
+                    'content-type': 'multipart/form-data'
+                }
+            })
+            .then((res) => {
+                // console.log(res.data)
+                // window.location.href = '/add-chapter/' + course_id
+                if(res.status === 200||res.status===201){
+                    Swal.fire({
+                        title: "You 'enrolled' in this course",
+                        icon: 'success',
+                        toast: true,
+                        timer: 3000,
+                        position: 'top-right',
+                        timerProgressBar: true,
+                        showConfirmButton: false,
+                    });
+                    if(setEnrollStatus('success')){
+                        Swal.fire({
+                            title: "Already Enrolled",
+                            icon: 'success',
+                            toast: true,
+                            timer: 3000,
+                            position: 'top-right',
+                            timerProgressBar: true,
+                            showConfirmButton: false,
+                        });
+                    }
+                }
+            });
+        }catch(error){
+            console.log(error);
+        }
+    }
+
+    const YouEnrolled = () => {
+        
+    }
+
+    
     // console.log(CourseData)
 
     return (
@@ -52,6 +124,16 @@ function CourseDetails() {
                     <p className='fw-bold'>Duration: 3 hours 30 minutes </p>
                     <p className='fw-bold'>Total Enrolled: 2356 Students </p>
                     <p className='fw-bold'>Rating: 4.5/5 </p>
+                    { UserLoginStatus !== 'success' &&
+                        <button type='button' className='btn btn-dark'><Link to='/user-login' style={{textDecoration: 'none', color: 'white',}}>Login & Enroll</Link></button>
+                    }
+                    { UserLoginStatus == 'success' && EnrollStatus !== 'success' &&
+                        <p><button type='button' onClick={enrollStudent} className='btn btn-dark'>Enroll Now</button></p>
+                    }
+                    { EnrollStatus == 'success' && UserLoginStatus == 'success' &&
+                        <p><button type='button' className='btn btn-success'>Enrolled</button></p>
+                    }
+                    
                 </div>
             </div>
             {/* Course Videos */}
