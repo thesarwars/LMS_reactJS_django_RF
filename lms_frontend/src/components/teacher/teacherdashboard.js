@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import MyCourses from './teachercourses'
+// import { Link } from "react-router-dom";
+// import MyCourses from './teachercourses'
 import TeacherSidebar from "./teachersidebar";
 import React from 'react';
 

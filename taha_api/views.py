@@ -152,6 +152,6 @@ def student_login(request):
         studentData = None
     
     if studentData:
-        return JsonResponse({'bool': True, 'teacher_id': studentData.id})
+        return JsonResponse({'bool': True, 'student_id': studentData.id})
     else:
         return JsonResponse({'bool': False})

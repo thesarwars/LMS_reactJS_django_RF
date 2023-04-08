@@ -9,6 +9,7 @@ import TeacherDetails from './teacherdetails';
 
 //Studetns
 import Login from './user/login';
+import StudentLogout from './user/logout';
 import Registration from './user/registration';
 import Dashboard from './user/dashboard';
 import MyCourses from './user/mycourses';
@@ -44,6 +45,7 @@ import CategoryCourses from './categorycourses';
 
 
 
+
 function Main() {
     return (
       <div className="container">
@@ -56,6 +58,7 @@ function Main() {
 
             {/* Students */}
             <Route path='/user-login' element={<Login />}></Route>
+            <Route path='/user-logout' element={<StudentLogout />}></Route>
             <Route path='/user-reg' element={<Registration />}></Route>
             <Route path='/user-dashboard' element={<Dashboard />}></Route>
             <Route path='/my-courses' element={<MyCourses />}></Route>

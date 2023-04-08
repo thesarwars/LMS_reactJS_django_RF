@@ -9,8 +9,8 @@ const baseUrl = "http://127.0.0.1:8000/apiview";
 
 function Login() {
     const [StudentLoginData, setStudentLoginData] = useState({
-        'email': '',
-        'password': '',
+            'email': '',
+            'password': '',
     })
 
     const [errorMsg, seterrorMsg] = useState('');
@@ -33,7 +33,7 @@ function Login() {
             .then((res) => {
                 if(res.data.bool === true){
                     localStorage.setItem('studentLoginStatus', true);
-                    localStorage.setItem('studentId', res.data.teacher_id);
+                    localStorage.setItem('studentId', res.data.student_id);
                     window.location.href = '/user-dashboard'
                 }
                 else{

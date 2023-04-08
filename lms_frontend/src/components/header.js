@@ -21,16 +21,20 @@ function Header() {
                 <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Instructor
                 </a>
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  {teacherLoginStatus != 'true' && 
+                  {teacherLoginStatus !== 'true' && 
                   <>
                   <li><Link className="dropdown-item" to="/teacher-login">Login</Link></li>
                   <li><Link className="dropdown-item" to="/teacher-reg">Registration</Link></li></>
                 }
+                {teacherLoginStatus === 'true' &&
+                  <>
                   <li><Link className="dropdown-item" to="/teacher-dashboard">Dashboard</Link></li>
                   <li><Link className="dropdown-item" to="/teacher-logout">Logout</Link></li>
+                  </>
+                }
                 </ul>
               </li>
-
+              
               {/* User login Area */}
               <li className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">User
@@ -45,7 +49,7 @@ function Header() {
                   {studentLoginStatus === 'true' &&
                   <>
                     <li><Link className="dropdown-item" to="/user-dashboard">Dashboard</Link></li>
-                    <li><Link className="dropdown-item" to="/user-login">Logout</Link></li>
+                    <li><Link className="dropdown-item" to="/user-logout">Logout</Link></li>
                   </>
                   }
                 </ul>
