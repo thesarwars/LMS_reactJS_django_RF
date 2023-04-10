@@ -79,26 +79,12 @@ function CourseDetails() {
                         timerProgressBar: true,
                         showConfirmButton: false,
                     });
-                    if(setEnrollStatus('success')){
-                        Swal.fire({
-                            title: "Already Enrolled",
-                            icon: 'success',
-                            toast: true,
-                            timer: 3000,
-                            position: 'top-right',
-                            timerProgressBar: true,
-                            showConfirmButton: false,
-                        });
-                    }
+                    setEnrollStatus('success')
                 }
             });
         }catch(error){
             console.log(error);
         }
-    }
-
-    const YouEnrolled = () => {
-        
     }
 
     
@@ -131,7 +117,7 @@ function CourseDetails() {
                         <p><button type='button' onClick={enrollStudent} className='btn btn-dark'>Enroll Now</button></p>
                     }
                     { EnrollStatus == 'success' && UserLoginStatus == 'success' &&
-                        <p><button type='button' className='btn btn-success'>Enrolled</button></p>
+                        <p><button type='button' className='btn btn-light btn-outline-dark'>Enrolled</button></p>
                     }
                     
                 </div>
