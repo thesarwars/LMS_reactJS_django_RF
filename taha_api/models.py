@@ -55,6 +55,11 @@ class Course(models.Model):
     def tech_list(self):
         tech_list = self.techs.split(',')
         return tech_list
+    
+    def total_enrolled(self):
+        total_enrolled_students = EnrollCourseStudent.objects.filter(course = self).count()
+        return total_enrolled_students
+    
 
 class Chapter(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='course_chapters')
@@ -92,8 +97,8 @@ class EnrollCourseStudent(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name='enrolled_students')
     enrolled_time = models.DateTimeField(auto_now_add=True)
     
-    # def __str__(self):
-    #     return self.course
+    def __str__(self):
+        return str(self.course)
     
     class Meta:
         verbose_name_plural = 'Enrolled Courses'

@@ -71,7 +71,7 @@ function TeacherCourses() {
                                     <tr>
                                         <th>Name</th>
                                         <th>Images</th>
-                                        <th>Created By</th>
+                                        <th>Enrolled</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -80,7 +80,7 @@ function TeacherCourses() {
                                         <tr>
                                             <td><Link to={'/all-chapter/'+course.id}>{course.title}</Link></td>
                                             <td><img width="80px" src={course.featured_img} className="rounded" alt={course.title} /></td>
-                                            <td><Link to={'/teacher-details/'+course.teacher.id}>{course.teacher.full_name}</Link></td>
+                                            <td><Link to={`/enrolled-student/`+ course.id}>{course.total_enrolled}</Link></td>
                                             <td>
                                                 <Link to={'/edit-course/'+course.id} className="btn btn-info btn-sm active">Edit</Link>
                                                 <Link to={'/add-chapter/'+course.id} className="btn btn-success btn-sm active ms-2">Add Chapter</Link>

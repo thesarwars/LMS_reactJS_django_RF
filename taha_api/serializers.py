@@ -20,7 +20,7 @@ class CourseSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Course
-        fields = ['id', 'category', 'teacher', 'title', 'description', 'featured_img', 'techs', 'course_chapters', 'related_course', 'tech_list']
+        fields = ['id', 'category', 'teacher', 'title', 'description', 'featured_img', 'techs', 'course_chapters', 'related_course', 'tech_list', 'total_enrolled']
         depth = 1
 
 
@@ -43,3 +43,4 @@ class EnrollCourseSerializer(serializers.ModelSerializer):
     class Meta:
         model = EnrollCourseStudent
         fields = ['id', 'course', 'student', 'enrolled_time']
+        depth = 1

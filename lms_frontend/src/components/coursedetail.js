@@ -108,7 +108,7 @@ function CourseDetails() {
                     )}
                     </p>
                     <p className='fw-bold'>Duration: 3 hours 30 minutes </p>
-                    <p className='fw-bold'>Total Enrolled: 2356 Students </p>
+                    <p className='fw-bold'>Total Enrolled: {CourseData.total_enrolled} Students </p>
                     <p className='fw-bold'>Rating: 4.5/5 </p>
                     { UserLoginStatus !== 'success' &&
                         <button type='button' className='btn btn-dark'><Link to='/user-login' style={{textDecoration: 'none', color: 'white',}}>Login & Enroll</Link></button>
