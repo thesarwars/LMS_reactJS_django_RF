@@ -109,7 +109,46 @@ function CourseDetails() {
                     </p>
                     <p className='fw-bold'>Duration: 3 hours 30 minutes </p>
                     <p className='fw-bold'>Total Enrolled: {CourseData.total_enrolled} Students </p>
-                    <p className='fw-bold'>Rating: 4.5/5 </p>
+                    <p className='fw-bold'>Rating: 4.5/5
+                    { EnrollStatus == 'success' && UserLoginStatus == 'success' &&
+                        <>
+                        <button type='button' className='btn btn-info btn-sm ms-1 py-0' data-bs-toggle="modal" data-bs-target="#ratingModal">Rate</button>
+                        <div class="modal fade" id="ratingModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Rate this Course</h5>
+                                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form>
+                                            <div class="form-group">
+                                                <label for="exampleFormControlSelect1">Rating</label>
+                                                <select class="form-control" id="ratingFormControlSelect1" name="rating">
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="ratingFormControlTextarea1">Review</label>
+                                                <textarea class="form-control" id="reviewFormControlTextarea1" rows="3"  name="review"></textarea>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </>
+                    }
+                    </p>
                     { UserLoginStatus !== 'success' &&
                         <button type='button' className='btn btn-dark'><Link to='/user-login' style={{textDecoration: 'none', color: 'white',}}>Login & Enroll</Link></button>
                     }
