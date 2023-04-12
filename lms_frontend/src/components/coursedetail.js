@@ -15,6 +15,7 @@ function CourseDetails() {
     const [techListData, settechListData] = useState([]);
     const [UserLoginStatus, setUserLoginStatus] = useState();
     const [EnrollStatus, setEnrollStatus] = useState();
+    const [RatingStatus, setRatingStatus] = useState();
     const studentId = localStorage.getItem('studentId')
     
     let {course_id} = useParams()
@@ -46,6 +47,19 @@ function CourseDetails() {
             console.log(error);
         }
         // End enroll status
+
+        // Fetch Rating Status
+        try{
+            axios.get(baseUrl + '/rating-status/' + studentId +'/'+ course_id)
+            .then((res) => {
+                if (res.data.bool == true){
+                    setRatingStatus('success')
+                }
+            });
+        }catch(error){
+            console.log(error);
+        }
+        // End Rating status
 
         const studentLoginStatus = localStorage.getItem('studentLoginStatus')
         if(studentLoginStatus == 'true'){
@@ -161,7 +175,12 @@ function CourseDetails() {
                     <p className='fw-bold'>Rating: 4.5/5
                     { EnrollStatus == 'success' && UserLoginStatus == 'success' &&
                         <>
-                        <button type='button' className='btn btn-info btn-sm ms-1 py-0' data-bs-toggle="modal" data-bs-target="#ratingModal">Rate</button>
+                        {RatingStatus !== 'success' &&
+                            <button type='button' className='btn btn-info btn-sm ms-1 py-0' data-bs-toggle="modal" data-bs-target="#ratingModal">Rate</button>
+                        }
+                        {RatingStatus == 'success' &&
+                            <button type='button' className='btn btn-info btn-sm ms-1 py-0' data-bs-toggle="modal" data-bs-target="#ratingModal">Already Rated</button>
+                        }
                         <div class="modal fade" id="ratingModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">

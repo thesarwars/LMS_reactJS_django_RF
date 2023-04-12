@@ -196,3 +196,14 @@ class RatingCourseView(generics.ListCreateAPIView):
         course_id = self.kwargs['course_id']
         course = Course.objects.get(pk=course_id)
         return CourseRating.objects.filter(course=course)
+    
+    
+def rating_status(request, student_id, course_id):
+    student = Student.objects.filter(id=student_id).first()
+    course = Course.objects.filter(id=course_id).first()
+    enrollStatus = CourseRating.objects.filter(course=course, student=student).count()
+    
+    if enrollStatus:
+        return JsonResponse({'bool': True})
+    else:
+        return JsonResponse({'bool': False})
