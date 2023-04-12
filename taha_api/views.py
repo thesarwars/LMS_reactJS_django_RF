@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .serializers import TeacherSerializer, CategorySerializer, CourseSerializer, ChapterSerializer, StudentSerializer
-from .serializers import EnrollCourseSerializer
+from .serializers import EnrollCourseSerializer, CourseRatingSerializer
 
 from .models import *
 from rest_framework import generics
@@ -185,3 +185,14 @@ class EnrolledStudentsView(generics.ListAPIView):
         course_id = self.kwargs['course_id']
         course = Course.objects.get(pk=course_id)
         return EnrollCourseStudent.objects.filter(course=course)
+    
+    
+
+class RatingCourseView(generics.ListCreateAPIView):
+    queryset = CourseRating.objects.all()
+    serializer_class = CourseRatingSerializer
+    
+    def get_queryset(self):
+        course_id = self.kwargs['course_id']
+        course = Course.objects.get(pk=course_id)
+        return CourseRating.objects.filter(course=course)

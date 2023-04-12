@@ -87,6 +87,21 @@ function CourseDetails() {
         }
     }
 
+    const [RatingData, setRatingData] = useState([]);
+
+    useEffect(() => {
+        try{
+            axios.get(baseUrl + '/course-rating/' + course_id)
+            .then((res) => {
+                setRatingData(res.data)
+            });
+        }catch(error){
+            console.log(error);
+        }
+    },[]);
+
+    
+
     
     // console.log(CourseData)
 
@@ -141,7 +156,7 @@ function CourseDetails() {
                                         </form>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                        <button type="button" class="btn btn-primary">Submit</button>
                                     </div>
                                 </div>
                             </div>

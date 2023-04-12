@@ -12,3 +12,8 @@ admin.site.register(Course)
 admin.site.register(Chapter)
 admin.site.register(Student)
 admin.site.register(EnrollCourseStudent, ShowEnrollStudent)
+
+class RatingCourseAdmin(admin.ModelAdmin):
+    list_display = ('course', 'student', 'rating', 'rating_time')
+    
+admin.site.register(CourseRating, RatingCourseAdmin)

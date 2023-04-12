@@ -102,3 +102,18 @@ class EnrollCourseStudent(models.Model):
     
     class Meta:
         verbose_name_plural = 'Enrolled Courses'
+
+
+# Rating and Review of Course
+class CourseRating(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    rating = models.PositiveBigIntegerField(default=0)
+    reviews = models.TextField(null= True)
+    rating_time = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return str(self.rating)
+    
+    class Meta:
+        verbose_name_plural = 'Course Rating'
