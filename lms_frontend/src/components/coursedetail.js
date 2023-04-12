@@ -53,6 +53,7 @@ function CourseDetails() {
         }
     },[]);
 
+    // Enroll Student
     const enrollStudent=(event)=>{
         event.preventDefault();
         const studentId = localStorage.getItem('studentId')
@@ -86,21 +87,54 @@ function CourseDetails() {
             console.log(error);
         }
     }
+    // End Enroll Student
 
-    const [RatingData, setRatingData] = useState([]);
+    // Course Rating
+    const [RatingData, setRatingData] = useState({
+        'course': '',
+        'student': '',
+        'rating': '',
+        'reviews': '',
+    });
 
-    useEffect(() => {
+    const handleChange = (event) => {
+        setRatingData({
+            ...RatingData,
+            [event.target.name]:event.target.value
+        })
+    };
+
+
+    const submitForm = (e) => {
+        e.preventDefault();
+        const _formData = new FormData();
+        _formData.append('course', course_id);
+        _formData.append('student', studentId);
+        _formData.append('rating', RatingData.rating);
+        _formData.append('reviews', RatingData.reviews);
+
         try{
-            axios.get(baseUrl + '/course-rating/' + course_id)
+            axios.post(baseUrl + '/course-rating/' + course_id, _formData)
             .then((res) => {
-                setRatingData(res.data)
+                // console.log(res.data)
+                if(res.status === 200||res.status==201){
+                    Swal.fire({
+                        title: 'Review submitted',
+                        icon: 'success',
+                        toast: true,
+                        timer: 3000,
+                        position: 'top-right',
+                        timerProgressBar: true,
+                        showConfirmButton: false,
+                    });
+                    window.location.reload()
+                }
             });
         }catch(error){
             console.log(error);
         }
-    },[]);
 
-    
+    };
 
     
     // console.log(CourseData)
@@ -141,7 +175,7 @@ function CourseDetails() {
                                         <form>
                                             <div class="form-group">
                                                 <label for="exampleFormControlSelect1">Rating</label>
-                                                <select class="form-control" id="ratingFormControlSelect1" name="rating">
+                                                <select class="form-control" onChange={handleChange} id="ratingFormControlSelect1" name="rating">
                                                 <option>1</option>
                                                 <option>2</option>
                                                 <option>3</option>
@@ -150,13 +184,13 @@ function CourseDetails() {
                                                 </select>
                                             </div>
                                             <div class="form-group">
-                                                <label for="ratingFormControlTextarea1">Review</label>
-                                                <textarea class="form-control" id="reviewFormControlTextarea1" rows="3"  name="review"></textarea>
+                                                <label for="ratingFormControlTextarea1">Reviews</label>
+                                                <textarea class="form-control" onChange={handleChange} id="reviewFormControlTextarea1" rows="3"  name="reviews"></textarea>
                                             </div>
                                         </form>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary">Submit</button>
+                                        <button type="button" onClick={submitForm} class="btn btn-primary">Submit</button>
                                     </div>
                                 </div>
                             </div>
