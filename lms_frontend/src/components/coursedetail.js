@@ -16,6 +16,7 @@ function CourseDetails() {
     const [UserLoginStatus, setUserLoginStatus] = useState();
     const [EnrollStatus, setEnrollStatus] = useState();
     const [RatingStatus, setRatingStatus] = useState();
+    const [AvgRating, setAvgRating] = useState(0);
     const studentId = localStorage.getItem('studentId')
     
     let {course_id} = useParams()
@@ -30,6 +31,10 @@ function CourseDetails() {
                 setTeacherData(res.data.teacher)
                 setrelatedCourseData(JSON.parse(res.data.related_course))
                 settechListData(res.data.tech_list)
+                if (res.data.course_rating != ' ' && res.data.course_rating != null){
+                    setAvgRating(res.data.course_rating)
+                }
+                
             });
         }catch(error){
             console.log(error);
@@ -141,7 +146,9 @@ function CourseDetails() {
                         timerProgressBar: true,
                         showConfirmButton: false,
                     });
-                    window.location.reload()
+                    setTimeout(function(){
+                        window.location.reload();
+                     }, 3000);
                 }
             });
         }catch(error){
@@ -172,14 +179,14 @@ function CourseDetails() {
                     </p>
                     <p className='fw-bold'>Duration: 3 hours 30 minutes </p>
                     <p className='fw-bold'>Total Enrolled: {CourseData.total_enrolled} Students </p>
-                    <p className='fw-bold'>Rating: 4.5/5
+                    <p className='fw-bold'>Rating: {AvgRating}/5
                     { EnrollStatus == 'success' && UserLoginStatus == 'success' &&
                         <>
                         {RatingStatus !== 'success' &&
                             <button type='button' className='btn btn-info btn-sm ms-1 py-0' data-bs-toggle="modal" data-bs-target="#ratingModal">Rate</button>
                         }
                         {RatingStatus == 'success' &&
-                            <button type='button' className='btn btn-info btn-sm ms-1 py-0' data-bs-toggle="modal" data-bs-target="#ratingModal">Already Rated</button>
+                            <button type='button' className='btn btn-info btn-sm ms-1 py-0'>You already rated</button>
                         }
                         <div class="modal fade" id="ratingModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg">

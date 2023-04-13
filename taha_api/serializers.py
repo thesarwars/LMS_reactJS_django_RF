@@ -25,7 +25,19 @@ class CourseSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Course
-        fields = ['id', 'category', 'teacher', 'title', 'description', 'featured_img', 'techs', 'course_chapters', 'related_course', 'tech_list', 'total_enrolled']
+        fields = ['id', 
+                  'category', 
+                  'teacher', 
+                  'title', 
+                  'description', 
+                  'featured_img', 
+                  'techs', 
+                  'course_chapters', 
+                  'related_course', 
+                  'tech_list', 
+                  'total_enrolled',
+                  'course_rating'
+                  ]
         
         def __init__(self, *args, **kwargs):
             super(CourseSerializer, self).__init__(*args, **kwargs)
