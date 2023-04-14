@@ -9,6 +9,7 @@ const baseUrl = 'http://127.0.0.1:8000/apiview';
 
 function TeacherCourses() {
     const [CourseData, setCourseData] = useState([]);
+    // const [AvgRating, setAvgRating] = useState(0);
     // const [TeacherData, setTeacherData] = useState([]);
     const teacherId = localStorage.getItem('teacherId')
 
@@ -17,6 +18,9 @@ function TeacherCourses() {
             axios.get(baseUrl + '/teacher-course/'+teacherId)
             .then((res) => {
                 setCourseData(res.data)
+                // if (res.data.course_rating != ' ' && res.data.course_rating != null){
+                //     setAvgRating(res.data.course_rating)
+                // }
             });
         }catch(error){
             console.log(error);
@@ -73,6 +77,7 @@ function TeacherCourses() {
                                         <th>Images</th>
                                         <th>Enrolled</th>
                                         <th>Action</th>
+                                        <th>Rating</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -86,6 +91,12 @@ function TeacherCourses() {
                                                 <Link to={'/add-chapter/'+course.id} className="btn btn-success btn-sm active ms-2">Add Chapter</Link>
                                                 <button onClick={()=>handleDeleteChange(+course.id)} className="btn btn-danger active btn-sm ms-2">Drop</button>
                                             </td>
+                                            {course.course_rating &&
+                                                <td><p>{course.course_rating}/5</p></td>
+                                            }
+                                            {!course.course_rating &&
+                                                <td><p>Not yet rated</p></td>
+                                            }
                                         </tr>
                                     )}
                                 </tbody>

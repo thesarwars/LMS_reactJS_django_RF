@@ -17,6 +17,7 @@ function EnrolledStudents() {
             axios.get(baseUrl + '/view-enrolled-students/'+course_id)
             .then((res) => {
                 setEnrolledStudents(res.data)
+                
             });
         }catch(error){
             console.log(error);
@@ -72,21 +73,19 @@ function EnrolledStudents() {
                                         <th>Name</th>
                                         <th>Email</th>
                                         <th>Username</th>
-                                        {/* <th>Action</th> */}
+                                        <th>Interest</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {EnrolledStudents.map((row, index) => 
                                         <tr>
-                                            <td><Link to="#">{row.student.full_name}</Link></td>
+                                            <td>{row.student.full_name}</td>
                                             {/* <td><img width="80px" src={row.student.featured_img} className="rounded" alt={row.student.full_name} /></td> */}
                                             <td><p to='#'>{row.student.email}</p></td>
                                             <td><p to='#'>{row.student.username}</p></td>
-                                            {/* <td>
-                                                <Link to='#' className="btn btn-info btn-sm active">{row.student.username}</Link>
-                                                <Link to={'/add-chapter/'+student.id} className="btn btn-success btn-sm active ms-2">Add Chapter</Link>
-                                                <button onClick={()=>handleDeleteChange(+course.id)} className="btn btn-danger active btn-sm ms-2">Drop</button>
-                                            </td> */}
+                                            <td>
+                                                <p>{row.student.intereseted_cat}</p>
+                                            </td>
                                         </tr>
                                     )}
                                 </tbody>
