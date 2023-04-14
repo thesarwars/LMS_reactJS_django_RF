@@ -182,9 +182,14 @@ class EnrolledStudentsView(generics.ListAPIView):
     serializer_class = EnrollCourseSerializer
     
     def get_queryset(self):
-        course_id = self.kwargs['course_id']
-        course = Course.objects.get(pk=course_id)
-        return EnrollCourseStudent.objects.filter(course=course)
+        if 'course_id' in self.kwargs:
+            course_id = self.kwargs['course_id']
+            course = Course.objects.get(pk=course_id)
+            return EnrollCourseStudent.objects.filter(course=course)
+        elif 'teacher_id' in self.kwargs:
+            teacher_id = self.kwargs['teacher_id']
+            teacher = Teacher.objects.get(pk=teacher_id)
+            return EnrollCourseStudent.objects.filter(course__teacher=teacher).distinct()
     
     
 
