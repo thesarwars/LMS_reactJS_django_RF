@@ -1,6 +1,6 @@
 // import { Link } from "react-router-dom";
 // import MyCourses from './teachercourses'
-import TeacherSidebar from "./teachersidebar";
+import TeacherSidebar from "./TeacherSidebar";
 import React from 'react';
 
 

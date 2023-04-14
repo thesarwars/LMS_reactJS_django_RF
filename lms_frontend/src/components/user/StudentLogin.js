@@ -7,7 +7,7 @@ import axios from "axios";
 const baseUrl = "http://127.0.0.1:8000/apiview";
 
 
-function Login() {
+function StudentLogin() {
     const [StudentLoginData, setStudentLoginData] = useState({
             'email': '',
             'password': '',
@@ -85,4 +85,4 @@ function Login() {
     )
 }
 
-export default Login;
+export default StudentLogin;

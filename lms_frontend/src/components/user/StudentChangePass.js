@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
-import MyCourses from './mycourses'
-import Sidebar from "./sidebar";
+import MyCourses from './StudentCourses'
+import Sidebar from "./StudentSidebar";
 import React from 'react';
 
 
-function ChangePassword(){
+function StudentChangePassword(){
     return (
         <div className="container mt-4">
             <div className="row">
@@ -33,4 +33,4 @@ function ChangePassword(){
     );
 }
 
-export default ChangePassword;
+export default StudentChangePassword;

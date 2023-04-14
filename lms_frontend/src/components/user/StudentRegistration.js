@@ -6,7 +6,7 @@ import axios from 'axios';
 const baseUrl = "http://127.0.0.1:8000/apiview/student/";
 
 
-function Registration() {
+function StudentRegistration() {
     const [StudentData, setStudentData] = useState({
         "full_name": "",
         "email": "",
@@ -102,4 +102,4 @@ function Registration() {
     )
 }
 
-export default Registration;
+export default StudentRegistration;

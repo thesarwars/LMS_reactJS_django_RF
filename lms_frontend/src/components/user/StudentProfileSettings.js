@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
-import MyCourses from './mycourses'
-import Sidebar from "./sidebar";
+import MyCourses from './StudentCourses'
+import Sidebar from "./StudentSidebar";
 import React from 'react';
 
 
-function ProfileSettings(){
+function StudentProfileSettings(){
     return (
         <div className="container mt-4">
             <div className="row">
@@ -42,4 +42,4 @@ function ProfileSettings(){
     );
 }
 
-export default ProfileSettings;
+export default StudentProfileSettings;

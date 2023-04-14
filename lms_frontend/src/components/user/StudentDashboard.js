@@ -1,10 +1,10 @@
-import { Link } from "react-router-dom";
-import MyCourses from './mycourses'
-import Sidebar from "./sidebar";
+// import { Link } from "react-router-dom";
+// import MyCourses from './StudentCourses';
+import Sidebar from "./StudentSidebar";
 import React from 'react';
 
 
-function Dashboard(){
+function StudentDashboard(){
     return (
         <div className="container mt-4">
             <div className="row">
@@ -19,4 +19,4 @@ function Dashboard(){
     );
 }
 
-export default Dashboard;
+export default StudentDashboard;

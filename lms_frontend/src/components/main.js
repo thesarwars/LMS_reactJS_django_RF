@@ -1,45 +1,45 @@
 import React from 'react'
-import Home from './home';
-import About from './about';
-import Header from './header';
-import Footer from './footer';
+import Home from './Home';
+import About from './About';
+import Header from './Header';
+import Footer from './Footer';
 import {Route, Routes as Switch} from 'react-router-dom';
-import CourseDetails from './coursedetail';
-import TeacherDetails from './teacherdetails';
+import CourseDetails from './CourseDetail';
+import TeacherDetails from './TeacherDetails';
 
 //Studetns
-import Login from './user/login';
-import StudentLogout from './user/logout';
-import Registration from './user/registration';
-import Dashboard from './user/dashboard';
-import MyCourses from './user/mycourses';
-import FavCourses from './user/favcourses';
-import RecCourses from './user/reccourses';
-import ProfileSettings from './user/profilesettings';
-import ChangePassword from './user/changepass';
+import StudentLogin from './user/StudentLogin';
+import StudentLogout from './user/StudentLogout';
+import StudentRegistration from './user/StudentRegistration';
+import StudentDashboard from './user/StudentDashboard';
+import StudentCourses from './user/StudentCourses';
+import StudentFavCourses from './user/StudentFavCourses';
+import StudentRecCourses from './user/StudentRecCourse';
+import StudentProfileSettings from './user/StudentProfileSettings';
+import StudentChangePassword from './user/StudentChangePass';
 
 // Teacher Area
-import TeacherRegistration from './teacher/teacherregistration';
-import TeacherLogin from './teacher/teacherlogin';
-import TeacherLogout from './teacher/teacherlogout';
-import TeacherDashboard from './teacher/teacherdashboard';
-import TeacherCourses from './teacher/teachercourses';
+import TeacherRegistration from './teacher/TeacherRegistration';
+import TeacherLogin from './teacher/TeacherLogin';
+import TeacherLogout from './teacher/TeacherLogout';
+import TeacherDashboard from './teacher/TeacherDashboard';
+import TeacherCourses from './teacher/TeacherCourses';
 import EnrolledStudents from './teacher/EnrolledStudents';
-import AddCourses from './teacher/addcourses';
-import EditCourses from './teacher/editcourse';
-import AddChapter from './teacher/addchapter';
-import EditChapter from './teacher/editchapter';
-import CourseChapters from './teacher/coursechapter';
-import MyStudents from './teacher/mystudents';
-import TeacherProfileSettings from './teacher/teacherprofilesettings';
-import TeacherChangePassword from './teacher/teacherchangepass';
-import TeacherSkills from './teacher/teacherskills';
+import AddCourses from './teacher/AddCourses';
+import EditCourses from './teacher/EditCourse';
+import AddChapter from './teacher/AddChapter';
+import EditChapter from './teacher/EditChapter';
+import CourseChapters from './teacher/CourseChapter';
+import MyStudents from './teacher/MyStudents';
+import TeacherProfileSettings from './teacher/TeacherProfileSettings';
+import TeacherChangePassword from './teacher/TeacherChangePass';
+import TeacherSkills from './teacher/TeacherSkills';
 
 // Courses area
-import AllCourses from './allcourses';
-import PopularCourses from './popularcourses';
-import PopularTeacher from './popularteacher';
-import CategoryCourses from './categorycourses';
+import AllCourses from './AllCourses';
+import PopularCourses from './PopularCourses';
+import PopularTeacher from './PopularTeacher';
+import CategoryCourses from './CategoryCourses';
 
 
 
@@ -59,15 +59,15 @@ function Main() {
             <Route path='/teacher-details/:teacher_id' element={<TeacherDetails />}></Route>
 
             {/* Students */}
-            <Route path='/user-login' element={<Login />}></Route>
+            <Route path='/user-login' element={<StudentLogin />}></Route>
             <Route path='/user-logout' element={<StudentLogout />}></Route>
-            <Route path='/user-reg' element={<Registration />}></Route>
-            <Route path='/user-dashboard' element={<Dashboard />}></Route>
-            <Route path='/my-courses' element={<MyCourses />}></Route>
-            <Route path='/fav-courses' element={<FavCourses />}></Route>
-            <Route path='/rec-courses' element={<RecCourses />}></Route>
-            <Route path='/profile-settings' element={<ProfileSettings />}></Route>
-            <Route path='/ch-password' element={<ChangePassword />}></Route>
+            <Route path='/user-reg' element={<StudentRegistration />}></Route>
+            <Route path='/user-dashboard' element={<StudentDashboard />}></Route>
+            <Route path='/my-courses' element={<StudentCourses />}></Route>
+            <Route path='/fav-courses' element={<StudentFavCourses />}></Route>
+            <Route path='/rec-courses' element={<StudentRecCourses />}></Route>
+            <Route path='/profile-settings' element={<StudentProfileSettings />}></Route>
+            <Route path='/ch-password' element={<StudentChangePassword />}></Route>
 
             {/* Teacher Area */}
             <Route path='/teacher-login' element={<TeacherLogin />}></Route>

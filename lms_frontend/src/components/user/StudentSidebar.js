@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import React from 'react';
 
 
-function Sidebar(){
+function StudentSidebar(){
     return (
         <div className="card">
             <div className="list-group list-group-flush">
@@ -19,4 +19,4 @@ function Sidebar(){
 }
 
 
-export default Sidebar;
+export default StudentSidebar;

@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import Sidebar from "./sidebar";
+import Sidebar from "./StudentSidebar";
 import React from 'react';
 
-function FavCourses() {
+function StudentFavCourses() {
     return(
         <div className="container mt-4">
             <div className="row">
@@ -39,4 +39,4 @@ function FavCourses() {
     );
 }
 
-export default FavCourses;
+export default StudentFavCourses;
