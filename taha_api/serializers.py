@@ -4,7 +4,17 @@ from .models import *
 class TeacherSerializer(serializers.ModelSerializer):
     class Meta:
         model = Teacher
-        fields = ['id', 'full_name', 'details', 'email', 'password', 'qualification', 'phone_no', 'skills', 'teacher_courses', 'teach_skills']
+        fields = ['id', 
+                  'full_name', 
+                  'bio', 
+                  'email', 
+                  'password', 
+                  'qualification', 
+                  'profile_img', 
+                  'skills', 
+                  'teacher_courses', 
+                  'teach_skills',
+                  ]
         
         def __init__(self, *args, **kwargs):
             super(TeacherSerializer, self).__init__(*args, **kwargs)

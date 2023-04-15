@@ -5,11 +5,11 @@ from django.core import serializers as core_serializers
 # Teacher models here.
 class Teacher(models.Model):
     full_name = models.CharField(max_length=100)
-    details = models.TextField()
+    bio = models.TextField()
     email = models.EmailField(max_length=50)
-    password = models.CharField(max_length=100)
+    password = models.CharField(max_length=100, null = True, blank = True)
     qualification = models.CharField(max_length=50)
-    phone_no = models.CharField(max_length=50)
+    profile_img = models.ImageField(upload_to='profile_img/', null=True)
     skills = models.TextField()
     
     def __str__(self) -> str:
