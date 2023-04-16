@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .serializers import TeacherSerializer, CategorySerializer, CourseSerializer, ChapterSerializer, StudentSerializer
-from .serializers import EnrollCourseSerializer, CourseRatingSerializer
+from .serializers import EnrollCourseSerializer, CourseRatingSerializer, TeacherDashboardSerializer
 
 from .models import *
 from rest_framework import generics
@@ -35,6 +35,10 @@ class TeacherUpdate(generics.RetrieveUpdateDestroyAPIView):
     #     teacher = Teacher.objects.get(pk=teacher_id)
     #     return Course.objects.filter(teacher=teacher)
         
+        
+class TeacherDashboardView(generics.RetrieveAPIView):
+    queryset = Teacher.objects.all()
+    serializer_class = TeacherDashboardSerializer
     
 
 @csrf_exempt    

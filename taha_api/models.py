@@ -19,6 +19,18 @@ class Teacher(models.Model):
         teacher_skill = self.skills.split(',')
         return teacher_skill
     
+    def total_teacher_courses(self):
+        teacher_course = Course.objects.filter(teacher = self).count()
+        return teacher_course
+    
+    def total_teacher_chapters(self):
+        teacher_chapter = Chapter.objects.filter(course__teacher = self).count()
+        return teacher_chapter
+    
+    def total_teacher_students(self):
+        teacher_students = EnrollCourseStudent.objects.filter(course__teacher = self).count()
+        return teacher_students
+    
 # Course Category models here.
 class CourseCategory(models.Model):
     title = models.CharField(max_length=150)
