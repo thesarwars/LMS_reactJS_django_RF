@@ -24,7 +24,7 @@ class TeacherList(generics.ListCreateAPIView):
     #     return Teacher.objects.filter(teacher=teacher)
 
 
-class TeacherUpdate(generics.RetrieveDestroyAPIView):
+class TeacherUpdate(generics.RetrieveUpdateDestroyAPIView):
     queryset = Teacher.objects.all()
     serializer_class = TeacherSerializer
     # permission_classes = [permissions.IsAuthenticated]

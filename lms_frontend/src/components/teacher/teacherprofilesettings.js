@@ -65,7 +65,7 @@ function TeacherProfileSettings(){
         if (TeacherData.p_img !== ''){
             _formData.append('profile_img', TeacherData.p_img, TeacherData.p_img.name);
         }
-        _formData.append('techs', TeacherData.skills);
+        _formData.append('skills', TeacherData.skills);
 
         try{
             axios.put(baseUrl + '/teacher/' + teacherId +'/', _formData, {
