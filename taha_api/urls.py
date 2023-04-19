@@ -30,6 +30,7 @@ urlpatterns = [
     path('enroll-student/', views.EnrollStudentList.as_view()),
     path('enroll-status/<int:student_id>/<int:course_id>/', views.enroll_status),
     path('view-enrolled-students/<int:course_id>/', views.EnrolledStudentsView.as_view()),
+    path('view-enrolled-courses/<int:student_id>/', views.EnrolledStudentsView.as_view()),
     path('all-enrolled-students/<int:teacher_id>/', views.EnrolledStudentsView.as_view()),
     path('recommended-course/<int:studentId>/', views.CourseList.as_view()),
     path('course-rating/<int:course_id>', views.RatingCourseView.as_view()),

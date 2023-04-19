@@ -60,13 +60,17 @@ class Course(models.Model):
     def __str__(self):
         return self.title
     
-    def related_course(self):
+    # related_course function start
+    
+    def related_course(self):           
         related_videos = Course.objects.filter(techs__icontains = self.techs)
         return core_serializers.serialize('json',related_videos)
 
     def tech_list(self):
         tech_list = self.techs.split(',')
         return tech_list
+    
+    # related course end             
     
     def total_enrolled(self):
         total_enrolled_students = EnrollCourseStudent.objects.filter(course = self).count()

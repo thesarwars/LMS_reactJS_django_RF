@@ -1,8 +1,24 @@
 import { Link } from "react-router-dom";
 import Sidebar from "./StudentSidebar";
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from "axios";
+
+const baseUrl = 'http://127.0.0.1:8000/apiview';
 
 function StudentCourses() {
+    const [CourseData, setCourseData] = useState([]);
+    const teacherId = localStorage.getItem('teacherId')
+
+    useEffect(() => {
+        try{
+            axios.get(baseUrl + '/view-enrolled-courses/'+teacherId)
+            .then((res) => {
+                setCourseData(res.data)
+            });
+        }catch(error){
+            console.log(error);
+        }
+    },[]);
     return(
         <div className="container mt-4">
             <div className="row">
@@ -18,17 +34,15 @@ function StudentCourses() {
                                     <tr>
                                         <th>Name</th>
                                         <th>Created By</th>
-                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Python Development</td>
-                                        <td><Link to="/">Shahriar Iraj Ifti</Link></td>
-                                        <td>
-                                            <button className="btn btn-danger active btn-sm">Drop</button>
-                                        </td>
-                                    </tr>
+                                    {CourseData.map((row, index)=>
+                                        <tr>
+                                            <td><Link to={`/coursedetails/${row.course.id}`}>{row.course.title}</Link></td>
+                                            <td><Link to={`/teacher-details/${row.course.teacher.id}`}>{row.course.teacher.full_name}</Link></td>
+                                        </tr>
+                                    )}
                                 </tbody>
                             </table>
                         </div>

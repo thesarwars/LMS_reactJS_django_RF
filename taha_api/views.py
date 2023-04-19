@@ -96,7 +96,10 @@ class CourseList(generics.ListCreateAPIView):
             teacher = self.request.GET['teacher']
             teacher = Teacher.objects.filter(id=teacher).first()
             qs = Course.objects.filter(techs__icontains = skill_name, teacher=teacher)
-            
+        
+        
+        #  recommended course function   
+        
         elif 'studentId' in self.kwargs:
             student_id = self.kwargs['studentId']
             student = Student.objects.get(pk=student_id)
@@ -106,6 +109,8 @@ class CourseList(generics.ListCreateAPIView):
                 query |= item
             qs = Course.objects.filter(query)
             return qs
+        
+        #  recommended course function end
         
         return qs
 
@@ -201,10 +206,20 @@ class EnrolledStudentsView(generics.ListAPIView):
             course_id = self.kwargs['course_id']
             course = Course.objects.get(pk=course_id)
             return EnrollCourseStudent.objects.filter(course=course)
+        
+        # fetcing student enrolled (all) in course in teacher account
         elif 'teacher_id' in self.kwargs:
             teacher_id = self.kwargs['teacher_id']
             teacher = Teacher.objects.get(pk=teacher_id)
             return EnrollCourseStudent.objects.filter(course__teacher=teacher).distinct()
+        # end
+        
+        # fetcing student enrolled in course in student account
+        elif 'student_id' in self.kwargs:
+            student_id = self.kwargs['student_id']
+            student = Student.objects.get(pk=student_id)
+            return EnrollCourseStudent.objects.filter(student=student).distinct()
+        # end
     
     
 

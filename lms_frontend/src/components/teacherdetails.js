@@ -32,7 +32,7 @@ function TeacherDetails() {
         <div className='container mt-3'>
         <div className='row'>
             <div className='col-4'>
-                <img src="/teacher.png" className="img-thumbnail" alt="teacher" />
+                <img src={TeacherData.profile_img} width="300px" className="img-thumbnail" alt="teacher" />
             </div>
             <div className='col-8'>
                 <h3>{TeacherData.full_name}</h3>
