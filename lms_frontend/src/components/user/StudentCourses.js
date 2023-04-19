@@ -34,6 +34,7 @@ function StudentCourses() {
                                     <tr>
                                         <th>Name</th>
                                         <th>Created By</th>
+                                        <th>Enrolled Date</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -41,6 +42,7 @@ function StudentCourses() {
                                         <tr>
                                             <td><Link to={`/coursedetails/${row.course.id}`}>{row.course.title}</Link></td>
                                             <td><Link to={`/teacher-details/${row.course.teacher.id}`}>{row.course.teacher.full_name}</Link></td>
+                                            <td>{row.enrolled_time.slice(0,10)}</td>
                                         </tr>
                                     )}
                                 </tbody>
