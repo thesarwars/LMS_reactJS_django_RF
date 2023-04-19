@@ -17,6 +17,7 @@ function CourseDetails() {
     const [EnrollStatus, setEnrollStatus] = useState();
     const [RatingStatus, setRatingStatus] = useState();
     const [AvgRating, setAvgRating] = useState(0);
+    const [FavStatus, setFavStatus] = useState();
     const studentId = localStorage.getItem('studentId')
     
     let {course_id} = useParams()
@@ -65,6 +66,19 @@ function CourseDetails() {
             console.log(error);
         }
         // End Rating status
+
+        // Fetch Favourite Status
+        try{
+            axios.get(baseUrl + '/fav-status/' + studentId +'/'+ course_id)
+            .then((res) => {
+                if (res.data.bool == true){
+                    setFavStatus('success')
+                }
+            });
+        }catch(error){
+            console.log(error);
+        }
+        // End Favourite status
 
         const studentLoginStatus = localStorage.getItem('studentLoginStatus')
         if(studentLoginStatus == 'true'){
@@ -139,6 +153,37 @@ function CourseDetails() {
                 if(res.status === 200||res.status==201){
                     Swal.fire({
                         title: 'Review submitted',
+                        icon: 'success',
+                        toast: true,
+                        timer: 3000,
+                        position: 'top-right',
+                        timerProgressBar: true,
+                        showConfirmButton: false,
+                    });
+                    setTimeout(function(){
+                        window.location.reload();
+                     }, 3000);
+                }
+            });
+        }catch(error){
+            console.log(error);
+        }
+
+    };
+    const AddtoFav = (e) => {
+        e.preventDefault();
+        const _formData = new FormData();
+        _formData.append('course', course_id);
+        _formData.append('student', studentId);
+        _formData.append('status', true);
+
+        try{
+            axios.post(baseUrl + '/addtofav/', _formData)
+            .then((res) => {
+                // console.log(res.data)
+                if(res.status === 200||res.status==201){
+                    Swal.fire({
+                        title: 'Added to Favourite Course',
                         icon: 'success',
                         toast: true,
                         timer: 3000,
@@ -231,8 +276,22 @@ function CourseDetails() {
                         <p><button type='button' onClick={enrollStudent} className='btn btn-dark'>Enroll Now</button></p>
                     }
                     { EnrollStatus == 'success' && UserLoginStatus == 'success' &&
-                        <p><button type='button' className='btn btn-light btn-outline-dark'>Enrolled</button></p>
+                        <p>
+                            <button type='button' className='btn btn-light btn-outline-dark'>Enrolled</button>
+                            { FavStatus !== 'success' &&
+                                <button type='button' onClick={AddtoFav} title='Add to Favourite' className='btn btn-outline-danger ms-2'><i class="bi bi-heart"></i></button>
+                            }
+                            { FavStatus === 'success' &&
+                                <button type='button' onClick={AddtoFav} title='Remove to Favourite' className='btn btn-danger ms-2'><i class="bi bi-heart"></i></button>
+                            }
+                        </p>
                     }
+                    {/* { EnrollStatus == 'success' && FavStatus !== 'success' &&
+                        <p><button type='button' onClick={AddtoFav} title='Add to Favourite' className='btn btn-outline-dark'><i class="bi bi-heart"></i></button></p>
+                    }
+                    { EnrollStatus == 'success' && FavStatus === 'success' &&
+                        <p><button type='button' onClick={AddtoFav} title='Remove to Favourite' className='btn btn-danger'><i class="bi bi-heart"></i></button></p>
+                    } */}
                     
                 </div>
             </div>

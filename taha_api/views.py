@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .serializers import TeacherSerializer, CategorySerializer, CourseSerializer, ChapterSerializer, StudentSerializer
-from .serializers import EnrollCourseSerializer, CourseRatingSerializer, TeacherDashboardSerializer
+from .serializers import EnrollCourseSerializer, CourseRatingSerializer, TeacherDashboardSerializer, AddToFavSerializer
 
 from .models import *
 from rest_framework import generics
@@ -222,7 +222,7 @@ class EnrolledStudentsView(generics.ListAPIView):
         # end
     
     
-
+# Course rating by student
 class RatingCourseView(generics.ListCreateAPIView):
     queryset = CourseRating.objects.all()
     serializer_class = CourseRatingSerializer
@@ -239,6 +239,35 @@ def rating_status(request, student_id, course_id):
     enrollStatus = CourseRating.objects.filter(course=course, student=student).count()
     
     if enrollStatus:
+        return JsonResponse({'bool': True})
+    else:
+        return JsonResponse({'bool': False})
+    
+# End
+
+# Student add course to favourite list
+class AddToFavView(generics.ListCreateAPIView):
+    queryset = AddToFav.objects.all()
+    serializer_class = AddToFavSerializer
+    
+    
+def favourite_status(request, student_id, course_id):
+    student = Student.objects.filter(id=student_id).first()
+    course = Course.objects.filter(id=course_id).first()
+    favouriteStatus = AddToFav.objects.filter(course=course, student=student).first()
+    
+    if favouriteStatus and favouriteStatus.status == True:
+        return JsonResponse({'bool': True})
+    else:
+        return JsonResponse({'bool': False})
+    
+    
+def del_favourite_status(request, student_id, course_id):
+    student = Student.objects.filter(id=student_id).first()
+    course = Course.objects.filter(id=course_id).first()
+    favouriteStatus = AddToFav.objects.filter(course=course, student=student).delete()
+    
+    if favouriteStatus:
         return JsonResponse({'bool': True})
     else:
         return JsonResponse({'bool': False})

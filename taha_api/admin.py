@@ -17,3 +17,4 @@ class RatingCourseAdmin(admin.ModelAdmin):
     list_display = ('course', 'student', 'rating', 'rating_time')
     
 admin.site.register(CourseRating, RatingCourseAdmin)
+admin.site.register(AddToFav)
