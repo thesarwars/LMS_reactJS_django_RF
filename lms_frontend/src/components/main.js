@@ -31,6 +31,7 @@ import AddChapter from './teacher/AddChapter';
 import EditChapter from './teacher/EditChapter';
 import CourseChapters from './teacher/CourseChapter';
 import AddAssignment from './teacher/AddAssignment';
+import CourseAssignment from './teacher/CourseAssignment';
 import MyStudents from './teacher/MyStudents';
 import TeacherProfileSettings from './teacher/TeacherProfileSettings';
 import TeacherChangePassword from './teacher/TeacherChangePass';
@@ -41,6 +42,7 @@ import AllCourses from './AllCourses';
 import PopularCourses from './PopularCourses';
 import PopularTeacher from './PopularTeacher';
 import CategoryCourses from './CategoryCourses';
+
 
 
 
@@ -84,6 +86,7 @@ function Main() {
             <Route path='/add-chapter/:course_id' element={<AddChapter />}></Route>
             <Route path='/all-chapter/:course_id' element={<CourseChapters />}></Route>
             <Route path='/add-assignment/:student_id/:teacher_id' element={<AddAssignment />}></Route>
+            <Route path='/show-assignment/:student_id/:teacher_id' element={<CourseAssignment />}></Route>
             <Route path='/my-students' element={<MyStudents />}></Route>
             <Route path='/teacher-settings' element={<TeacherProfileSettings />}></Route>
             <Route path='/teacher-ch-password' element={<TeacherChangePassword />}></Route>
