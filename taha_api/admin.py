@@ -22,3 +22,5 @@ class AddToFavAdmin(admin.ModelAdmin):
     list_display = ('course', 'student', 'status')
     
 admin.site.register(AddToFav, AddToFavAdmin)
+admin.site.register(StudentAssignment)
+

@@ -1,6 +1,5 @@
 from django.shortcuts import render
-from .serializers import TeacherSerializer, CategorySerializer, CourseSerializer, ChapterSerializer, StudentSerializer
-from .serializers import EnrollCourseSerializer, CourseRatingSerializer, TeacherDashboardSerializer, AddToFavSerializer
+from .serializers import TeacherSerializer, CategorySerializer, CourseSerializer, ChapterSerializer, StudentSerializer, EnrollCourseSerializer, CourseRatingSerializer, TeacherDashboardSerializer, AddToFavSerializer, StudentAssignmentSerializer
 
 from .models import *
 from rest_framework import generics
@@ -255,6 +254,16 @@ class AddToFavView(generics.ListCreateAPIView):
     queryset = AddToFav.objects.all()
     serializer_class = AddToFavSerializer
     
+    def get_queryset(self):
+        if 'student_id' in self.kwargs:
+            student_id = self.kwargs['student_id']
+            student = Student.objects.get(pk=student_id)
+            return AddToFav.objects.filter(student=student).distinct()
+        elif 'course_id' in self.kwargs:
+            course_id = self.kwargs['course_id']
+            course = Course.objects.get(pk=course_id)
+            return AddToFav.objects.filter(course=course).distinct()
+    
     
 def favourite_status(request, student_id, course_id):
     student = Student.objects.filter(id=student_id).first()
@@ -276,3 +285,16 @@ def del_favourite_status(request, student_id, course_id):
         return JsonResponse({'bool': True})
     else:
         return JsonResponse({'bool': False})
+    
+    
+
+class StudentAssignmentView(generics.ListCreateAPIView):
+    queryset = StudentAssignment.objects.all()
+    serializer_class = StudentAssignmentSerializer
+    
+    def get_queryset(self):
+        student_id = self.kwargs['student_id']
+        teacher_id = self.kwargs['teacher_id']
+        student = Student.objects.get(pk=student_id)
+        teacher = Teacher.objects.get(pk=teacher_id)
+        return StudentAssignment.objects.filter(student=student, teacher=teacher)

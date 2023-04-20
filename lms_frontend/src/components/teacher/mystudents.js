@@ -76,6 +76,7 @@ function MyStudents() {
                                         <th>Username</th>
                                         <th>Course</th>
                                         <th>Enrolled Date</th>
+                                        <th>Assignment</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -87,6 +88,10 @@ function MyStudents() {
                                             <td><p to='#'>{row.student.username}</p></td>
                                             <td><p>{row.course.title}</p></td>
                                             <td><p>{row.enrolled_time.slice(0,10)}</p></td>
+                                            <td>
+                                                <button className="btn btn-warning btn-sm">Assignments</button>
+                                                <Link to={`/add-assignment/${row.student.id + '/' + teacherId}`}><button className="btn btn-primary btn-sm ms-2">Add</button></Link>
+                                            </td>
                                         </tr>
                                     )}
                                 </tbody>

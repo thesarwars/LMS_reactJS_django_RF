@@ -204,6 +204,8 @@ function CourseDetails() {
         }
 
     };
+
+    // Remove from Favourite
     const removeFav = (e) => {
         e.preventDefault();
         const _formData = new FormData();
@@ -235,6 +237,7 @@ function CourseDetails() {
         }
 
     };
+    // End
 
     
     // console.log(CourseData)
@@ -316,7 +319,7 @@ function CourseDetails() {
                                 <button type='button' onClick={AddtoFav} title='Add to Favourite' className='btn btn-outline-danger ms-2'><i class="bi bi-heart"></i></button>
                             }
                             { FavStatus === 'success' &&
-                                <button type='button' onClick={removeFav} title='Remove to Favourite' className='btn btn-danger ms-2'><i class="bi bi-heart"></i></button>
+                                <button type='button' onClick={removeFav} title='Remove to Favourite' className='btn btn-danger ms-2'><i class="bi bi-heart-fill"></i></button>
                             }
                         </p>
                     }

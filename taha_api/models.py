@@ -151,3 +151,18 @@ class AddToFav(models.Model):
     
     class Meta:
         verbose_name_plural = 'Add to Favourite'
+        
+        
+class StudentAssignment(models.Model):
+    created_by = models.ForeignKey(Teacher, on_delete=models.CASCADE)
+    created_for = models.ForeignKey(Student, on_delete=models.CASCADE)
+    title = models.CharField(max_length=150)
+    details = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    
+    class Meta:
+        verbose_name_plural = ("Student Assignments")
+
+    def __str__(self):
+        return self.title

@@ -38,4 +38,6 @@ urlpatterns = [
     path('fav-status/<int:student_id>/<int:course_id>/', views.favourite_status),
     path('addtofav/', views.AddToFavView.as_view()),
     path('removefav/<int:student_id>/<int:course_id>/', views.del_favourite_status),
+    path('fav-courses/<int:student_id>/', views.AddToFavView.as_view()),
+    path('student-assignment/<int:student_id>/<int:teacher_id>/', views.StudentAssignmentView.as_view()),
 ]
