@@ -141,11 +141,11 @@ class AddToFavSerializer(serializers.ModelSerializer):
 class StudentAssignmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = StudentAssignment
-        fields = ['id', 'created_by', 'created_for', 'title', 'details', 'created_at']
+        fields = ['id', 'teacher', 'student', 'title', 'details', 'created_at']
         
     def __init__(self, *args, **kwargs):
         super(StudentAssignmentSerializer, self).__init__(*args, **kwargs)
         request = self.context.get('request')
         self.Meta.depth = 0
         if request and request.method == 'GET':
-            self.Meta.depth = 1
+            self.Meta.depth = 2

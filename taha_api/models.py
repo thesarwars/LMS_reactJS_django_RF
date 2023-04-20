@@ -154,8 +154,8 @@ class AddToFav(models.Model):
         
         
 class StudentAssignment(models.Model):
-    created_by = models.ForeignKey(Teacher, on_delete=models.CASCADE)
-    created_for = models.ForeignKey(Student, on_delete=models.CASCADE)
+    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
     title = models.CharField(max_length=150)
     details = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
