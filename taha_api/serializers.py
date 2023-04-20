@@ -112,6 +112,19 @@ class CourseRatingSerializer(serializers.ModelSerializer):
                 
 
 # Student add course to favourite list                
+# class AddToFavSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = AddToFav
+#         fields = ['id', 'course', 'student', 'status']
+        
+#     def __init__(self, *args, **kwargs):
+#         super(AddToFavSerializer, self).__init__(*args, **kwargs)
+#         request = self.context.get('request')
+#         self.Meta.depth = 0
+#         if request and request.method == 'GET':
+#             self.Meta.depth = 2
+
+
 class AddToFavSerializer(serializers.ModelSerializer):
     class Meta:
         model = AddToFav
@@ -122,4 +135,4 @@ class AddToFavSerializer(serializers.ModelSerializer):
         request = self.context.get('request')
         self.Meta.depth = 0
         if request and request.method == 'GET':
-            self.Meta.depth = 2
+            self.Meta.depth = 1

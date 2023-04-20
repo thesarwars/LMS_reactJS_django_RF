@@ -74,6 +74,9 @@ function CourseDetails() {
                 if (res.data.bool == true){
                     setFavStatus('success')
                 }
+                else{
+                    setFavStatus('')
+                }
             });
         }catch(error){
             console.log(error);
@@ -186,14 +189,45 @@ function CourseDetails() {
                         title: 'Added to Favourite Course',
                         icon: 'success',
                         toast: true,
-                        timer: 3000,
+                        timer: 1000,
                         position: 'top-right',
                         timerProgressBar: true,
                         showConfirmButton: false,
                     });
                     setTimeout(function(){
                         window.location.reload();
-                     }, 3000);
+                     }, 1000);
+                }
+            });
+        }catch(error){
+            console.log(error);
+        }
+
+    };
+    const removeFav = (e) => {
+        e.preventDefault();
+        const _formData = new FormData();
+        _formData.append('course', course_id);
+        _formData.append('student', studentId);
+        _formData.append('status', false);
+
+        try{
+            axios.get(baseUrl + '/removefav/'+ studentId +'/'+ course_id)
+            .then((res) => {
+                // console.log(res.data)
+                if(res.status === 200||res.status==201){
+                    Swal.fire({
+                        title: 'Removed from favourite course',
+                        icon: 'success',
+                        toast: true,
+                        timer: 1000,
+                        position: 'top-right',
+                        timerProgressBar: true,
+                        showConfirmButton: false,
+                    });
+                    setTimeout(function(){
+                        window.location.reload();
+                     }, 1000);
                 }
             });
         }catch(error){
@@ -282,7 +316,7 @@ function CourseDetails() {
                                 <button type='button' onClick={AddtoFav} title='Add to Favourite' className='btn btn-outline-danger ms-2'><i class="bi bi-heart"></i></button>
                             }
                             { FavStatus === 'success' &&
-                                <button type='button' onClick={AddtoFav} title='Remove to Favourite' className='btn btn-danger ms-2'><i class="bi bi-heart"></i></button>
+                                <button type='button' onClick={removeFav} title='Remove to Favourite' className='btn btn-danger ms-2'><i class="bi bi-heart"></i></button>
                             }
                         </p>
                     }

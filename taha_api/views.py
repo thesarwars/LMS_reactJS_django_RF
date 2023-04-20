@@ -246,6 +246,11 @@ def rating_status(request, student_id, course_id):
 # End
 
 # Student add course to favourite list
+# class AddToFavView(generics.ListCreateAPIView):
+#     queryset = AddToFav.objects.all()
+#     serializer_class = AddToFavSerializer
+
+
 class AddToFavView(generics.ListCreateAPIView):
     queryset = AddToFav.objects.all()
     serializer_class = AddToFavSerializer
