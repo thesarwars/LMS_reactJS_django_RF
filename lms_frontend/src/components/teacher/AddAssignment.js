@@ -19,7 +19,7 @@ function AddAssignment(){
         })
     }
 
-    const {student_id} = useParams();
+    const {student_id, course_id} = useParams();
 
     const submitForm = (event) => {
         event.preventDefault();
@@ -27,11 +27,12 @@ function AddAssignment(){
         const _formData = new FormData();
         _formData.append('teacher', teacherId);
         _formData.append('student', student_id);
+        _formData.append('course', course_id);
         _formData.append('title', AssignmentData.title);
         _formData.append('details', AssignmentData.details);
 
         try{
-            axios.post(baseUrl + '/student-assignment/' + student_id + '/' + teacherId + '/', _formData, {
+            axios.post(baseUrl + '/student-assignment/' + student_id + '/' + teacherId + '/' + course_id + '/', _formData, {
                 headers: {
                     'content-type': 'multipart/form-data'
                 }

@@ -295,6 +295,8 @@ class StudentAssignmentView(generics.ListCreateAPIView):
     def get_queryset(self):
         student_id = self.kwargs['student_id']
         teacher_id = self.kwargs['teacher_id']
+        course_id = self.kwargs['course_id']
         student = Student.objects.get(pk=student_id)
         teacher = Teacher.objects.get(pk=teacher_id)
-        return StudentAssignment.objects.filter(student=student, teacher=teacher)
+        course = Course.objects.get(pk=course_id)
+        return StudentAssignment.objects.filter(student=student, teacher=teacher, course=course)

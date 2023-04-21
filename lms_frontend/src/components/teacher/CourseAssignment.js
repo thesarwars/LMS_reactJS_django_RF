@@ -11,12 +11,12 @@ const baseUrl = 'http://127.0.0.1:8000/apiview';
 function CourseAssignment(){
     const [AssignmentData, setAssignmentData] = useState([]);
     const [TotalAssignment, setTotalAssignment] = useState(0);
-    const {student_id} = useParams();
+    const {student_id, course_id} = useParams();
     const teacherId = localStorage.getItem('teacherId')
 
     useEffect(() => {
         try{
-            axios.get(baseUrl + '/student-assignment/'+student_id+'/'+teacherId)
+            axios.get(baseUrl + '/student-assignment/'+student_id+'/'+teacherId+'/'+course_id)
             .then((res) => {
                 setTotalAssignment(res.data.length);
                 setAssignmentData(res.data);
@@ -68,7 +68,7 @@ function CourseAssignment(){
                 </aside>
                 <section className="col-md-9">
                     <div className="card">
-                        <h5 className="card-header">Course Assignment ({TotalAssignment}) <Link to={`/add-assignment/${student_id + '/' + teacherId}`} className="btn btn-success btn-sm active float-end">Add Assignment</Link></h5>
+                        <h5 className="card-header">Course Assignment ({TotalAssignment}) <Link to={`/add-assignment/${student_id + '/' + teacherId + '/' + course_id}`} className="btn btn-success btn-sm active float-end">Add Assignment</Link></h5>
                         <div className="card-body">
                             <table className="table table-bordered">
                                 <thead>

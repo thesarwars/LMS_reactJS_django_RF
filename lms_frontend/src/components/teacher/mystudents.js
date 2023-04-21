@@ -89,8 +89,8 @@ function MyStudents() {
                                             <td><p>{row.course.title}</p></td>
                                             <td><p>{row.enrolled_time.slice(0,10)}</p></td>
                                             <td>
-                                                <Link to={`/show-assignment/${row.student.id + '/' + teacherId}`}><button className="btn btn-warning btn-sm">Assignments</button></Link>
-                                                <Link to={`/add-assignment/${row.student.id + '/' + teacherId}`}><button className="btn btn-primary btn-sm ms-2">Add</button></Link>
+                                                <Link to={`/show-assignment/${row.student.id + '/' + teacherId + '/' + row.course.id}`}><button className="btn btn-warning btn-sm">Assignments</button></Link>
+                                                <Link to={`/add-assignment/${row.student.id + '/' + teacherId + '/' + row.course.id}`}><button className="btn btn-primary btn-sm ms-2">Add</button></Link>
                                             </td>
                                         </tr>
                                     )}

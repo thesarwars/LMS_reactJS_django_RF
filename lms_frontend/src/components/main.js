@@ -85,8 +85,8 @@ function Main() {
             <Route path='/edit-chapter/:chapter_id' element={<EditChapter />}></Route>
             <Route path='/add-chapter/:course_id' element={<AddChapter />}></Route>
             <Route path='/all-chapter/:course_id' element={<CourseChapters />}></Route>
-            <Route path='/add-assignment/:student_id/:teacher_id' element={<AddAssignment />}></Route>
-            <Route path='/show-assignment/:student_id/:teacher_id' element={<CourseAssignment />}></Route>
+            <Route path='/add-assignment/:student_id/:teacher_id/:course_id' element={<AddAssignment />}></Route>
+            <Route path='/show-assignment/:student_id/:teacher_id/:course_id' element={<CourseAssignment />}></Route>
             <Route path='/my-students' element={<MyStudents />}></Route>
             <Route path='/teacher-settings' element={<TeacherProfileSettings />}></Route>
             <Route path='/teacher-ch-password' element={<TeacherChangePassword />}></Route>
