@@ -40,4 +40,5 @@ urlpatterns = [
     path('removefav/<int:student_id>/<int:course_id>/', views.del_favourite_status),
     path('fav-courses/<int:student_id>/', views.AddToFavView.as_view()),
     path('student-assignment/<int:student_id>/<int:teacher_id>/<int:course_id>/', views.StudentAssignmentView.as_view()),
+    path('my-assignment/<int:student_id>/<int:course_id>/', views.MyAssignmentView.as_view()),
 ]

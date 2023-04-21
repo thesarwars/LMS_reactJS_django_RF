@@ -300,3 +300,19 @@ class StudentAssignmentView(generics.ListCreateAPIView):
         teacher = Teacher.objects.get(pk=teacher_id)
         course = Course.objects.get(pk=course_id)
         return StudentAssignment.objects.filter(student=student, teacher=teacher, course=course)
+    
+    
+class MyAssignmentView(generics.ListCreateAPIView):
+    queryset = StudentAssignment.objects.all()
+    serializer_class = StudentAssignmentSerializer
+    
+    
+    def get_queryset(self):
+        if 'student_id' in self.kwargs:
+            student_id = self.kwargs['student_id']
+            student = Student.objects.get(pk=student_id)
+            return StudentAssignment.objects.filter(student=student).distinct()
+        elif 'course_id' in self.kwargs:
+            course_id = self.kwargs['course_id']
+            course = Course.objects.get(pk=course_id)
+            return StudentAssignment.objects.filter(course=course).distinct()
