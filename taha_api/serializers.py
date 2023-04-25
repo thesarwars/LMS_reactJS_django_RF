@@ -141,7 +141,7 @@ class AddToFavSerializer(serializers.ModelSerializer):
 class StudentAssignmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = StudentAssignment
-        fields = ['id', 'teacher', 'student', 'course', 'title', 'details', 'created_at']
+        fields = ['id', 'teacher', 'student', 'course', 'title', 'details', 'assignment_status', 'created_at']
         
     def __init__(self, *args, **kwargs):
         super(StudentAssignmentSerializer, self).__init__(*args, **kwargs)

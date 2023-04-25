@@ -13,6 +13,7 @@ import StudentLogout from './user/StudentLogout';
 import StudentRegistration from './user/StudentRegistration';
 import StudentDashboard from './user/StudentDashboard';
 import StudentCourses from './user/StudentCourses';
+import StudentAssignment from './user/StudentAssignment';
 import StudentFavCourses from './user/StudentFavCourses';
 import StudentRecCourses from './user/StudentRecCourse';
 import StudentProfileSettings from './user/StudentProfileSettings';
@@ -52,6 +53,7 @@ import CategoryCourses from './CategoryCourses';
 
 
 
+
 function Main() {
     return (
       <div className="container">
@@ -68,6 +70,7 @@ function Main() {
             <Route path='/user-reg' element={<StudentRegistration />}></Route>
             <Route path='/user-dashboard' element={<StudentDashboard />}></Route>
             <Route path='/my-courses' element={<StudentCourses />}></Route>
+            <Route path='/my-assignment' element={<StudentAssignment />}></Route>
             <Route path='/fav-courses' element={<StudentFavCourses />}></Route>
             <Route path='/rec-courses' element={<StudentRecCourses />}></Route>
             <Route path='/profile-settings' element={<StudentProfileSettings />}></Route>

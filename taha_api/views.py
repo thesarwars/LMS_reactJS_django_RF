@@ -204,7 +204,7 @@ class EnrolledStudentsView(generics.ListAPIView):
         if 'course_id' in self.kwargs:
             course_id = self.kwargs['course_id']
             course = Course.objects.get(pk=course_id)
-            return EnrollCourseStudent.objects.filter(course=course)
+            return EnrollCourseStudent.objects.filter(course=course).distinct()
         
         # fetcing student enrolled (all) in course in teacher account
         elif 'teacher_id' in self.kwargs:
@@ -308,11 +308,11 @@ class MyAssignmentView(generics.ListCreateAPIView):
     
     
     def get_queryset(self):
-        if 'student_id' in self.kwargs:
-            student_id = self.kwargs['student_id']
-            student = Student.objects.get(pk=student_id)
-            return StudentAssignment.objects.filter(student=student).distinct()
-        elif 'course_id' in self.kwargs:
-            course_id = self.kwargs['course_id']
-            course = Course.objects.get(pk=course_id)
-            return StudentAssignment.objects.filter(course=course).distinct()
+        student_id = self.kwargs['student_id']
+        student = Student.objects.get(pk=student_id)
+        return StudentAssignment.objects.filter(student=student)
+    
+    
+class UpdateAssignment(generics.RetrieveUpdateDestroyAPIView):
+    queryset = StudentAssignment.objects.all()
+    serializer_class = StudentAssignmentSerializer

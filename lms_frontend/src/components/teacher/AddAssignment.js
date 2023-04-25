@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import TeacherSidebar from "./TeacherSidebar";
 import axios from "axios";
 import {useParams} from 'react-router-dom';
@@ -7,10 +7,24 @@ import {useParams} from 'react-router-dom';
 const baseUrl = 'http://127.0.0.1:8000/apiview';
 
 function AddAssignment(){
+    const teacherId = localStorage.getItem('teacherId')
+    const [EnrolledStudents, setEnrolledStudents] = useState([]);
     const [AssignmentData, setAssignmentData] = useState({
         title: "",
         details: ""
     });
+
+    useEffect(() => {
+        try{
+            axios.get(baseUrl + '/course/' + course_id)
+            .then((res) => {
+                setEnrolledStudents(res.data)
+            });
+        }catch(error){
+            console.log(error);
+        }
+    },[]);
+    // console.log(EnrolledStudents)
 
     const handleChange = (event) => {
         setAssignmentData({
@@ -23,7 +37,7 @@ function AddAssignment(){
 
     const submitForm = (event) => {
         event.preventDefault();
-        const teacherId = localStorage.getItem('teacherId')
+        
         const _formData = new FormData();
         _formData.append('teacher', teacherId);
         _formData.append('student', student_id);
@@ -55,7 +69,9 @@ function AddAssignment(){
                 </aside>
                 <div className="col-9">
                     <div className="card">
-                        <h5 className="card-header">Add Assignment</h5>
+                        {/* {EnrolledStudents.map((col, index) => */}
+                        <h5 className="card-header">Add Assignment for <span className="text-warning">{EnrolledStudents.title}</span></h5>
+                        {/* )} */}
                         <div className="card-body">
                             <form>
                                 <div className="mb-3">

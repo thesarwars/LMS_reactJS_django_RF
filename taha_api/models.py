@@ -159,6 +159,7 @@ class StudentAssignment(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     title = models.CharField(max_length=150)
     details = models.TextField()
+    assignment_status = models.BooleanField(default=False, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     
