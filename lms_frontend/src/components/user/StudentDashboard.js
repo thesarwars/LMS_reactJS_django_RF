@@ -34,7 +34,7 @@ function StudentDashboard(){
                             <div className="card border-primary">
                                 <h5 className="card-header bg-primary text-white">Enrolled Courses</h5>
                                 <div className="card-body">
-                                    <h3><Link to="/my-courses">{StudentDashboards.enrolled_courses}</Link></h3>
+                                    <h5><Link to="/my-courses">{StudentDashboards.enrolled_courses}</Link></h5>
                                 </div>
                             </div>
                         </div>
@@ -42,7 +42,7 @@ function StudentDashboard(){
                             <div className="card border-primary">
                                 <h5 className="card-header bg-info text-white">Favourite Courses</h5>
                                 <div className="card-body">
-                                    <h3><Link to="/fav-courses">{StudentDashboards.favourite_courses}</Link></h3>
+                                    <h5><Link to="/fav-courses">{StudentDashboards.favourite_courses}</Link></h5>
                                 </div>
                             </div>
                         </div>

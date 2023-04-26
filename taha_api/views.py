@@ -162,6 +162,10 @@ class StudentList(generics.ListCreateAPIView):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
     # permission_classes = [permissions.IsAuthenticated]
+    
+class StudentUpdate(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
 
 @csrf_exempt    
 def student_login(request):

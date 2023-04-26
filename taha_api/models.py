@@ -101,8 +101,9 @@ class Student(models.Model):
     full_name = models.CharField(max_length=100)
     email = models.EmailField(max_length=50)
     username = models.CharField(max_length=50)
-    password = models.CharField(max_length=100)
-    intereseted_cat = models.TextField()
+    password = models.CharField(max_length=100, null = True, blank = True)
+    interested_cat = models.TextField()
+    profile_img = models.ImageField(upload_to='student/profile_img/', null=True)
     
     class Meta:
         verbose_name_plural = 'Students'

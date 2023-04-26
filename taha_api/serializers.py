@@ -74,7 +74,7 @@ class ChapterSerializer(serializers.ModelSerializer):
 class StudentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Student
-        fields = ['id', 'full_name', 'email', 'username', 'password', 'intereseted_cat']
+        fields = ['id', 'full_name', 'email', 'username', 'password', 'interested_cat', 'profile_img']
         
     def __init__(self, *args, **kwargs):
         super(StudentSerializer, self).__init__(*args, **kwargs)
