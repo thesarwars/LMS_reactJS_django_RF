@@ -2,13 +2,13 @@ import { Link, useParams } from "react-router-dom";
 import Sidebar from "./StudentSidebar";
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
-import Swal from 'sweetalert2';
+// import Swal from 'sweetalert2';
 
 const baseUrl = 'http://127.0.0.1:8000/apiview';
 
 function StudentAssignment() {
     const [AssignmentData, setAssignmentData] = useState([]);
-    const [SubmitAssignment, setSubmitAssignment] = useState(' ');
+    // const [SubmitAssignment, setSubmitAssignment] = useState(' ');
     const studentId = localStorage.getItem('studentId');
     // const {course_id} = useParams();
 

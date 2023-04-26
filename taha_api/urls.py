@@ -7,6 +7,7 @@ urlpatterns = [
     path('teacher/', views.TeacherList.as_view()),
     path('teacher/<int:pk>/', views.TeacherUpdate.as_view()),
     path('teacher/dashboard/<int:pk>/', views.TeacherDashboardView.as_view()),
+    path('user/student-dashboard/<int:pk>/', views.StudentDashboardView.as_view()),
     path('teacher-login', views.teacher_login),
     
     # category

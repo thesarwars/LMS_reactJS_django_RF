@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .serializers import TeacherSerializer, CategorySerializer, CourseSerializer, ChapterSerializer, StudentSerializer, EnrollCourseSerializer, CourseRatingSerializer, TeacherDashboardSerializer, AddToFavSerializer, StudentAssignmentSerializer
+from .serializers import TeacherSerializer, CategorySerializer, CourseSerializer, ChapterSerializer, StudentSerializer, EnrollCourseSerializer, CourseRatingSerializer, TeacherDashboardSerializer, AddToFavSerializer, StudentAssignmentSerializer, StudentDashboardSerializer
 
 from .models import *
 from rest_framework import generics
@@ -176,6 +176,11 @@ def student_login(request):
         return JsonResponse({'bool': True, 'student_id': studentData.id})
     else:
         return JsonResponse({'bool': False})
+    
+    
+class StudentDashboardView(generics.RetrieveAPIView):
+    queryset = Student.objects.all()
+    serializer_class = StudentDashboardSerializer
     
     
 

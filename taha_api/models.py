@@ -110,6 +110,22 @@ class Student(models.Model):
     def __str__(self):
         return self.full_name
     
+    def enrolled_courses(self):
+        enrolled_courses = EnrollCourseStudent.objects.filter(student = self).count()
+        return enrolled_courses
+    
+    def favourite_courses(self):
+        favourite_courses = AddToFav.objects.filter(student = self).count()
+        return favourite_courses
+    
+    def complete_assignment(self):
+        complete_assignment = StudentAssignment.objects.filter(student = self, assignment_status=True).count()
+        return complete_assignment
+    
+    def pending_assignment(self):
+        pending_assignment = StudentAssignment.objects.filter(student = self, assignment_status=False).count()
+        return pending_assignment
+    
 
 # Enrollment of Students
 class EnrollCourseStudent(models.Model):
