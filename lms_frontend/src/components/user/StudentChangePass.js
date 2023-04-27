@@ -1,15 +1,44 @@
-import { Link } from "react-router-dom";
-import MyCourses from './StudentCourses'
-import Sidebar from "./StudentSidebar";
+// import { Link } from "react-router-dom";
+// import MyCourses from './StudentCourses'
+import StudentSidebar from "./StudentSidebar";
 import React from 'react';
+import {useState, useEffect} from 'react';
+import axios from "axios";
+import Swal from 'sweetalert2';
 
+const baseUrl = 'http://127.0.0.1:8000/apiview';
 
 function StudentChangePassword(){
+    const [StudentPass, setStudentPass] = ({
+        'password': '',
+    })
+    const studentId = localStorage.getItem('studentId')
+
+    // change element value
+    const handleChange=(event) =>{
+        setStudentPass({
+            ...StudentPass,
+            [event.target.name]:event.target.value
+        });
+    }
+
+    //Submit Form
+    const submitForm=()=>{
+        const studentFormData = new FormData();
+        studentFormData.append('password', StudentPass.password)
+
+        try{
+
+        }catch(error){
+            
+        }
+    }
+
     return (
         <div className="container mt-4">
             <div className="row">
                 <aside className="col-md-3">
-                    <Sidebar />
+                    <StudentSidebar />
                 </aside>
                 <section className="col-md-9">
                     <div className="row g-3 align-items-center">
