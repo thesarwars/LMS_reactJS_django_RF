@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
 const baseUrl = 'http://127.0.0.1:8000/apiview';
 
 function StudentChangePassword(){
-    const [StudentPass, setStudentPass] = ({
+    const [StudentPass, setStudentPass] = useState({
         'password': '',
     })
     const studentId = localStorage.getItem('studentId')
@@ -23,15 +23,36 @@ function StudentChangePassword(){
     }
 
     //Submit Form
-    const submitForm=()=>{
+    const submitForm=(event)=>{
+        event.preventDefault();
         const studentFormData = new FormData();
         studentFormData.append('password', StudentPass.password)
 
         try{
+            axios.post(baseUrl + '/user/change-pass/'+studentId+'/', studentFormData,{
+                
+            }).then((response)=>{
+                if(response.status==200){
+                    // alert('changed!!')
+                    window.location.href='/user-logout'
+                }else{
+                    alert('Oops..Something went wrong!!')
+                }
+            })
 
         }catch(error){
-            
+            console.log(error)
+            setStudentPass({'status': error})
         }
+    }
+
+    useEffect(()=>{
+        document.title="Student change password"
+    })
+
+    const studentLoginStatus = localStorage.getItem('studentLoginStatus')
+    if(studentLoginStatus !== 'true'){
+        window.location.href = '/user-login'
     }
 
     return (
@@ -46,7 +67,7 @@ function StudentChangePassword(){
                             <label for="inputPassword6" className="col-form-label">Password</label>
                         </div>
                         <div className="col-auto">
-                            <input type="password" id="inputPassword6" className="form-control" aria-describedby="passwordHelpInline" />
+                            <input type="password" name="password" id="inputPassword6" value={StudentPass.password} onChange={handleChange} className="form-control" aria-describedby="passwordHelpInline" />
                         </div>
                         <div className="col-auto">
                             <span id="passwordHelpInline" className="form-text">
@@ -55,7 +76,7 @@ function StudentChangePassword(){
                         </div>
                     </div>
                     <hr></hr>
-                    <button type="submit" className="btn btn-primary">Update</button>
+                    <button type="submit" onClick={submitForm} className="btn btn-primary">Update</button>
                 </section>
             </div>
         </div>

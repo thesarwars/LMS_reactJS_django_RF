@@ -178,6 +178,7 @@ def student_login(request):
     
     if studentData:
         return JsonResponse({'bool': True, 'student_id': studentData.id})
+        # print(studentData)
     else:
         return JsonResponse({'bool': False})
     
@@ -186,6 +187,19 @@ class StudentDashboardView(generics.RetrieveAPIView):
     queryset = Student.objects.all()
     serializer_class = StudentDashboardSerializer
     
+
+@csrf_exempt
+def student_change_pass(request, student_id):
+    password = request.POST['password']
+    try:
+        studentData = Student.objects.get(id=student_id)
+    except Student.DoesNotExist:
+        studentData = None
+    if studentData:
+        Student.objects.filter(id=student_id).update(password=password)
+        return JsonResponse({'bool': True})
+    else:
+        return JsonResponse({'bool':False})
     
 
 # Student enroll in course

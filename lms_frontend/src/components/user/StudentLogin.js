@@ -39,7 +39,6 @@ function StudentLogin() {
                 else{
                     seterrorMsg("Email or Password wrong!!")
                 }
-
         });
         }catch(error){
             console.log(error);

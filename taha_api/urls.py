@@ -7,7 +7,7 @@ urlpatterns = [
     path('teacher/', views.TeacherList.as_view()),
     path('teacher/<int:pk>/', views.TeacherUpdate.as_view()),
     path('teacher/dashboard/<int:pk>/', views.TeacherDashboardView.as_view()),
-    path('user/student-dashboard/<int:pk>/', views.StudentDashboardView.as_view()),
+    
     path('teacher-login', views.teacher_login),
     
     # category
@@ -28,6 +28,8 @@ urlpatterns = [
     #student
     path('student/', views.StudentList.as_view()),
     path('student/<int:pk>/', views.StudentUpdate.as_view()),
+    path('user/student-dashboard/<int:pk>/', views.StudentDashboardView.as_view()),
+    path('user/change-pass/<int:student_id>/', views.student_change_pass),
     path('student-login', views.student_login),
     path('enroll-student/', views.EnrollStudentList.as_view()),
     path('enroll-status/<int:student_id>/<int:course_id>/', views.enroll_status),
