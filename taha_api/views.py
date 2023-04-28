@@ -143,6 +143,18 @@ class TeacherCourseList(generics.ListAPIView):
         teacher = Teacher.objects.get(pk=teacher_id)
         return Course.objects.filter(teacher=teacher)
 
+@csrf_exempt
+def teacher_change_pass(request, teacher_id):
+    password = request.POST['password']
+    try:
+        teacherData = Teacher.objects.get(id=teacher_id)
+    except Teacher.DoesNotExist:
+        teacherData = None
+    if teacherData:
+        Teacher.objects.filter(id=teacher_id).update(password=password)
+        return JsonResponse({'bool': True})
+    else:
+        return JsonResponse({'bool':False})
 
 
 # Specific Course chapter list
