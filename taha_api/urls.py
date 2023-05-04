@@ -47,4 +47,6 @@ urlpatterns = [
     # path('show-courses/<int:student_id>/<int:teacher_id>/<int:course_id>/', views.EnrolledStudentsView.as_view()),
     path('my-assignment/<int:student_id>/', views.MyAssignmentView.as_view()),
     path('update-assignment/<int:pk>', views.UpdateAssignment.as_view()),
+    path('student/view-notification/<int:student_id>/', views.NotificationList.as_view()),
+    path('save-notification/', views.NotificationList.as_view()),
 ]

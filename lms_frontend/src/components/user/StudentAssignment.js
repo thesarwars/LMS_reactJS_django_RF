@@ -65,6 +65,7 @@ function StudentAssignment() {
                                     <tr>
                                         <th>Title</th>
                                         <th>Details</th>
+                                        <th>Course</th>
                                         <th>Assigned By</th>
                                         <th>Action</th>
                                     </tr>
@@ -74,6 +75,7 @@ function StudentAssignment() {
                                         <tr>
                                             <td>{row.title}</td>
                                             <td>{row.details}</td>
+                                            <td>{row.course.title}</td>
                                             <td><Link to={`/teacher-details/${row.course.teacher.id}`}>{row.course.teacher.full_name}</Link></td>
                                             <td>
                                                 {row.assignment_status !== true && 

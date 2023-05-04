@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import TeacherSidebar from "./TeacherSidebar";
 import axios from "axios";
 import {useParams} from 'react-router-dom';
-// import Swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 
 const baseUrl = 'http://127.0.0.1:8000/apiview';
 
@@ -53,12 +53,37 @@ function AddAssignment(){
             })
             .then((res) => {
                 // console.log(res.data)
-                window.location.href = '/my-students/'
+                if(res.status === 200||res.status==201){
+                    Swal.fire({
+                        title: 'Assignment has been added',
+                        icon: 'success',
+                        toast: true,
+                        timer: 1000,
+                        position: 'top-right',
+                        timerProgressBar: true,
+                        showConfirmButton: false,
+                    });
+                    const _notifData = new FormData();
+                    _notifData.append('teacher', teacherId);
+                    _notifData.append('student', student_id);
+                    _notifData.append('notif_to', 'students');
+                    _notifData.append('notif_sub', 'assignment');
+                    axios.post(baseUrl+'/save-notification/',_notifData,{
+                        headers: {
+                            'content-type': 'multipart/form-data'
+                        }
+                    }).then((res)=>{
+                        console.log('Notification Added')
+                    })
+                    setTimeout(function(){
+                        window.location.reload();
+                    }, 1000);
+                }
             });
         }catch(error){
             console.log(error);
         }
-
+        
     };
 
     return(

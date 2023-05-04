@@ -185,3 +185,17 @@ class StudentAssignment(models.Model):
 
     def __str__(self):
         return self.title
+    
+    
+class Notification(models.Model):
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
+    # course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    is_read = models.BooleanField(default=False, verbose_name='Read Status')
+    notif_sub = models.CharField(max_length=200, verbose_name='Notification Subject')
+    notif_to = models.CharField(max_length=100, verbose_name='Notification to')
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        verbose_name_plural = ("Notification")
+    

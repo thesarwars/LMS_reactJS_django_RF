@@ -24,3 +24,7 @@ class AddToFavAdmin(admin.ModelAdmin):
 admin.site.register(AddToFav, AddToFavAdmin)
 admin.site.register(StudentAssignment)
 
+class NotificationAdmin(admin.ModelAdmin):
+    list_display = ('id', 'notif_sub', 'notif_to', 'created_at', 'is_read')
+admin.site.register(Notification, NotificationAdmin)
+

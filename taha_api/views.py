@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .serializers import TeacherSerializer, CategorySerializer, CourseSerializer, ChapterSerializer, StudentSerializer, EnrollCourseSerializer, CourseRatingSerializer, TeacherDashboardSerializer, AddToFavSerializer, StudentAssignmentSerializer, StudentDashboardSerializer
+from .serializers import TeacherSerializer, CategorySerializer, CourseSerializer, ChapterSerializer, StudentSerializer, EnrollCourseSerializer, CourseRatingSerializer, TeacherDashboardSerializer, AddToFavSerializer, StudentAssignmentSerializer, StudentDashboardSerializer,NotificationSerializer
 
 from .models import *
 from rest_framework import generics
@@ -345,9 +345,22 @@ class MyAssignmentView(generics.ListCreateAPIView):
     def get_queryset(self):
         student_id = self.kwargs['student_id']
         student = Student.objects.get(pk=student_id)
+        # Update Notification
+        Notification.objects.filter(student=student, notif_to='students', notif_sub='assignment').update(is_read=True)
         return StudentAssignment.objects.filter(student=student)
     
     
 class UpdateAssignment(generics.RetrieveUpdateDestroyAPIView):
     queryset = StudentAssignment.objects.all()
     serializer_class = StudentAssignmentSerializer
+    
+    
+class NotificationList(generics.ListCreateAPIView):
+    queryset = Notification.objects.all()
+    serializer_class = NotificationSerializer
+    
+    
+    def get_queryset(self):
+        student_id = self.kwargs['student_id']
+        student = Student.objects.get(pk=student_id)
+        return Notification.objects.filter(student=student, notif_to='students', notif_sub='assignment', is_read=False)
