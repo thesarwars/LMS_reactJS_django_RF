@@ -28,3 +28,15 @@ class NotificationAdmin(admin.ModelAdmin):
     list_display = ('id', 'notif_sub', 'notif_to', 'created_at', 'is_read')
 admin.site.register(Notification, NotificationAdmin)
 
+class QuizAdmin(admin.ModelAdmin):
+    list_display = ('id', 'title', 'teacher', 'detail')
+admin.site.register(Quiz, QuizAdmin)
+
+class QuizQuestionsAdmin(admin.ModelAdmin):
+    list_display = ('id', 'question_title', 'correct_ans', 'quiz')
+admin.site.register(QuizQuestions, QuizQuestionsAdmin)
+
+class CourseQuizAdmin(admin.ModelAdmin):
+    list_display = ('id', 'teacher', 'quiz')
+admin.site.register(CourseQuiz, CourseQuizAdmin)
+

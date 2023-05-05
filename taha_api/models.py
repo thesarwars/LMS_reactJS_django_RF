@@ -199,3 +199,44 @@ class Notification(models.Model):
     class Meta:
         verbose_name_plural = ("Notification")
     
+    
+class Quiz(models.Model):
+    title = models.CharField(max_length=200)
+    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
+    detail = models.TextField()
+    add_time = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        verbose_name_plural = ("Quiz")
+        
+    def __str__(self):
+        return self.title
+        
+
+class QuizQuestions(models.Model):
+    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
+    question_title = models.CharField(max_length=200, verbose_name='Question Title')
+    option1 = models.CharField(max_length=200)
+    option2 = models.CharField(max_length=200)
+    option3 = models.CharField(max_length=200)
+    option4 = models.CharField(max_length=200)
+    correct_ans = models.CharField(max_length=200)
+    add_time = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        verbose_name_plural = ("Quiz Questions")
+        
+    def __str__(self):
+        return self.quiz
+        
+        
+class CourseQuiz(models.Model):
+    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
+    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
+    add_time = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        verbose_name_plural = ("Quiz Course")
+        
+    def __str__(self):
+        return self.quiz
