@@ -49,4 +49,7 @@ urlpatterns = [
     path('update-assignment/<int:pk>', views.UpdateAssignment.as_view()),
     path('student/view-notification/<int:student_id>/', views.NotificationList.as_view()),
     path('save-notification/', views.NotificationList.as_view()),
+    
+    # quiz section
+    path('quiz/', views.QuizList.as_view()),
 ]

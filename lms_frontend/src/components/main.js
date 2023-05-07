@@ -44,6 +44,9 @@ import PopularCourses from './PopularCourses';
 import PopularTeacher from './PopularTeacher';
 import CategoryCourses from './CategoryCourses';
 
+// Quiz Section
+import AddQuiz from './teacher/AddQuiz';
+
 
 
 
@@ -101,6 +104,8 @@ function Main() {
             <Route path='/popular-teacher' element={<PopularTeacher />}></Route>
             <Route path='/category/:category_slug' element={<CategoryCourses />}></Route>
 
+            {/* Quiz Area */}
+            <Route path='/add-quiz' element={<AddQuiz />}></Route>
 
 
         </Switch>

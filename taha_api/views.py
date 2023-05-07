@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .serializers import TeacherSerializer, CategorySerializer, CourseSerializer, ChapterSerializer, StudentSerializer, EnrollCourseSerializer, CourseRatingSerializer, TeacherDashboardSerializer, AddToFavSerializer, StudentAssignmentSerializer, StudentDashboardSerializer,NotificationSerializer
+from .serializers import TeacherSerializer, CategorySerializer, CourseSerializer, ChapterSerializer, StudentSerializer, EnrollCourseSerializer, CourseRatingSerializer, TeacherDashboardSerializer, AddToFavSerializer, StudentAssignmentSerializer, StudentDashboardSerializer, NotificationSerializer, QuizSerializer
 
 from .models import *
 from rest_framework import generics
@@ -364,3 +364,8 @@ class NotificationList(generics.ListCreateAPIView):
         student_id = self.kwargs['student_id']
         student = Student.objects.get(pk=student_id)
         return Notification.objects.filter(student=student, notif_to='students', notif_sub='assignment', is_read=False)
+    
+    
+class QuizList(generics.ListCreateAPIView):
+    queryset = Quiz.objects.all()
+    serializer_class = QuizSerializer
