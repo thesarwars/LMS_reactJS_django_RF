@@ -365,7 +365,24 @@ class NotificationList(generics.ListCreateAPIView):
         student = Student.objects.get(pk=student_id)
         return Notification.objects.filter(student=student, notif_to='students', notif_sub='assignment', is_read=False)
     
-    
+
+# Quiz Section    
 class QuizList(generics.ListCreateAPIView):
     queryset = Quiz.objects.all()
     serializer_class = QuizSerializer
+    
+
+class TeacherQuizList(generics.ListAPIView):
+    serializer_class = QuizSerializer
+    # permission_classes = [permissions.IsAuthenticated]
+    
+    def get_queryset(self):
+        teacher_id = self.kwargs['teacher_id']
+        teacher = Teacher.objects.get(pk=teacher_id)
+        return Quiz.objects.filter(teacher=teacher)
+    
+# Specific quiz detail
+class QuizDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Quiz.objects.all()
+    serializer_class = QuizSerializer
+    # permission_classes = [permissions.IsAuthenticated]

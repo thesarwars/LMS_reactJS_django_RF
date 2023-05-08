@@ -1,7 +1,7 @@
 // import { Link } from "react-router-dom";
 import TeacherSidebar from "./TeacherSidebar";
 import React from 'react';
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import axios from "axios";
 // import {useParams} from 'react-router-dom';
 
@@ -9,7 +9,6 @@ const baseUrl = 'http://127.0.0.1:8000/apiview';
 
 function AddQuiz() {
     const [QuizData, setQuizData] = useState({
-        'category': '',
         'title': '',
         'detail': '',
     });

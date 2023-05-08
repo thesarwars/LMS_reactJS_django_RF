@@ -9,7 +9,7 @@ function TeacherSidebar(){
                 <Link to="/teacher-dashboard" className="list-group-item list-group-item-ation">Dashboard</Link>
                 <Link to="/teacher-courses" className="list-group-item list-group-item-ation">My courses</Link>
                 <Link to="/add-courses" className="list-group-item list-group-item-ation">Add Courses</Link>
-                <Link to="/quiz" className="list-group-item list-group-item-ation">Quiz</Link>
+                <Link to="/all-quiz" className="list-group-item list-group-item-ation">Quiz</Link>
                 <Link to="/add-quiz" className="list-group-item list-group-item-ation">Add Quiz</Link>
                 <Link to="/my-students" className="list-group-item list-group-item-ation">My Students</Link>
                 <Link to="/teacher-settings" className="list-group-item list-group-item-ation">Profile Settings</Link>

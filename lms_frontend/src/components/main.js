@@ -46,6 +46,8 @@ import CategoryCourses from './CategoryCourses';
 
 // Quiz Section
 import AddQuiz from './teacher/AddQuiz';
+import MyQuiz from './teacher/MyQuiz';
+import EditQuiz from './teacher/EditQuiz';
 
 
 
@@ -106,6 +108,8 @@ function Main() {
 
             {/* Quiz Area */}
             <Route path='/add-quiz' element={<AddQuiz />}></Route>
+            <Route path='/all-quiz' element={<MyQuiz />}></Route>
+            <Route path='/edit-quiz/:quiz_id' element={<EditQuiz />}></Route>
 
 
         </Switch>
