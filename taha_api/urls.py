@@ -53,5 +53,10 @@ urlpatterns = [
     # quiz section
     path('quiz/', views.QuizList.as_view()),
     path('teacher-quiz/<int:teacher_id>/', views.TeacherQuizList.as_view()),
+    # Teacher Quiz edit, delete url
     path('quiz/<int:pk>', views.QuizDetail.as_view()),
+    # Quiz Question section
+    path('quiz-question/', views.QuizQuestionView.as_view()),
+    path('teacher-quiz-question/<int:quiz_id>/', views.QuizQuestionList.as_view()),
+    path('quiz-question/<int:pk>', views.QuizQuestionDetail.as_view()),
 ]

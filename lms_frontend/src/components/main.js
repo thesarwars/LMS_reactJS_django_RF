@@ -48,6 +48,8 @@ import CategoryCourses from './CategoryCourses';
 import AddQuiz from './teacher/AddQuiz';
 import MyQuiz from './teacher/MyQuiz';
 import EditQuiz from './teacher/EditQuiz';
+import AddQuestions from './teacher/AddQuestions';
+import TeacherQuestions from './teacher/TeacherQuestions';
 
 
 
@@ -110,6 +112,8 @@ function Main() {
             <Route path='/add-quiz' element={<AddQuiz />}></Route>
             <Route path='/all-quiz' element={<MyQuiz />}></Route>
             <Route path='/edit-quiz/:quiz_id' element={<EditQuiz />}></Route>
+            <Route path='/add-question/:quiz_id' element={<AddQuestions />}></Route>
+            <Route path='/all-question/:quiz_id' element={<TeacherQuestions />}></Route>
 
 
         </Switch>

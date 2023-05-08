@@ -88,7 +88,7 @@ function MyQuiz() {
                                             <td><Link to='#'>123</Link></td>
                                             <td>
                                                 <Link to={'/edit-quiz/'+quiz.id} className="btn btn-info btn-sm active">Edit</Link>
-                                                {/* <Link to={'/add-quiz/'+quiz.id} className="btn btn-success btn-sm active ms-2">Add Quiz</Link> */}
+                                                <Link to={'/add-question/'+quiz.id} className="btn btn-success btn-sm active ms-2">Add Questions</Link>
                                                 <button onClick={()=>handleDeleteChange(+quiz.id)} className="btn btn-danger active btn-sm ms-2">Drop</button>
                                             </td>
                                         </tr>

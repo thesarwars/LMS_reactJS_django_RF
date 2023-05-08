@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .serializers import TeacherSerializer, CategorySerializer, CourseSerializer, ChapterSerializer, StudentSerializer, EnrollCourseSerializer, CourseRatingSerializer, TeacherDashboardSerializer, AddToFavSerializer, StudentAssignmentSerializer, StudentDashboardSerializer, NotificationSerializer, QuizSerializer
+from .serializers import TeacherSerializer, CategorySerializer, CourseSerializer, ChapterSerializer, StudentSerializer, EnrollCourseSerializer, CourseRatingSerializer, TeacherDashboardSerializer, AddToFavSerializer, StudentAssignmentSerializer, StudentDashboardSerializer, NotificationSerializer, QuizSerializer, QuestionSerializer
 
 from .models import *
 from rest_framework import generics
@@ -385,4 +385,27 @@ class TeacherQuizList(generics.ListAPIView):
 class QuizDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Quiz.objects.all()
     serializer_class = QuizSerializer
+    # permission_classes = [permissions.IsAuthenticated]
+
+
+# Specific Quiz Questions
+class QuizQuestionView(generics.ListCreateAPIView):
+    queryset = QuizQuestions.objects.all()
+    serializer_class = QuestionSerializer
+    # permission_classes = [permissions.IsAuthenticated]
+    
+    
+class QuizQuestionList(generics.ListAPIView):
+    serializer_class = QuestionSerializer
+    # permission_classes = [permissions.IsAuthenticated]
+    
+    def get_queryset(self):
+        quiz_id = self.kwargs['quiz_id']
+        quiz = Quiz.objects.get(pk=quiz_id)
+        return QuizQuestions.objects.filter(quiz=quiz)
+
+
+class QuizQuestionDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = QuizQuestions.objects.all()
+    serializer_class = QuestionSerializer
     # permission_classes = [permissions.IsAuthenticated]
