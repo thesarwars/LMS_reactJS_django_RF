@@ -50,6 +50,7 @@ import MyQuiz from './teacher/MyQuiz';
 import EditQuiz from './teacher/EditQuiz';
 import AddQuestions from './teacher/AddQuestions';
 import TeacherQuestions from './teacher/TeacherQuestions';
+import AssignQuiz from './teacher/AssignQuiz';
 
 
 
@@ -111,6 +112,7 @@ function Main() {
             {/* Quiz Area */}
             <Route path='/add-quiz' element={<AddQuiz />}></Route>
             <Route path='/all-quiz' element={<MyQuiz />}></Route>
+            <Route path='/assign-quiz/:course_id' element={<AssignQuiz />}></Route>
             <Route path='/edit-quiz/:quiz_id' element={<EditQuiz />}></Route>
             <Route path='/add-question/:quiz_id' element={<AddQuestions />}></Route>
             <Route path='/all-question/:quiz_id' element={<TeacherQuestions />}></Route>

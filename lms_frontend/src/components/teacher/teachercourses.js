@@ -1,5 +1,6 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import TeacherSidebar from "./TeacherSidebar";
+// import CheckCourseInQuiz from "./CheckQuizInCourse";
 import React from 'react';
 import {useState, useEffect} from 'react';
 import axios from "axios";
@@ -9,18 +10,14 @@ const baseUrl = 'http://127.0.0.1:8000/apiview';
 
 function TeacherCourses() {
     const [CourseData, setCourseData] = useState([]);
-    // const [AvgRating, setAvgRating] = useState(0);
-    // const [TeacherData, setTeacherData] = useState([]);
     const teacherId = localStorage.getItem('teacherId')
+    // const {course_id, quiz_id} = useParams();
 
     useEffect(() => {
         try{
             axios.get(baseUrl + '/teacher-course/'+teacherId)
             .then((res) => {
                 setCourseData(res.data)
-                // if (res.data.course_rating != ' ' && res.data.course_rating != null){
-                //     setAvgRating(res.data.course_rating)
-                // }
             });
         }catch(error){
             console.log(error);
@@ -58,8 +55,6 @@ function TeacherCourses() {
         })
     }
 
-    console.log(CourseData);
-
     return(
         <div className="container mt-4">
             <div className="row">
@@ -82,13 +77,15 @@ function TeacherCourses() {
                                 </thead>
                                 <tbody>
                                     {CourseData.map((course, index) => 
-                                        <tr>
+                                       <><tr>
+                                            
                                             <td><Link to={'/all-chapter/'+course.id}>{course.title}</Link></td>
                                             <td><img width="80px" src={course.featured_img} className="rounded" alt={course.title} /></td>
                                             <td><Link to={`/enrolled-student/`+ course.id}>{course.total_enrolled}</Link></td>
                                             <td>
                                                 <Link to={'/edit-course/'+course.id} className="btn btn-info btn-sm active">Edit</Link>
                                                 <Link to={'/add-chapter/'+course.id} className="btn btn-success btn-sm active ms-2">Add Chapter</Link>
+                                                <Link to={'/assign-quiz/'+course.id} className="btn btn-warning btn-sm active ms-2">Assign Quiz</Link>
                                                 <button onClick={()=>handleDeleteChange(+course.id)} className="btn btn-danger active btn-sm ms-2">Drop</button>
                                             </td>
                                             {course.course_rating &&
@@ -98,7 +95,8 @@ function TeacherCourses() {
                                                 <td><p>Not yet rated</p></td>
                                             }
                                         </tr>
-                                    )}
+                                        </>
+                                        )}
                                 </tbody>
                             </table>
                         </div>

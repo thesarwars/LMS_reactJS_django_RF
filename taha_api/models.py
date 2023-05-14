@@ -230,8 +230,9 @@ class QuizQuestions(models.Model):
         return self.quiz
         
         
-class CourseQuiz(models.Model):
+class CourseQuizs(models.Model):
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
     add_time = models.DateTimeField(auto_now_add=True)
     
@@ -239,4 +240,4 @@ class CourseQuiz(models.Model):
         verbose_name_plural = ("Quiz Course")
         
     def __str__(self):
-        return self.quiz
+        return str(self.quiz)

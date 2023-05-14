@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .serializers import TeacherSerializer, CategorySerializer, CourseSerializer, ChapterSerializer, StudentSerializer, EnrollCourseSerializer, CourseRatingSerializer, TeacherDashboardSerializer, AddToFavSerializer, StudentAssignmentSerializer, StudentDashboardSerializer, NotificationSerializer, QuizSerializer, QuestionSerializer
+from .serializers import TeacherSerializer, CategorySerializer, CourseSerializer, ChapterSerializer, StudentSerializer, EnrollCourseSerializer, CourseRatingSerializer, TeacherDashboardSerializer, AddToFavSerializer, StudentAssignmentSerializer, StudentDashboardSerializer, NotificationSerializer, QuizSerializer, QuestionSerializer, CourseQuizSerializer
 
 from .models import *
 from rest_framework import generics
@@ -110,6 +110,12 @@ class CourseList(generics.ListCreateAPIView):
             return qs
         
         #  recommended course function end
+        
+        # Course_id find
+        # elif 'course_id' in self.kwargs:
+        #     course_id = self.kwargs['course_id']
+        #     course = Course.objects.get(id=course_id)
+        #     return CourseQuizs.objects.filter(course=course)
         
         return qs
 
@@ -409,3 +415,20 @@ class QuizQuestionDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = QuizQuestions.objects.all()
     serializer_class = QuestionSerializer
     # permission_classes = [permissions.IsAuthenticated]
+    
+    
+# Assign Quiz to Course
+class AssignCourseQuiz(generics.ListCreateAPIView):
+    queryset = CourseQuizs.objects.all()
+    serializer_class = CourseQuizSerializer
+    
+    
+def quiz_assign_status(request, quiz_id, course_id):
+    quiz = Quiz.objects.filter(id=quiz_id).first()
+    course = Course.objects.filter(id=course_id).first()
+    assignStatus = CourseQuizs.objects.filter(course=course, quiz=quiz).count()
+
+    if assignStatus:
+        return JsonResponse({'bool': True})
+    else:
+        return JsonResponse({'bool': False})

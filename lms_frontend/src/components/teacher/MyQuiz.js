@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import TeacherSidebar from "./TeacherSidebar";
 import React, {useState, useEffect} from 'react';
 import axios from "axios";
@@ -8,8 +8,13 @@ const baseUrl = 'http://127.0.0.1:8000/apiview';
 
 function MyQuiz() {
     const [QuizData, setQuizData] = useState([]);
+    // const [AssignQuiz, setAssignQuiz] = useState([]);
+    const [CourseData, setCourseData] = useState([]);
     const [TotalQuiz, setTotalQuiz] = useState(0);
+    // const [QuizId, setQuizId] = useState(0);
     const teacherId = localStorage.getItem('teacherId')
+    
+    
 
     useEffect(() => {
         try{
@@ -24,7 +29,24 @@ function MyQuiz() {
         }catch(error){
             console.log(error);
         }
+
+        try{
+            axios.get(baseUrl + '/teacher-course/'+teacherId)
+            .then((res) => {
+                setCourseData(res.data)
+                // if (res.data.course_rating != ' ' && res.data.course_rating != null){
+                //     setAvgRating(res.data.course_rating)
+                // }
+            });
+        }catch(error){
+            console.log(error);
+        }
+
     },[]);
+    // console.log(CourseData)
+    const {course_id} = useParams();
+
+    
 
     const handleDeleteChange = (quiz_id) => {
         Swal.fire({
@@ -59,6 +81,35 @@ function MyQuiz() {
         })
     }
 
+    // const handleChange = (event) => {
+    //     setAssignQuiz({
+    //         ...AssignQuiz,
+    //         [event.target.name]:event.target.value
+    //     })
+    // };
+    const AssignToQuiz = (quiz_id) => {
+        // e.preventDefault();
+        const _formData = new FormData();
+        _formData.append('quiz', quiz_id);
+        _formData.append('teacher', teacherId);
+        _formData.append('course', course_id);
+
+        try{
+            axios.post(baseUrl + '/assign-quiz/', _formData,{
+                headers: {
+                    'content-type': 'multipart/form-data'
+                }
+            })
+            .then((res) => {
+                // console.log(res.data)
+                
+            });
+        }catch(error){
+            console.log(error);
+        }
+
+    };
+
     // console.log(CourseData);
 
     return(
@@ -78,6 +129,7 @@ function MyQuiz() {
                                         <th>Details</th>
                                         <th>Questions</th>
                                         <th>Action</th>
+                                        <th>Assign to</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -91,6 +143,13 @@ function MyQuiz() {
                                                 <Link to={'/add-question/'+quiz.id} className="btn btn-success btn-sm active ms-2">Add Questions</Link>
                                                 <button onClick={()=>handleDeleteChange(+quiz.id)} className="btn btn-danger active btn-sm ms-2">Drop</button>
                                             </td>
+                                            {/* <td>
+                                            <select name='quiz' id='quiz' value={CourseData.id} onChange={handleChange} className="form-control">
+                                                <option selected disabled>Select</option>
+                                                {CourseData.map((course, index) => {return <option key={index} value={course.id}>{course.title}</option>})}
+                                            </select>
+                                            <button onClick={()=>AssignToQuiz(quiz.id)} type="submit" className="btn btn-primary">Add</button>
+                                            </td> */}
                                         </tr>
                                     )}
                                 </tbody>
