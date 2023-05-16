@@ -13,7 +13,7 @@ function TeacherCourses() {
     // const [courseId, setcourseId] = useState(0);
     // console.log(courseId, 'From State')
     const [quizData, setquizData] = useState([]);
-    const [AssignQuiz, setAssignQuiz] = useState([]);
+    const [QuizId, setQuizId] = useState(0);
     const [assignedData, setassignedData] = useState([]);
     // console.log(quizData);
     const teacherId = localStorage.getItem('teacherId')
@@ -70,9 +70,9 @@ function TeacherCourses() {
         })
     }
 
-    const AssignToQuiz = (quiz_id,course_id) => {
-        console.log('quiz_id',quiz_id,'course id', course_id);
-        const quiz_id1 = parseInt(quiz_id)
+    const AssignToQuiz = (course_id) => {
+        // console.log('quiz_id',quiz_id,'course id', course_id);
+        const quiz_id1 = parseInt(QuizId)
         const course_id1 = parseInt(course_id)
         // e.preventDefault();
         const _formData = new FormData();
@@ -145,11 +145,12 @@ function TeacherCourses() {
                                                 <td><p>Not yet rated</p></td>
                                             }
                                             <td>
-                                            <select name='quiz' onChange={(e)=>AssignToQuiz(e.target.value, course.id)} className="form-control">
+                                            <select name='quiz' onChange={(e)=>setQuizId(e.target.value)} className="form-control">
                                                 <option disabled selected>Select</option>
                                                 {quizData.map((quiz, index) => {return <option key={index} value={quiz.id}>{quiz.title}</option>})}
                                                 
                                             </select>
+                                            <button onClick={(course_id)=>AssignToQuiz(course.id)} type="submit" className="btn btn-primary">Add</button>
                                             </td>
                                         </tr>
                                         </>
