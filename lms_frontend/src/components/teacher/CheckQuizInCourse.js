@@ -6,7 +6,7 @@ import axios from "axios";
 
 const baseUrl = 'http://127.0.0.1:8000/apiview';
 
-function CheckCourseInQuiz(props){
+function CheckQuizInCourse(props){
     const [QuizData, setQuizData] = useState([]);
     const teacherId = localStorage.getItem('teacherId');
 
@@ -61,4 +61,4 @@ function CheckCourseInQuiz(props){
     );
 }
 
-export default CheckCourseInQuiz;
+export default CheckQuizInCourse;

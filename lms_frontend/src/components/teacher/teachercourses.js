@@ -10,6 +10,12 @@ const baseUrl = 'http://127.0.0.1:8000/apiview';
 
 function TeacherCourses() {
     const [CourseData, setCourseData] = useState([]);
+    // const [courseId, setcourseId] = useState(0);
+    // console.log(courseId, 'From State')
+    const [quizData, setquizData] = useState([]);
+    const [AssignQuiz, setAssignQuiz] = useState([]);
+    const [assignedData, setassignedData] = useState([]);
+    // console.log(quizData);
     const teacherId = localStorage.getItem('teacherId')
     // const {course_id, quiz_id} = useParams();
 
@@ -18,6 +24,15 @@ function TeacherCourses() {
             axios.get(baseUrl + '/teacher-course/'+teacherId)
             .then((res) => {
                 setCourseData(res.data)
+            });
+        }catch(error){
+            console.log(error);
+        }
+
+        try{
+            axios.get(baseUrl + '/teacher-quiz/'+teacherId)
+            .then((res) => {
+                setquizData(res.data);
             });
         }catch(error){
             console.log(error);
@@ -55,6 +70,40 @@ function TeacherCourses() {
         })
     }
 
+    const AssignToQuiz = (quiz_id,course_id) => {
+        console.log('quiz_id',quiz_id,'course id', course_id);
+        const quiz_id1 = parseInt(quiz_id)
+        const course_id1 = parseInt(course_id)
+        // e.preventDefault();
+        const _formData = new FormData();
+        _formData.append('quiz', parseInt(quiz_id1));
+        _formData.append('teacher', teacherId);
+        _formData.append('course', parseInt(course_id1));
+        // console.log(quiz_id)
+
+        try{
+            axios.post(baseUrl + '/assign-quiz/', _formData,{
+                headers: {
+                    'content-type': 'multipart/form-data'
+                }
+            })
+            .then((res) => {
+                try{
+                    axios.get(baseUrl+'/quiz-assign-status/'+quiz_id1+'/'+course_id1)
+                    .then((res) => {
+                        setassignedData(res.data);
+                    });
+                }catch(error){
+                    console.log(error)
+                }
+                console.log(res);
+            });
+        }catch(error){
+            console.log(error);
+        }
+
+    };
+
     return(
         <div className="container mt-4">
             <div className="row">
@@ -73,6 +122,7 @@ function TeacherCourses() {
                                         <th>Enrolled</th>
                                         <th>Action</th>
                                         <th>Rating</th>
+                                        <th>Assign To</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -94,6 +144,13 @@ function TeacherCourses() {
                                             {!course.course_rating &&
                                                 <td><p>Not yet rated</p></td>
                                             }
+                                            <td>
+                                            <select name='quiz' onChange={(e)=>AssignToQuiz(e.target.value, course.id)} className="form-control">
+                                                <option disabled selected>Select</option>
+                                                {quizData.map((quiz, index) => {return <option key={index} value={quiz.id}>{quiz.title}</option>})}
+                                                
+                                            </select>
+                                            </td>
                                         </tr>
                                         </>
                                         )}

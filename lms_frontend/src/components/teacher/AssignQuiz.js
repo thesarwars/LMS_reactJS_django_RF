@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import TeacherSidebar from "./TeacherSidebar";
-import CheckCourseInQuiz from "./CheckCourseInQuiz";
+import CheckQuizInCourse from "./CheckQuizInCourse";
 import React, {useState, useEffect} from 'react';
 import axios from "axios";
 // import Swal from 'sweetalert2';
@@ -93,7 +93,7 @@ function AssignQuiz() {
                                                 {/* <td>
                                                     <button onClick={()=>AssignToQuiz(+quiz.id)} className="btn btn-success active btn-sm ms-2">Assign</button>
                                                 </td> */}
-                                            <CheckCourseInQuiz quiz={quiz.id} course={course_id} />
+                                            <CheckQuizInCourse quiz={quiz.id} course={course_id} />
                                         </tr>
                                     )}
                                 </tbody>
