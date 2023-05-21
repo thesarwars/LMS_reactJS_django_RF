@@ -10,7 +10,7 @@ const baseUrl = 'http://127.0.0.1:8000/apiview';
 function AssignQuiz() {
     const [QuizData, setQuizData] = useState([]);
     const [CourseData, setCourseData] = useState([]);
-    // const [AssignQuiz, setAssignQuiz] = useState([]);
+    const [AssignQuiz, setAssignQuiz] = useState([]);
     const teacherId = localStorage.getItem('teacherId')
     const {course_id} = useParams();
     

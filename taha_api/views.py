@@ -421,7 +421,18 @@ class QuizQuestionDetail(generics.RetrieveUpdateDestroyAPIView):
 class AssignCourseQuiz(generics.ListCreateAPIView):
     queryset = CourseQuizs.objects.all()
     serializer_class = CourseQuizSerializer
+
+
+
+class AssignedQuizView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = CourseQuizs.objects.all()
+    serializer_class = CourseQuizSerializer
     
+    # def get_queryset(self):
+    #     quiz_id = self.kwargs['quiz_id']
+    #     quiz = Quiz.objects.get(pk=quiz_id)
+    #     return QuizQuestions.objects.filter(quiz=quiz)
+
     
 def quiz_assign_status(request, quiz_id, course_id):
     quiz = Quiz.objects.filter(id=quiz_id).first()

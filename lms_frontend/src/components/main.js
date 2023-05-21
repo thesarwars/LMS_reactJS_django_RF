@@ -44,13 +44,16 @@ import PopularCourses from './PopularCourses';
 import PopularTeacher from './PopularTeacher';
 import CategoryCourses from './CategoryCourses';
 
-// Quiz Section
+// Quiz Section: Teacher
 import AddQuiz from './teacher/AddQuiz';
 import MyQuiz from './teacher/MyQuiz';
 import EditQuiz from './teacher/EditQuiz';
 import AddQuestions from './teacher/AddQuestions';
 import TeacherQuestions from './teacher/TeacherQuestions';
 import AssignQuiz from './teacher/AssignQuiz';
+
+// Quiz Section: Student
+import StudentQuizes from './user/StudentQuizes';
 
 
 
@@ -117,6 +120,8 @@ function Main() {
             <Route path='/add-question/:quiz_id' element={<AddQuestions />}></Route>
             <Route path='/all-question/:quiz_id' element={<TeacherQuestions />}></Route>
 
+            {/* Quiz Area: Student */}
+            <Route path='/quiz-list/:course_id' element={<StudentQuizes />}></Route>
 
         </Switch>
         <Footer />
