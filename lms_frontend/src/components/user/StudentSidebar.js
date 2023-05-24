@@ -7,20 +7,20 @@ const baseUrl = 'http://127.0.0.1:8000/apiview';
 
 
 function StudentSidebar(){
-    const [NotifStatus, setNotifStatus] = useState([])
+    const [NotifStatus, setNotifStatus] = useState(0)
     const studentId = localStorage.getItem('studentId');
 
-    useEffect(()=>{
-        try{
-            axios.get(baseUrl+'/student/view-notification/'+studentId)
-            .then((response)=>{
-                console.log(response);
-                setNotifStatus(response.data)
-            })
-        }catch(error){
-            console.log(error)
-        }
-    })
+    // useEffect(()=>{
+    //     try{
+    //         axios.get(baseUrl+'/student/view-notification/'+studentId)
+    //         .then((response)=>{
+    //             // console.log(response);
+    //             setNotifStatus(response.data);
+    //         })
+    //     }catch(error){
+    //         console.log(error)
+    //     }
+    // })
 
     return (
         <div className="card">

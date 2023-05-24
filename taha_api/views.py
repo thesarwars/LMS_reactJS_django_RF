@@ -422,11 +422,16 @@ class AssignCourseQuiz(generics.ListCreateAPIView):
     queryset = CourseQuizs.objects.all()
     serializer_class = CourseQuizSerializer
 
+    def get_queryset(self):
+        if 'course_id' in self.kwargs:
+            course_id = self.kwargs['course_id']
+            course = Course.objects.get(pk=course_id)
+            return CourseQuizs.objects.filter(course=course)
 
 
-class AssignedQuizView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = CourseQuizs.objects.all()
-    serializer_class = CourseQuizSerializer
+# class AssignedQuizView(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = CourseQuizs.objects.all()
+#     serializer_class = CourseQuizSerializer
     
     # def get_queryset(self):
     #     quiz_id = self.kwargs['quiz_id']

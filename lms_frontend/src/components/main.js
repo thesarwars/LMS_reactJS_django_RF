@@ -54,6 +54,7 @@ import AssignQuiz from './teacher/AssignQuiz';
 
 // Quiz Section: Student
 import StudentQuizes from './user/StudentQuizes';
+import TakeQuizes from './user/TakeQuiz';
 
 
 
@@ -122,6 +123,7 @@ function Main() {
 
             {/* Quiz Area: Student */}
             <Route path='/quiz-list/:course_id' element={<StudentQuizes />}></Route>
+            <Route path='/take-quiz/:quiz_id' element={<TakeQuizes />}></Route>
 
         </Switch>
         <Footer />

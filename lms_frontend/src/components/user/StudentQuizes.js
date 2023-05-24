@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Sidebar from "./StudentSidebar";
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
@@ -6,14 +6,15 @@ import axios from "axios";
 const baseUrl = 'http://127.0.0.1:8000/apiview';
 
 function StudentQuizes() {
-    const [CourseData, setCourseData] = useState([]);
-    const teacherId = localStorage.getItem('teacherId')
+    const [QuizData, setQuizData] = useState([]);
+    // const teacherId = localStorage.getItem('teacherId')
+    const {course_id} = useParams()
 
     useEffect(() => {
         try{
-            axios.get(baseUrl + '/view-enrolled-courses/'+teacherId)
+            axios.get(baseUrl + '/view-assigned-quiz/'+course_id)
             .then((res) => {
-                setCourseData(res.data)
+                setQuizData(res.data)
             });
         }catch(error){
             console.log(error);
@@ -37,10 +38,12 @@ function StudentQuizes() {
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    {QuizData.map((quizes, index)=>
                                         <tr>
-                                            <td>Python Quiz</td>
-                                            <td><Link to={`/start-quiz/1`} className="btn btn-sm btn-warning">Attend Quiz</Link></td>
+                                            <td>{quizes.quiz.title}</td>
+                                            <td><Link className="btn btn-warning btn-sm" to={`/take-quiz/`+quizes.quiz.id}>Take Quiz</Link></td>
                                         </tr>
+                                    )}
                                 </tbody>
                             </table>
                         </div>
