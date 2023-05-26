@@ -93,7 +93,7 @@ class Chapter(models.Model):
         verbose_name_plural = 'Chapters'
     
     def __str__(self):
-        return self.title
+        return str(self.title)
 
     
 # Student models here.
@@ -109,7 +109,7 @@ class Student(models.Model):
         verbose_name_plural = 'Students'
     
     def __str__(self):
-        return self.full_name
+        return str(self.full_name)
     
     def enrolled_courses(self):
         enrolled_courses = EnrollCourseStudent.objects.filter(student = self).count()
@@ -184,7 +184,7 @@ class StudentAssignment(models.Model):
         verbose_name_plural = ("Student Assignments")
 
     def __str__(self):
-        return self.title
+        return str(self.title)
     
     
 class Notification(models.Model):
@@ -210,12 +210,12 @@ class Quiz(models.Model):
         verbose_name_plural = ("Quiz")
         
     def __str__(self):
-        return self.title
+        return str(self.title)
         
 
 class QuizQuestions(models.Model):
-    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
     question_title = models.CharField(max_length=200, verbose_name='Question Title')
+    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
     option1 = models.CharField(max_length=200)
     option2 = models.CharField(max_length=200)
     option3 = models.CharField(max_length=200)
@@ -227,7 +227,7 @@ class QuizQuestions(models.Model):
         verbose_name_plural = ("Quiz Questions")
         
     def __str__(self):
-        return self.quiz
+        return str(self.question_title)
         
         
 class CourseQuizs(models.Model):
@@ -241,3 +241,18 @@ class CourseQuizs(models.Model):
         
     def __str__(self):
         return str(self.quiz)
+    
+    
+# Attemted quiz questions
+class AttemptQuiz(models.Model):
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    question = models.ForeignKey(QuizQuestions, on_delete=models.CASCADE)
+    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, null=True)
+    submitted_ans = models.CharField(max_length=50, null=True)
+    attempted_time = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        verbose_name_plural = ("Attempted Quiz")
+        
+    def __str__(self):
+        return str(self.submitted_ans)

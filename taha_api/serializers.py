@@ -187,8 +187,8 @@ class QuestionSerializer(serializers.ModelSerializer):
     class Meta:
         model = QuizQuestions
         fields = ['id', 
+                  'question_title',
                   'quiz', 
-                  'question_title', 
                   'option1', 
                   'option2', 
                   'option3', 
@@ -215,6 +215,25 @@ class CourseQuizSerializer(serializers.ModelSerializer):
         
     def __init__(self, *args, **kwargs):
         super(CourseQuizSerializer, self).__init__(*args, **kwargs)
+        request = self.context.get('request')
+        self.Meta.depth = 0
+        if request and request.method == 'GET':
+            self.Meta.depth = 1
+
+
+class AttemptedQuizSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AttemptQuiz
+        fields = ['id',
+                  'student',
+                  'question',
+                  'quiz',
+                  'submitted_ans',
+                  'attempted_time', 
+                  ]
+        
+    def __init__(self, *args, **kwargs):
+        super(AttemptedQuizSerializer, self).__init__(*args, **kwargs)
         request = self.context.get('request')
         self.Meta.depth = 0
         if request and request.method == 'GET':

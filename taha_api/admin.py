@@ -39,4 +39,4 @@ admin.site.register(QuizQuestions, QuizQuestionsAdmin)
 class CourseQuizAdmin(admin.ModelAdmin):
     list_display = ('id', 'quiz', 'teacher', 'course', 'add_time')
 admin.site.register(CourseQuizs, CourseQuizAdmin)
-
+admin.site.register(AttemptQuiz)

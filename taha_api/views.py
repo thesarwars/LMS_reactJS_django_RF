@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .serializers import TeacherSerializer, CategorySerializer, CourseSerializer, ChapterSerializer, StudentSerializer, EnrollCourseSerializer, CourseRatingSerializer, TeacherDashboardSerializer, AddToFavSerializer, StudentAssignmentSerializer, StudentDashboardSerializer, NotificationSerializer, QuizSerializer, QuestionSerializer, CourseQuizSerializer
+from .serializers import *
 
 from .models import *
 from rest_framework import generics
@@ -408,7 +408,13 @@ class QuizQuestionList(generics.ListAPIView):
     def get_queryset(self):
         quiz_id = self.kwargs['quiz_id']
         quiz = Quiz.objects.get(pk=quiz_id)
-        return QuizQuestions.objects.filter(quiz=quiz)
+        if 'limit' in self.kwargs:
+            return QuizQuestions.objects.filter(quiz=quiz).order_by('id')[:1]
+        elif 'question_id' in self.kwargs:
+            current_question=self.kwargs['question_id']
+            return QuizQuestions.objects.filter(quiz=quiz, id__gt=current_question).order_by('id')[:1]
+        else:
+            return QuizQuestions.objects.filter(quiz=quiz)
 
 
 class QuizQuestionDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -448,3 +454,8 @@ def quiz_assign_status(request, quiz_id, course_id):
         return JsonResponse({'bool': True})
     else:
         return JsonResponse({'bool': False})
+    
+    
+class AttemptedQuizView(generics.ListCreateAPIView):
+    queryset = AttemptQuiz.objects.all()
+    serializer_class = AttemptedQuizSerializer
