@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Sidebar from "./StudentSidebar";
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
@@ -12,7 +12,7 @@ function TakeQuizes() {
 
     useEffect(() => {
         try{
-            axios.get(baseUrl + '/quiz-question/'+quiz_id+'/'+'1')
+            axios.get(baseUrl + '/quiz-question/'+quiz_id+'/'+1)  // 1 is question limit per page
             .then((res) => {
                 setQuestionData(res.data);
             });
@@ -24,6 +24,7 @@ function TakeQuizes() {
     const submitAnswer = (question_id, submitted_ans) =>{
         const _formData = new FormData();
         _formData.append('student', studentId);
+        _formData.append('quiz', quiz_id);
         _formData.append('question', question_id);
         _formData.append('submitted_ans', submitted_ans);
         _formData.append('quiz', quiz_id);
@@ -35,7 +36,7 @@ function TakeQuizes() {
                 }
             })
             .then((res) => {
-                if(res.status==200|res.status==201){
+                if(res.status===200|res.status===201){
                     try{
                         axios.get(baseUrl + '/quiz-question/'+quiz_id+'/next-question/'+question_id)
                         .then((res) => {

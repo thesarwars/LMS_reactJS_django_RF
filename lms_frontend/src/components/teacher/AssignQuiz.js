@@ -10,7 +10,7 @@ const baseUrl = 'http://127.0.0.1:8000/apiview';
 function AssignQuiz() {
     const [QuizData, setQuizData] = useState([]);
     const [CourseData, setCourseData] = useState([]);
-    const [AssignQuiz, setAssignQuiz] = useState([]);
+    // const [AssignQuiz, setAssignQuiz] = useState([]);
     const teacherId = localStorage.getItem('teacherId')
     const {course_id} = useParams();
     
@@ -86,14 +86,14 @@ function AssignQuiz() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {QuizData.map((quiz, index) => 
+                                    {QuizData.map((quizes, index) => 
                                         <tr>
-                                            <td><Link to={'/all-question/'+quiz.id}>{quiz.title}</Link></td>
+                                            <td><Link to={'/all-question/'+quizes.id}>{quizes.title}</Link></td>
                                             
                                                 {/* <td>
                                                     <button onClick={()=>AssignToQuiz(+quiz.id)} className="btn btn-success active btn-sm ms-2">Assign</button>
                                                 </td> */}
-                                            <CheckQuizInCourse quiz={quiz.id} course={course_id} />
+                                            <CheckQuizInCourse quiz={quizes.id} course={course_id} />
                                         </tr>
                                     )}
                                 </tbody>

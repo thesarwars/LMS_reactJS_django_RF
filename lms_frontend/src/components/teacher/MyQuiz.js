@@ -9,7 +9,7 @@ const baseUrl = 'http://127.0.0.1:8000/apiview';
 function MyQuiz() {
     const [QuizData, setQuizData] = useState([]);
     // const [AssignQuiz, setAssignQuiz] = useState([]);
-    const [CourseData, setCourseData] = useState([]);
+    // const [CourseData, setCourseData] = useState([]);
     const [TotalQuiz, setTotalQuiz] = useState(0);
     // const [QuizId, setQuizId] = useState(0);
     const teacherId = localStorage.getItem('teacherId')
@@ -30,17 +30,17 @@ function MyQuiz() {
             console.log(error);
         }
 
-        try{
-            axios.get(baseUrl + '/teacher-course/'+teacherId)
-            .then((res) => {
-                setCourseData(res.data)
-                // if (res.data.course_rating != ' ' && res.data.course_rating != null){
-                //     setAvgRating(res.data.course_rating)
-                // }
-            });
-        }catch(error){
-            console.log(error);
-        }
+        // try{
+        //     axios.get(baseUrl + '/teacher-course/'+teacherId)
+        //     .then((res) => {
+        //         // setCourseData(res.data)
+        //         // if (res.data.course_rating != ' ' && res.data.course_rating != null){
+        //         //     setAvgRating(res.data.course_rating)
+        //         // }
+        //     });
+        // }catch(error){
+        //     console.log(error);
+        // }
 
     },[]);
     // console.log(CourseData)
@@ -87,28 +87,28 @@ function MyQuiz() {
     //         [event.target.name]:event.target.value
     //     })
     // };
-    const AssignToQuiz = (quiz_id) => {
-        // e.preventDefault();
-        const _formData = new FormData();
-        _formData.append('quiz', quiz_id);
-        _formData.append('teacher', teacherId);
-        _formData.append('course', course_id);
+    // const AssignToQuiz = (quiz_id) => {
+    //     // e.preventDefault();
+    //     const _formData = new FormData();
+    //     _formData.append('quiz', quiz_id);
+    //     _formData.append('teacher', teacherId);
+    //     _formData.append('course', course_id);
 
-        try{
-            axios.post(baseUrl + '/assign-quiz/', _formData,{
-                headers: {
-                    'content-type': 'multipart/form-data'
-                }
-            })
-            .then((res) => {
-                // console.log(res.data)
+    //     try{
+    //         axios.post(baseUrl + '/assign-quiz/', _formData,{
+    //             headers: {
+    //                 'content-type': 'multipart/form-data'
+    //             }
+    //         })
+    //         .then((res) => {
+    //             // console.log(res.data)
                 
-            });
-        }catch(error){
-            console.log(error);
-        }
+    //         });
+    //     }catch(error){
+    //         console.log(error);
+    //     }
 
-    };
+    // };
 
     // console.log(CourseData);
 
@@ -129,7 +129,7 @@ function MyQuiz() {
                                         <th>Details</th>
                                         <th>Questions</th>
                                         <th>Action</th>
-                                        <th>Assign to</th>
+                                        {/* <th>Assign to</th> */}
                                     </tr>
                                 </thead>
                                 <tbody>

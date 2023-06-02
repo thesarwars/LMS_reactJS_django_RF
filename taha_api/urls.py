@@ -66,5 +66,6 @@ urlpatterns = [
     path('view-assigned-quiz/<int:course_id>', views.AssignCourseQuiz.as_view()),
     path('attempted-quiz/', views.AttemptedQuizView.as_view()),
     path('quiz-question/<int:quiz_id>/next-question/<int:question_id>', views.QuizQuestionList.as_view()),
+    path('quiz-attempt-status/<int:quiz_id>/<int:student_id>/', views.quiz_attempt_status),
     
 ]

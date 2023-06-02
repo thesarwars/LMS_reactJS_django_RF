@@ -51,7 +51,7 @@ function CheckQuizInCourse(props){
             
             <td>
                 {QuizData.bool == false &&
-                <button onChange={()=>AssignToQuiz(props.quiz)} className="btn btn-success btn-sm ms-2">Assign Quiz</button>
+                <button onClick={()=>AssignToQuiz(props.quiz)} className="btn btn-success btn-sm ms-2">Assign Quiz</button>
                 }
                 {QuizData.bool == true &&
                 <button className="btn btn-success btn-sm ms-2">Assigned</button>

@@ -1,13 +1,14 @@
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Sidebar from "./StudentSidebar";
 import React, { useState, useEffect } from 'react';
+import CheckQuizInStudent from "./QuizStatusForStudents";
 import axios from "axios";
 
 const baseUrl = 'http://127.0.0.1:8000/apiview';
 
 function StudentQuizes() {
     const [QuizData, setQuizData] = useState([]);
-    // const teacherId = localStorage.getItem('teacherId')
+    const studentId = localStorage.getItem('studentId')
     const {course_id} = useParams()
 
     useEffect(() => {
@@ -41,7 +42,8 @@ function StudentQuizes() {
                                     {QuizData.map((quizes, index)=>
                                         <tr>
                                             <td>{quizes.quiz.title}</td>
-                                            <td><Link className="btn btn-warning btn-sm" to={`/take-quiz/`+quizes.quiz.id}>Take Quiz</Link></td>
+                                            {/* <td><Link className="btn btn-warning btn-sm" to={`/take-quiz/`+quizes.quiz.id}>Take Quiz</Link></td> */}
+                                            <CheckQuizInStudent quiz={quizes.quiz.id} student={studentId} />
                                         </tr>
                                     )}
                                 </tbody>
