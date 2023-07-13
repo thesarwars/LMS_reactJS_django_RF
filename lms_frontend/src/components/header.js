@@ -1,9 +1,24 @@
 import { Link } from "react-router-dom";
-import React from 'react';
+import React, { useState } from 'react';
 
 function Header() {
+  const [SearchString, setSearchString] = useState({
+    'search': ''
+  })
   const teacherLoginStatus = localStorage.getItem('teacherLoginStatus')
   const studentLoginStatus = localStorage.getItem('studentLoginStatus')
+
+  const handleChange = (event) =>{
+    setSearchString({
+      ...SearchString,
+      [event.target.name]:event.target.value
+    })
+  }
+
+  const SearchHere = () =>{
+    window.location.href='/search/'+SearchString.search
+  }
+
     return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container">
@@ -54,6 +69,10 @@ function Header() {
                   }
                 </ul>
               </li>
+              <form class="d-flex" role="search">
+                <input onChange={handleChange} class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                <button onClick={SearchHere} class="btn btn-outline-light" type="button">Search</button>
+              </form>
             </div>
           </div>
         </div>
