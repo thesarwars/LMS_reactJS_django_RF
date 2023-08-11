@@ -14,6 +14,7 @@ urlpatterns = [
     path('category/', views.CategoryList.as_view()),
     # course
     path('course/', views.CourseList.as_view()),
+    path('popular-courses/', views.RatingCourseView.as_view()),
     # chapter
     path('chapter/', views.ChapterList.as_view()),
     # specific chapter

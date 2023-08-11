@@ -76,6 +76,7 @@ class Course(models.Model):
         total_enrolled_students = EnrollCourseStudent.objects.filter(course = self).count()
         return total_enrolled_students
     
+    # course rating on average model function here
     def course_rating(self):
         course_rating = CourseRating.objects.filter(course = self).aggregate(avg_rating=models.Avg('rating'))
         return course_rating['avg_rating']

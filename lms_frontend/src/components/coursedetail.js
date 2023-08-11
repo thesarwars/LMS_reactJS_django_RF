@@ -255,13 +255,13 @@ function CourseDetails() {
                     <p className='fw-bold'>Techs: 
                     {techListData.map((tech, index)=>
                         <>
-                        <Link to={`/category/${tech.trim()}`} className='badge bg-secondary ms-1'>{tech.trim()}</Link>
+                        <Link key={index} to={`/category/${tech.trim()}`} className='badge bg-secondary ms-1'>{tech.trim()}</Link>
                         </>
                     )}
                     </p>
                     <p className='fw-bold'>Duration: 3 hours 30 minutes </p>
                     <p className='fw-bold'>Total Enrolled: {CourseData.total_enrolled} Students </p>
-                    <p className='fw-bold'>Rating: {AvgRating}/5
+                    <div className='fw-bold mb-2'>Rating: {AvgRating}/5
                     { EnrollStatus == 'success' && UserLoginStatus == 'success' &&
                         <>
                         {RatingStatus !== 'success' &&
@@ -270,20 +270,20 @@ function CourseDetails() {
                         {RatingStatus == 'success' &&
                             <button type='button' className='btn btn-info btn-sm ms-1 py-0'>You already rated</button>
                         }
-                        <div class="modal fade" id="ratingModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-lg">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Rate this Course</h5>
-                                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <div className="modal fade" id="ratingModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div className="modal-dialog modal-lg">
+                                <div className="modal-content">
+                                    <div className="modal-header">
+                                        <h5 className="modal-title" id="exampleModalLabel">Rate this Course</h5>
+                                        <button type="button" className="close" data-bs-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-                                    <div class="modal-body">
+                                    <div className="modal-body">
                                         <form>
-                                            <div class="form-group">
-                                                <label for="exampleFormControlSelect1">Rating</label>
-                                                <select class="form-control" onChange={handleChange} id="ratingFormControlSelect1" name="rating">
+                                            <div className="form-group">
+                                                <label htmlFor="exampleFormControlSelect1">Rating</label>
+                                                <select className="form-control" onChange={handleChange} id="ratingFormControlSelect1" name="rating">
                                                 <option>1</option>
                                                 <option>2</option>
                                                 <option>3</option>
@@ -291,43 +291,43 @@ function CourseDetails() {
                                                 <option>5</option>
                                                 </select>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="ratingFormControlTextarea1">Reviews</label>
-                                                <textarea class="form-control" onChange={handleChange} id="reviewFormControlTextarea1" rows="3"  name="reviews"></textarea>
+                                            <div className="form-group">
+                                                <label htmlFor="ratingFormControlTextarea1">Reviews</label>
+                                                <textarea className="form-control" onChange={handleChange} id="reviewFormControlTextarea1" rows="3"  name="reviews"></textarea>
                                             </div>
                                         </form>
                                     </div>
-                                    <div class="modal-footer">
-                                        <button type="button" onClick={submitForm} class="btn btn-primary">Submit</button>
+                                    <div className="modal-footer">
+                                        <button type="button" onClick={submitForm} className="btn btn-primary">Submit</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         </>
                     }
-                    </p>
+                    </div>
                     { UserLoginStatus !== 'success' &&
                         <button type='button' className='btn btn-dark'><Link to='/user-login' style={{textDecoration: 'none', color: 'white',}}>Login & Enroll</Link></button>
                     }
                     { UserLoginStatus == 'success' && EnrollStatus !== 'success' &&
-                        <p><button type='button' onClick={enrollStudent} className='btn btn-dark'>Enroll Now</button></p>
+                        <button type='button' onClick={enrollStudent} className='btn btn-dark'>Enroll Now</button>
                     }
                     { EnrollStatus == 'success' && UserLoginStatus == 'success' &&
-                        <p>
+                        <>
                             <button type='button' className='btn btn-light btn-outline-dark'>Enrolled</button>
                             { FavStatus !== 'success' &&
-                                <button type='button' onClick={AddtoFav} title='Add to Favourite' className='btn btn-outline-danger ms-2'><i class="bi bi-heart"></i></button>
+                                <button type='button' onClick={AddtoFav} title='Add to Favourite' className='btn btn-outline-danger ms-2'><i className="bi bi-heart"></i></button>
                             }
                             { FavStatus === 'success' &&
-                                <button type='button' onClick={removeFav} title='Remove to Favourite' className='btn btn-danger ms-2'><i class="bi bi-heart-fill"></i></button>
+                                <button type='button' onClick={removeFav} title='Remove to Favourite' className='btn btn-danger ms-2'><i className="bi bi-heart-fill"></i></button>
                             }
-                        </p>
+                        </>
                     }
                     {/* { EnrollStatus == 'success' && FavStatus !== 'success' &&
-                        <p><button type='button' onClick={AddtoFav} title='Add to Favourite' className='btn btn-outline-dark'><i class="bi bi-heart"></i></button></p>
+                        <p><button type='button' onClick={AddtoFav} title='Add to Favourite' className='btn btn-outline-dark'><i className="bi bi-heart"></i></button></p>
                     }
                     { EnrollStatus == 'success' && FavStatus === 'success' &&
-                        <p><button type='button' onClick={AddtoFav} title='Remove to Favourite' className='btn btn-danger'><i class="bi bi-heart"></i></button></p>
+                        <p><button type='button' onClick={AddtoFav} title='Remove to Favourite' className='btn btn-danger'><i className="bi bi-heart"></i></button></p>
                     } */}
                     
                 </div>
@@ -339,7 +339,7 @@ function CourseDetails() {
                 </div>
                 <ul className="list-group list-group-flush">
                     {ChapterData.map((chapter, index) => 
-                        <li className="list-group-item">{chapter.title}
+                        <li key={index} className="list-group-item">{chapter.title}
                             <span className='float-end'>
                             <span className='me-5'>1h:30m</span>
                                 <button className='btn btn-sm' data-bs-toggle="modal" data-bs-target="#videoModal1"><i className="bi-youtube"></i></button>
@@ -370,7 +370,7 @@ function CourseDetails() {
             <h3 className="pb-1 mb-4 mt-5">Related Course</h3>
             <div className="row mb-4">
                 {relatedCourseData.map((relcourse, index) =>
-                    <div className="col-md-3">
+                    <div key={index} className="col-md-3">
                         <div className="card">
                             <Link target='_blank' to={`/coursedetails/${relcourse.pk}`}><img src={`${relatedUrl}media/${relcourse.fields.featured_img}`} className="card-img-top" alt={relcourse.fields.title} /></Link>
                             <div className="card-body">

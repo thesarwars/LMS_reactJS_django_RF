@@ -12,7 +12,7 @@ function StudentRegistration() {
         "email": "",
         "username": "",
         "password": "",
-        "intereseted_cat": "",
+        "interested_cat": "",
         "status": "",
     });
 
@@ -35,7 +35,7 @@ function StudentRegistration() {
         studentFormData.append("email", StudentData.email)
         studentFormData.append("username", StudentData.username)
         studentFormData.append("password", StudentData.password)
-        studentFormData.append("intereseted_cat", StudentData.intereseted_cat)
+        studentFormData.append("interested_cat", StudentData.interested_cat)
 
         try{
             axios.post(baseUrl, studentFormData).then((response)=>{
@@ -44,7 +44,7 @@ function StudentRegistration() {
                     "email": "",
                     "password": "",
                     "qualification": "",
-                    "intereseted_cat": "",
+                    "interested_cat": "",
                     "status": "success",
                 });
             });
@@ -91,7 +91,7 @@ function StudentRegistration() {
                             </div>
                             <div className="mb-3">
                                 <label for="exampleInputEmail1" className="form-label">Interests</label>
-                                <textarea value={StudentData.intereseted_cat} onChange={handleChange} name="intereseted_cat" className="form-control"></textarea>
+                                <textarea value={StudentData.interested_cat} onChange={handleChange} name="interested_cat" className="form-control"></textarea>
                                 <div id="emailHelp" className="form-text">Ex: Python, Django, JavaScript</div>
                             </div>
                             <button type="submit" onClick={handleForm} className="btn btn-primary">Register</button>
